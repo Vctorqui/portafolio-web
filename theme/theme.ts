@@ -1,12 +1,11 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
-
 const colors = {
   text: {
-    primary: '#000',
-    secondary: '#fff',
+    primary: '#EEEEEE',
+    // secondary: ' rgb(254, 249, 195)',
+    secondary: '#76ABAE',
   },
- 
 }
 
 const theme = responsiveFontSizes(
@@ -15,7 +14,7 @@ const theme = responsiveFontSizes(
       mode: 'light',
       text: {
         primary: colors.text.primary,
-        secondary: colors.text.secondary
+        secondary: colors.text.secondary,
       },
     },
     typography: {
@@ -24,29 +23,30 @@ const theme = responsiveFontSizes(
         fontSize: 12,
       },
     },
-  
+
     components: {
       MuiButton: {
         styleOverrides: {
           root: {
             textTransform: 'none',
             ':disabled': {
-              background: 'rgba(0, 0, 0, 0.12)'
-            }
+              background: 'rgba(0, 0, 0, 0.12)',
+            },
           },
           outlinedPrimary: {
             // fontWeight: '700',
-            border: 'solid 1px #000',
-            borderRadius: 40,
+            border: 'solid 1px #76ABAE',
+            borderRadius: 20,
             position: 'relative',
             color: colors.text.primary,
             background: 'transparent',
             transition: 'background .2s ease-out,color .2s ease-out',
             '&:hover': {
-              background: '#fff',
-            }
-          }
-        }
+              background: '#76ABAE',
+              border: 'solid 1px #76ABAE',
+            },
+          },
+        },
       },
       MuiContainer: {
         styleOverrides: {
@@ -88,7 +88,6 @@ const theme = responsiveFontSizes(
             src: local('PilatExtended'), url(/fonts/pilat/PilatExtended-Bold.ttf) format('truetype');
           },
         `,
-        
       },
     },
   })

@@ -1,161 +1,210 @@
-import CustomDialog from '@/src/components/CustomDialog'
-import { BlockIcon } from '@/src/components/SvgIcon'
-import HomePublicFooter from '@/src/layouts/homePublic/Footer'
-import HomePublicHeader from '@/src/layouts/homePublic/Header'
-import HomeScene from '@/src/scene/HomeScene'
-import TestScene from '@/src/scene/TestScene'
+import PublicLayout from '@/src/layouts/Public'
+import { containerWidth, tasks } from '@/src/utils/const'
 import theme from '@/theme/theme'
-import { Box, Checkbox, Divider, Typography, styled } from '@mui/material'
-import { Canvas } from '@react-three/fiber'
+import {
+  Avatar,
+  Box,
+  Container,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  styled,
+} from '@mui/material'
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
-import { Fade } from 'react-awesome-reveal'
+import Timeline from '@mui/lab/Timeline'
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
+import TimelineSeparator from '@mui/lab/TimelineSeparator'
+import TimelineConnector from '@mui/lab/TimelineConnector'
+import TimelineContent from '@mui/lab/TimelineContent'
+import { WorkOutline } from '@mui/icons-material'
+import { TimelineDot } from '@mui/lab'
+import { taskTypes } from '@/src/types/types'
+import { ProjectCard } from '@/src/components/ProjectCard'
+import MusicPlayer from '@/src/components/MusicPlayer'
+import { LinkBlockStyled } from '@/src/components/LinkStyled'
+import { ContactForm } from '@/src/components/form/ContactForm'
 
-const BannerContainer = styled(Box)(() => ({
+const Banner = styled(Box)(() => ({
+  background: '#222831',
+  position: 'relative',
+  height: 'calc(100vh - 224px)',
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  minHeight: 'calc(100vh - 40px)',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // minHeight: 'calc(100vh - 40px)',
+  [theme.breakpoints.down('md')]: {
+    minHeight: 'calc(100vh - 150px)',
+  },
   [theme.breakpoints.down('sm')]: {
     minHeight: 'calc(100vh - 50px)',
   },
-
-  '.canvas': {
-    position: 'fixed !important',
-    inset: '0 !important',
-    pointerEvent: 'none',
-  },
-}))
-
-const CheckBoxContainer = styled(Box)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: theme.spacing(2),
-
-  '.checkboxes': {
+  '.bannerContainer': {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    gap: '10px',
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+    },
+    '.musicPlayer': {
+      position: 'absolute',
+      top: 20,
+      right: 40,
+      [theme.breakpoints.down('md')]: {
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        right: 0,
+        top: -80,
+      },
+      [theme.breakpoints.down('sm')]: {
+        top: -70,
+      },
+    },
+    '.titleBanner': {
+      [theme.breakpoints.down('md')]: {
+        textAlign: 'center',
+      },
+    },
   },
 }))
 
 const Index: NextPage = () => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [isPaused, setIsPaused] = useState(false)
-  // Lógica de la animación
-  const animationSpeed = isPaused ? 0 : 1 // Velocidad de la animación (0 para pausar)
-  const animationFactor = isPaused ? 1 : 1.5 // Factor de deformación (1 para pausar)
-  const [isOpenDialog, setIsOpenDialog] = useState(false)
-  const [checkBg, setCheckBg] = useState(false)
-
-  const handleBgChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckBg(event.target.checked)
-  }
-
-  const handleMotionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsPaused(event.target.checked)
-  }
-  useEffect(() => {
-    // Simula una carga de datos
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 2000) // tiempo
-  }, [])
-
   return (
-    <>
-      {isLoading ? (
-        <>
-          <Fade>
-            <Box
-              component={'div'}
-              display={'flex'}
-              justifyContent={'center'}
-              alignItems={'center'}
-              height={'100vh'}
+    <PublicLayout>
+      <Banner id='home'>
+        <Container maxWidth={containerWidth}>
+          <Box className='bannerContainer'>
+            <MusicPlayer additionalClassName='musicPlayer' />
+            <Avatar sx={{ width: 56, height: 56 }} src='/images/profile.jpg' />
+            <Typography
+              fontWeight={800}
+              variant='h1'
+              color={theme.palette.common.white}
+              className='titleBanner'
             >
-              <BlockIcon width={'200px'} height={'200px'} />
+              Hey, soy Victor
+            </Typography>
+            <Typography
+              className='titleBanner'
+              color={theme.palette.common.white}
+              variant='h5'
+            >
+              Soy
+              <span style={{ color: theme.palette.text.secondary }}>
+                {' '}
+                Frontend Developer
+              </span>
+              , amante de la tecnología con habilidades y experiencia en el
+              <span style={{ color: theme.palette.text.secondary }}>
+                {' '}
+                desarrollo de aplicaciones web únicas.
+              </span>
+            </Typography>
+            <Box display={'flex'} alignItems={'center'} gap={4} mt={2}>
+              <LinkBlockStyled href={'./CV-Victor-Quinones-dev.pdf'}>
+                Curriculum
+              </LinkBlockStyled>
+              <LinkBlockStyled
+                href={
+                  'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
+                }
+              >
+                LinkedIn
+              </LinkBlockStyled>
             </Box>
-          </Fade>
-        </>
-      ) : (
-        <BannerContainer>
-          <Canvas
-            style={{
-              background: checkBg
-                ? 'linear-gradient(90deg, rgba(252,223,255,1) 40%, rgba(228,238,249,1) 100%)'
-                : 'linear-gradient(270deg, rgba(195,34,34,1) 39%, rgba(59,168,170,1) 73%, rgba(34,193,195,1) 90%)',
-            }}
-            className='canvas'
-            shadows
-            camera={{ position: [-50, 50, 100], fov: 2.5 }}
+          </Box>
+        </Container>
+      </Banner>
+      <Divider />
+      <Box id={'experience'} sx={{ background: '#222831', padding: '40px 0' }}>
+        <Container maxWidth={containerWidth}>
+          <Typography
+            variant='h4'
+            fontWeight={800}
+            sx={{ color: '#d6e6e7' }}
+            // color={theme.palette.text.secondary}
           >
-            <HomeScene
-              color={checkBg ? '#fff' : '#1cc3e2'}
-              animationFactor={animationFactor}
-              animationSpeed={animationSpeed}
-            />
-            {/* <TestScene /> */}
-          </Canvas>
-          <Fade delay={500}>
-            <HomePublicHeader openDialog={() => setIsOpenDialog(true)} />
-          </Fade>
-          <CustomDialog
-            open={isOpenDialog}
-            onClose={() => {
-              setIsOpenDialog(false)
+            Experiencia
+          </Typography>
+          <Timeline
+            sx={{
+              [`& .${timelineItemClasses.root}:before`]: {
+                flex: 0,
+                padding: 0,
+              },
             }}
-            title={'Accessibility'}
           >
-            <CheckBoxContainer component={'div'}>
-              <Box margin={theme.spacing(2, 0, 3)} component={'div'}>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineConnector />
+                <TimelineDot sx={{ background: theme.palette.text.secondary }}>
+                  <WorkOutline sx={{ color: '#000' }} />
+                </TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent sx={{ py: '12px', px: 2 }}>
                 <Typography
-                  variant={'h6'}
+                  variant='h6'
                   color={theme.palette.text.secondary}
-                  align='left'
+                  fontWeight={800}
                 >
-                  Use the controls below to customize your web experience.
+                  Desarrollador Frontend Freelance
                 </Typography>
-              </Box>
-              <Box className='checkboxes' component={'div'}>
-                <Typography variant={'h6'} color={theme.palette.text.secondary}>
-                  Reduce color
+                <Typography fontWeight={800}>
+                  Desarrollador Frontend Jr
                 </Typography>
-                <Checkbox
-                  sx={{
-                    color: '#fff',
-                    '&.Mui-checked': {
-                      color: '#fff',
-                    },
-                  }}
-                  checked={checkBg}
-                  onChange={handleBgChange}
-                />
-              </Box>
-              <Divider sx={{ background: '#4c4c4c' }} />
-              <Box className='checkboxes' component={'div'}>
-                <Typography variant={'h6'} color={theme.palette.text.secondary}>
-                  Reduce motion
+                <Typography variant='body2'>
+                  Marzo 2023 - Actualmente...
                 </Typography>
-                <Checkbox
-                  sx={{
-                    color: '#fff',
-                    '&.Mui-checked': {
-                      color: '#fff',
-                    },
-                  }}
-                  checked={isPaused}
-                  onChange={handleMotionChange}
-                />
-              </Box>
-            </CheckBoxContainer>
-          </CustomDialog>
-          <Fade delay={500}>
-            <HomePublicFooter />
-          </Fade>
-        </BannerContainer>
-      )}
-    </>
+                <List>
+                  {tasks.map((item: taskTypes, i: any) => (
+                    <ListItem sx={{ paddingTop: 0 }} key={i}>
+                      <ListItemText>{item.description}</ListItemText>
+                    </ListItem>
+                  ))}
+                </List>
+              </TimelineContent>
+            </TimelineItem>
+          </Timeline>
+        </Container>
+      </Box>
+      <ProjectCard />
+      <Divider />
+      <Box sx={{ background: '#222831', padding: '80px 0' }} id={'about-me'}>
+        <Container maxWidth={containerWidth}>
+          <Box display={'flex'} flexDirection={'column'} gap={2}>
+            <Typography variant='h4' fontWeight={800} sx={{ color: '#d6e6e7' }}>
+              {/* // color={theme.palette.text.secondary} */}
+              Sobre mí
+            </Typography>
+            <Typography variant='body1'>
+              Soy un Desarrollador Web Freelance ubicado en Venezuela a quien le
+              <span style={{ color: theme.palette.text.secondary }}>
+                encanta aprender cosas nuevas, trabajar con particulares
+                startups y colaborar con gente talentosa alrededor del mundo
+              </span>{' '}
+              construyendo sitios web y aplicaciones con una amplia gama de
+              tecnologías.
+            </Typography>
+            <Typography variant='body1'>
+              <span style={{ color: theme.palette.text.secondary }}>
+                Mi principal objetivo es mejorar, aprender más cada día
+              </span>{' '}
+              y ser capaz de ayudar a nuevos emprendedores y pequeñas empresas a
+              alcanzar mercados más grandes y construir presencia web utilizando
+              las últimas y más exigentes tendencias de desarrollo.
+            </Typography>
+          </Box>
+        </Container>
+      </Box>
+      <ContactForm />
+    </PublicLayout>
   )
 }
 export default Index

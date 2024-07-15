@@ -1,29 +1,46 @@
 import React, { useRef, useState } from 'react'
 import { Box, Button, Stack, Typography, styled } from '@mui/material'
-import { MuteIcon, PlayIcon, SoundIcon, TidalIcon } from './SvgIcon'
+import { MuteIcon, SoundIcon } from './SvgIcon'
 import Link from 'next/link'
 import { Fade } from 'react-awesome-reveal'
 import { data } from '../mocks/data'
+import { FaSpotify } from 'react-icons/fa'
+import { Headphones, HeadsetOff, PlayArrow } from '@mui/icons-material'
+interface PlayerProps {
+  additionalClassName?: string
+}
 
 const MusicPlayerBox = styled(Box)(({ theme }) => ({
   '.linkButton': {
     display: 'flex',
     justifiyContent: 'center',
     alignItems: 'center',
-    border: 'solid 1px #000',
+    border: 'solid 1px #76ABAE',
     position: 'relative',
     padding: 20,
-    color: theme.palette.text.primary,
+    color: theme.palette.common.white,
     background: 'transparent',
     transition: 'background .2s ease-out,color .2s ease-out',
-    borderRadius: '0 40px 40px 0',
+    borderRadius: '0 5px 5px 0',
     '&:hover': {
+      color: theme.palette.common.black,
       background: '#fff',
     },
   },
+  '.playButton': {
+    '&:hover .textPlayer': {
+      color: theme.palette.common.black,
+    },
+    '&:hover .iconPlayer': {
+      color: theme.palette.common.black,
+    },
+  },
+  '.iconPlayer': {
+    color: theme.palette.common.white,
+  },
 }))
 
-const MusicPlayer = () => {
+const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
   // create an audio
   const [currentSong, setCurrentSong] = useState<string | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -65,39 +82,45 @@ const MusicPlayer = () => {
     })
   }
 
-  // Utilizamos el operador opcional de encadenamiento (?.) para acceder a las propiedades y
-  // métodos de audioRef.current solo si audioRef.current no es nulo.
-
-  // El error “Property ‘pause’ does not exist on type ‘never’ se debe a que TypeScript no puede inferir
-  //correctamente el tipo de audioRef.current. Para resolverlo, puedes especificar explícitamente el tipo de
-  //audioRef como HTMLAudioElement | null
-
   return (
-    <MusicPlayerBox component={'div'}>
+    <MusicPlayerBox className={additionalClassName}>
       {data.map((item: any, i: any) => (
-        <Box display={'flex'} component={'div'} key={i}>
+        <Box display={'flex'} key={i}>
           <Button
             sx={{
               padding: 2,
               width: '250px',
               justifyContent: 'flex-start',
-              borderRadius: '40px 0 0 40px',
+              borderRadius: '5px 0 0 5px',
             }}
             onClick={() => handlePlay(item.src)}
+            className='playButton'
             variant='outlined'
           >
-            <Box component='div' display={'flex'} alignItems={'center'} gap={2}>
+            <Box display={'flex'} alignItems={'center'} gap={2}>
               {iconState === 'play' && (
-                <PlayIcon width={'25px'} height={'25px'} />
+                <PlayArrow
+                  width={'25px'}
+                  height={'25px'}
+                  className={'iconPlayer'}
+                />
               )}
               {iconState === 'sound' && (
                 <Fade>
-                  <SoundIcon width={'25px'} height={'25px'} />
+                  <Headphones
+                    width={'25px'}
+                    height={'25px'}
+                    className={'iconPlayer'}
+                  />
                 </Fade>
               )}
               {iconState === 'mute' && (
                 <Fade>
-                  <MuteIcon width={'25px'} height={'25px'} />
+                  <HeadsetOff
+                    width={'25px'}
+                    height={'25px'}
+                    className={'iconPlayer'}
+                  />
                 </Fade>
               )}
               {textPlayer === 'firstText' && (
@@ -106,11 +129,16 @@ const MusicPlayer = () => {
                     fontSize={'11px'}
                     fontWeight={900}
                     variant='body1'
+                    className='textPlayer'
                   >
-                    Block Vibes
+                    Code Vibes
                   </Typography>
-                  <Typography fontSize={'11px'} variant='body1'>
-                    Curated by JAY-Z
+                  <Typography
+                    className='textPlayer'
+                    fontSize={'11px'}
+                    variant='body1'
+                  >
+                    by Victor
                   </Typography>
                 </Stack>
               )}
@@ -121,10 +149,15 @@ const MusicPlayer = () => {
                       fontSize={'11px'}
                       fontWeight={900}
                       variant='body1'
+                      className='textPlayer'
                     >
                       {item.title}
                     </Typography>
-                    <Typography fontSize={'11px'} variant='body1'>
+                    <Typography
+                      fontSize={'11px'}
+                      variant='body1'
+                      className='textPlayer'
+                    >
                       {item.artist}
                     </Typography>
                   </Stack>
@@ -137,10 +170,10 @@ const MusicPlayer = () => {
                     fontWeight={900}
                     variant='body1'
                   >
-                    Full playlist on TIDAL
+                    Full playlist on Spotify
                   </Typography>
                   <Typography fontSize={'11px'} variant='body1'>
-                    Curated by JAY-Z
+                    by Victor
                   </Typography>
                 </Stack>
               )}
@@ -157,10 +190,10 @@ const MusicPlayer = () => {
             onMouseLeave={() => setTextPlayer('firstText')}
             className='linkButton'
             href={
-              'https://tidal.com/browse/playlist/3d95c4f6-dad5-4d7f-a469-8bde01b7771d'
+              'https://open.spotify.com/intl-es/album/4xUST4uTiV5TCCVws3Vie6?si=T4M_lbWPSoCEBScPhkog1A'
             }
           >
-            <TidalIcon width={'30px'} height={'30px'} />
+            <FaSpotify />
           </Link>
         </Box>
       ))}

@@ -25,7 +25,7 @@ const LinkStyled = styled(Link)(({ theme }) => ({
     left: '50%',
     transform: 'translate(-50%, 0)',
     transition: 'all .2s ease-out',
-    background: '#000',
+    background: 'transparent',
   },
   '&:hover:after': {
     background: '#fff',

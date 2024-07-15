@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Head>
-          <title>Block Clone</title>
+          <title>Victor Web</title>
         </Head>
         <Component {...pageProps} />
       </ThemeProvider>

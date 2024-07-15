@@ -9,7 +9,7 @@ import {
   DialogProps,
   Typography,
 } from '@mui/material'
-import { CloseIcon } from './SvgIcon'
+import { Close } from '@mui/icons-material'
 
 interface customDialogTypes extends DialogProps {
   open: boolean
@@ -22,11 +22,11 @@ interface customDialogTypes extends DialogProps {
 const BoxClose = styled(Box)(({ theme }) => ({
   position: 'absolute',
   right: 2,
+  top: 2,
 }))
 
 const BoxDialog = styled(Dialog)(({ theme }) => ({
   '.css-43llcs-MuiPaper-root-MuiDialog-paper': {
-    backgroundColor: '#000',
     borderRadius: 10,
     color: theme.palette.text.secondary,
     padding: '30px',
@@ -78,8 +78,8 @@ const CustomDialog = ({
         </Typography>
         {onClose && (
           <BoxClose>
-            <IconButton sx={{ color: '#fff' }} onClick={onClose}>
-              <CloseIcon width={'20px'} height={'20px'} />
+            <IconButton sx={{ color: '#222831' }} onClick={onClose}>
+              <Close width={'20px'} height={'20px'} sx={{ color: '#222831' }} />
             </IconButton>
           </BoxClose>
         )}
