@@ -216,7 +216,7 @@ export const PublicHeader = () => {
                 offset={-70}
                 duration={500}
               >
-                <Typography variant='body1'>Projectos</Typography>
+                <Typography variant='body1'>Proyectos</Typography>
               </Link>
               <Link
                 className='nav-link'

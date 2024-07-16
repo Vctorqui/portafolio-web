@@ -100,7 +100,7 @@ const Index: NextPage = () => {
                 {' '}
                 Frontend Developer
               </span>
-              , amante de la tecnología con habilidades y experiencia en el
+              , amante de la tecnología, con habilidades y experiencia en el
               <span style={{ color: theme.palette.text.secondary }}>
                 {' '}
                 desarrollo de aplicaciones web únicas.
@@ -184,7 +184,7 @@ const Index: NextPage = () => {
               Sobre mí
             </Typography>
             <Typography variant='body1'>
-              Soy un Desarrollador Web Freelance ubicado en Venezuela a quien le
+              Soy un Desarrollador Web Freelance ubicado en Venezuela a quien le{' '}
               <span style={{ color: theme.palette.text.secondary }}>
                 encanta aprender cosas nuevas, trabajar con particulares
                 startups y colaborar con gente talentosa alrededor del mundo

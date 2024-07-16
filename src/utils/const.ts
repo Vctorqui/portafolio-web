@@ -47,7 +47,7 @@ export const projects: projectsTypes[] = [
     title: 'Floraria',
     description:
       'Página web para promocionar el proyecto residencial Floraria. Diseño responsive usando el preprocesador Sass.',
-    image: '/images/1.jpg',
+    image: '/images/8.png',
     source_code: undefined,
     languages: {
       html: {
@@ -167,25 +167,21 @@ export const projects: projectsTypes[] = [
       typescript: {
         icon: undefined,
         text: null,
-
       },
       nextjs: {
         icon: undefined,
         text: null,
-
       },
       mui: {
         icon: undefined,
         text: null,
-
       },
       react: {
         icon: undefined,
         text: null,
-
       },
     },
-    preview_link: '',
+    preview_link: 'https://lapituca.com.py/',
   },
   {
     id: 4,
@@ -231,7 +227,6 @@ export const projects: projectsTypes[] = [
         icon: undefined,
         text: null,
       },
-      
     },
     preview_link: 'https://bluewayisbetter.com/',
   },

@@ -136,48 +136,48 @@ export const ProjectCard = () => {
                       <Typography variant='body2'>Stack:</Typography>
                       {item.languages.html.text && (
                         <Typography variant='body2'>
-                          {item.languages.html.text}
+                          {item.languages.html.text},
                         </Typography>
                       )}
                       {item.languages.css.text && (
                         <Typography variant='body2'>
-                          {item.languages.css.text}
+                          {item.languages.css.text},
                         </Typography>
                       )}
                       {item.languages.javascript.text && (
                         <Typography variant='body2'>
-                          {item.languages.javascript.text}
+                          {item.languages.javascript.text},
                         </Typography>
                       )}
                       {item.languages.sass.text && (
                         <Typography variant='body2'>
-                          {item.languages.sass.text}
+                          {item.languages.sass.text},
                         </Typography>
                       )}
                       {item.languages.bootstrap.text && (
                         <Typography variant='body2'>
-                          {item.languages.bootstrap.text}
+                          {item.languages.bootstrap.text},
                         </Typography>
                       )}
                       {item.languages.typescript.text && (
                         <Typography variant='body2'>
-                          {item.languages.typescript.text}
+                          {item.languages.typescript.text},
                         </Typography>
                       )}
                       {item.languages.react.text && (
                         <Typography variant='body2'>
-                          {item.languages.react.text}
+                          {item.languages.react.text},
                         </Typography>
                       )}
 
                       {item.languages.nextjs.text && (
                         <Typography variant='body2'>
-                          {item.languages.nextjs.text}
+                          {item.languages.nextjs.text},
                         </Typography>
                       )}
                       {item.languages.mui.text && (
                         <Typography variant='body2'>
-                          {item.languages.mui.text}
+                          {item.languages.mui.text},
                         </Typography>
                       )}
                     </Box>

@@ -71,7 +71,7 @@ export const PublicFooter = () => {
 
   const action = (
     <React.Fragment>
-      <Button color='secondary' size='small' onClick={handleClose}>
+      <Button sx={{color: '#76ABAE'}} size='small' onClick={handleClose}>
         Deshacer
       </Button>
       <IconButton
@@ -97,7 +97,16 @@ export const PublicFooter = () => {
         </Typography>
         <Box className='footerContainer'>
           <CopyToClipboard text='victhorq716@gmail.com'>
-            <Box display={'flex'} alignItems={'center'} gap={1}>
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              gap={1}
+              sx={{
+                [theme.breakpoints.down('sm')]: {
+                  justifyContent: 'center',
+                },
+              }}
+            >
               <IconButton
                 onClick={handleClick({
                   vertical: 'bottom',
@@ -112,6 +121,8 @@ export const PublicFooter = () => {
               >
                 <ContentCopy sx={{ color: theme.palette.common.white }} />
                 <Typography color={theme.palette.common.white} variant='body2'>
+                  Click para Copiar:
+                  <br style={{ display: isSm ? 'block' : 'none' }} />{' '}
                   victhorq716@gmail.com
                 </Typography>
               </IconButton>
