@@ -80,7 +80,11 @@ const Index: NextPage = () => {
         <Container maxWidth={containerWidth}>
           <Box className='bannerContainer'>
             <MusicPlayer additionalClassName='musicPlayer' />
-            <Avatar sx={{ width: 56, height: 56 }} src='/images/profile.webp' alt='Imagen de Victor' />
+            <Avatar
+              sx={{ width: 56, height: 56 }}
+              src={'/images/profile.webp'}
+              alt='Victor'
+            />
             <Typography
               fontWeight={800}
               variant='h1'

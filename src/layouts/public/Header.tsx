@@ -123,6 +123,7 @@ export const PublicHeader = () => {
       </Grid>
       <Divider sx={{ marginBottom: '20px' }} />
       <LinkContainer
+        href='#experience'
         aria-label='Ir al experiencia'
         className='nav-link'
         activeClass='active'
@@ -135,6 +136,7 @@ export const PublicHeader = () => {
         <MenuItem className='link-text'>Experiencia</MenuItem>
       </LinkContainer>
       <LinkContainer
+        href='#projects'
         className='nav-link'
         aria-label='Ir a proyectos'
         to='projects'
@@ -146,6 +148,7 @@ export const PublicHeader = () => {
         <MenuItem className='link-text'>Proyectos</MenuItem>
       </LinkContainer>
       <LinkContainer
+        href='#about-me'
         aria-label='Ir a sobre mi'
         className='nav-link'
         to='about-me'
@@ -157,6 +160,7 @@ export const PublicHeader = () => {
         <MenuItem className='link-text'>Sobre Mí</MenuItem>
       </LinkContainer>
       <LinkContainer
+        href='#contact'
         aria-label='Ir a contacto'
         className='nav-link'
         to='contact'
@@ -187,7 +191,7 @@ export const PublicHeader = () => {
             </Box>
             <BoxNavContainer>
               <Link
-                aria-label='Ir al Inicio'
+                href='#home'
                 className='nav-link'
                 activeClass='active'
                 to='home'
@@ -199,6 +203,7 @@ export const PublicHeader = () => {
                 <Home sx={{ marginTop: '5px' }} fontSize='medium' />
               </Link>
               <Link
+                href='#experience'
                 aria-label='Ir al experiencia'
                 className='nav-link'
                 to='experience'
@@ -210,6 +215,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Experiencia</Typography>
               </Link>
               <Link
+                href='#projects'
                 aria-label='Ir a proyectos'
                 className='nav-link'
                 to='projects'
@@ -221,6 +227,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Proyectos</Typography>
               </Link>
               <Link
+                href='#about-me'
                 aria-label='Ir a sobre mi'
                 className='nav-link'
                 to='about-me'
@@ -232,6 +239,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Sobre Mí</Typography>
               </Link>
               <Link
+                href='#contact'
                 aria-label='Ir a contacto'
                 className='nav-link'
                 to='contact'
