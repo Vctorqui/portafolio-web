@@ -47,7 +47,7 @@ export const projects: projectsTypes[] = [
     title: 'Floraria',
     description:
       'Página web para promocionar el proyecto residencial Floraria. Diseño responsive usando el preprocesador Sass.',
-    image: '/images/8.png',
+    image: '/images/8.webp',
     source_code: undefined,
     languages: {
       html: {
@@ -94,7 +94,7 @@ export const projects: projectsTypes[] = [
     title: 'Subasta de Propiedades',
     description:
       'Aplicación web para comprar, vender y principalmente subastar proyectos residenciales.',
-    image: '/images/5.jpg',
+    image: '/images/5.webp',
     source_code: undefined,
     languages: {
       html: {
@@ -141,7 +141,7 @@ export const projects: projectsTypes[] = [
     title: 'La Pituca',
     description:
       'Página web para promocionar el proyecto residencial La Pituca. Diseño responsive usando el preprocesador Sass.',
-    image: '/images/3.jpg',
+    image: '/images/3.webp',
     source_code: undefined,
     languages: {
       html: {
@@ -188,7 +188,7 @@ export const projects: projectsTypes[] = [
     title: 'Blue Way Transportation',
     description:
       'Aplicación web donde puedes acceder a servicios de Transporte médico no urgente, fiable y accesible.',
-    image: '/images/6.jpg',
+    image: '/images/6.webp',
     source_code: undefined,
     languages: {
       html: {
@@ -235,7 +235,7 @@ export const projects: projectsTypes[] = [
     title: 'Lyon',
     description:
       'Página web para promocionar el proyecto residencial Lyon. Diseño responsive usando el preprocesador Sass.',
-    image: '/images/2.jpg',
+    image: '/images/2.webp',
     source_code: undefined,
     languages: {
       html: {
@@ -282,7 +282,7 @@ export const projects: projectsTypes[] = [
     title: 'Lisboa',
     description:
       'Página web para promocionar el proyecto residencial Lisboa. Diseño responsive usando el preprocesador Sass.',
-    image: '/images/1.jpg',
+    image: '/images/1.webp',
     source_code: undefined,
     languages: {
       html: {
