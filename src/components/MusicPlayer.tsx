@@ -18,16 +18,20 @@ const MusicPlayerBox = styled(Box)(({ theme }) => ({
     border: 'solid 1px #76ABAE',
     position: 'relative',
     padding: 20,
-    color: theme.palette.common.white,
+    color: theme.palette.secondary.light,
     background: 'transparent',
     transition: 'background .2s ease-out,color .2s ease-out',
     borderRadius: '0 5px 5px 0',
     '&:hover': {
       color: theme.palette.common.black,
-      background: '#fff',
+      background: theme.palette.secondary.light,
     },
   },
   '.playButton': {
+    padding: theme.spacing(2),
+    width: '250px',
+    justifyContent: 'flex-start',
+    borderRadius: '5px 0 0 5px',
     '&:hover .textPlayer': {
       color: theme.palette.common.black,
     },
@@ -36,7 +40,7 @@ const MusicPlayerBox = styled(Box)(({ theme }) => ({
     },
   },
   '.iconPlayer': {
-    color: theme.palette.common.white,
+    color: theme.palette.secondary.light,
   },
 }))
 
@@ -87,12 +91,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
       {data.map((item: any, i: any) => (
         <Box display={'flex'} key={i}>
           <Button
-            sx={{
-              padding: 2,
-              width: '250px',
-              justifyContent: 'flex-start',
-              borderRadius: '5px 0 0 5px',
-            }}
+            aria-label='Play'
             onClick={() => handlePlay(item.src)}
             className='playButton'
             variant='outlined'
@@ -100,6 +99,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
             <Box display={'flex'} alignItems={'center'} gap={2}>
               {iconState === 'play' && (
                 <PlayArrow
+                  arial-label='Play icono'
                   width={'25px'}
                   height={'25px'}
                   className={'iconPlayer'}
@@ -108,6 +108,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
               {iconState === 'sound' && (
                 <Fade>
                   <Headphones
+                    arial-label='Audifonos icono'
                     width={'25px'}
                     height={'25px'}
                     className={'iconPlayer'}
@@ -117,6 +118,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
               {iconState === 'mute' && (
                 <Fade>
                   <HeadsetOff
+                    arial-label='Mute icono'
                     width={'25px'}
                     height={'25px'}
                     className={'iconPlayer'}
@@ -186,6 +188,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
             )}
           </Button>
           <Link
+            aria-label='Ir a Playlist en Spotify'
             onMouseEnter={() => setTextPlayer('thirdText')}
             onMouseLeave={() => setTextPlayer('firstText')}
             className='linkButton'

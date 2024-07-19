@@ -1,31 +1,25 @@
 import CustomDialog from '@/src/components/CustomDialog'
 import { containerWidth } from '@/src/utils/const'
-import { Person, Menu, KeyboardReturn, Home } from '@mui/icons-material'
+import { Menu, Home } from '@mui/icons-material'
 import {
   AppBar,
   Box,
-  Button,
   Container,
   Divider,
   Grid,
   IconButton,
   MenuItem,
-  Stack,
   Toolbar,
   Typography,
   styled,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import Image from 'next/image'
-import router, { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
-import { Link, animateScroll as scroll } from 'react-scroll'
+import { useState } from 'react'
+import { Link } from 'react-scroll'
 
 const AppBarContainer = styled(AppBar)(({ theme }) => ({
-  // background: '#222831',
-  background: '#31363F',
-  // background: theme.palette.primary.main,
+  background: theme.palette.primary.light,
   boxShadow: '0px 5px 19px rgba(0,0,0,.2901960784)',
   [theme.breakpoints.down('md')]: {
     paddingTop: 0,
@@ -66,7 +60,7 @@ const BoxNavContainer = styled(Box)(({ theme }) => ({
   },
   '.nav-link': {
     textDecoration: 'none',
-    color: theme.palette.common.white,
+    color: theme.palette.text.primary,
     fontStyle: 'italic',
     cursor: 'pointer',
   },
@@ -80,7 +74,6 @@ const LinkContainer = styled(Link)(({ theme }) => ({
   borderRadius: 4,
   position: 'relative',
   transition: 'all 0.3s ease-out',
-  // background: theme.palette.gradient.background,
   '&:hover': {
     boxShadow: '0 5px 10px 0px #00000060',
   },
@@ -119,14 +112,18 @@ export const PublicHeader = () => {
     <ResponsiveBox p={2} onClick={handleDrawerToggle}>
       <Grid container spacing={0}>
         <Grid item xs={12} textAlign={'start'} marginBottom={'10px'}>
-          <Typography variant='h6' color={theme.palette.common.black} fontWeight={700}>
+          <Typography
+            variant='h6'
+            color={theme.palette.common.black}
+            fontWeight={700}
+          >
             Menú de opciones
           </Typography>
         </Grid>
       </Grid>
       <Divider sx={{ marginBottom: '20px' }} />
-
       <LinkContainer
+        aria-label='Ir al experiencia'
         className='nav-link'
         activeClass='active'
         to='experience'
@@ -139,6 +136,7 @@ export const PublicHeader = () => {
       </LinkContainer>
       <LinkContainer
         className='nav-link'
+        aria-label='Ir a proyectos'
         to='projects'
         spy={true}
         smooth={true}
@@ -148,6 +146,7 @@ export const PublicHeader = () => {
         <MenuItem className='link-text'>Proyectos</MenuItem>
       </LinkContainer>
       <LinkContainer
+        aria-label='Ir a sobre mi'
         className='nav-link'
         to='about-me'
         spy={true}
@@ -158,6 +157,7 @@ export const PublicHeader = () => {
         <MenuItem className='link-text'>Sobre Mí</MenuItem>
       </LinkContainer>
       <LinkContainer
+        aria-label='Ir a contacto'
         className='nav-link'
         to='contact'
         spy={true}
@@ -177,8 +177,7 @@ export const PublicHeader = () => {
           <Toolbar className='toolBarStyled'>
             <Box className='menuOptions'>
               <IconButton
-                // color={theme.palette.common.white}
-                aria-label='open drawer'
+                aria-label='Abrir menu'
                 edge='start'
                 onClick={handleDrawerToggle}
                 sx={{ display: { lg: 'none' } }}
@@ -188,6 +187,7 @@ export const PublicHeader = () => {
             </Box>
             <BoxNavContainer>
               <Link
+                aria-label='Ir al Inicio'
                 className='nav-link'
                 activeClass='active'
                 to='home'
@@ -199,6 +199,7 @@ export const PublicHeader = () => {
                 <Home sx={{ marginTop: '5px' }} fontSize='medium' />
               </Link>
               <Link
+                aria-label='Ir al experiencia'
                 className='nav-link'
                 to='experience'
                 spy={true}
@@ -209,6 +210,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Experiencia</Typography>
               </Link>
               <Link
+                aria-label='Ir a proyectos'
                 className='nav-link'
                 to='projects'
                 spy={true}
@@ -219,6 +221,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Proyectos</Typography>
               </Link>
               <Link
+                aria-label='Ir a sobre mi'
                 className='nav-link'
                 to='about-me'
                 spy={true}
@@ -229,6 +232,7 @@ export const PublicHeader = () => {
                 <Typography variant='body1'>Sobre Mí</Typography>
               </Link>
               <Link
+                aria-label='Ir a contacto'
                 className='nav-link'
                 to='contact'
                 spy={true}

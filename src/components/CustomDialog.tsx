@@ -78,7 +78,11 @@ const CustomDialog = ({
         </Typography>
         {onClose && (
           <BoxClose>
-            <IconButton sx={{ color: '#222831' }} onClick={onClose}>
+            <IconButton
+              aria-label='Close'
+              sx={{ color: '#222831' }}
+              onClick={onClose}
+            >
               <Close width={'20px'} height={'20px'} sx={{ color: '#222831' }} />
             </IconButton>
           </BoxClose>

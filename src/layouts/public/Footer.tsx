@@ -20,13 +20,12 @@ import {
 } from '@mui/icons-material'
 import theme from '../../../theme/theme'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { containerWidth } from '@/src/utils/const'
 import { LinkedinIcon } from '@/src/components/SvgIcon'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 const FooterBox = styled(Box)(() => ({
-  background: '#222831',
+  background: theme.palette.primary.main,
   padding: theme.spacing(2, 0),
   '.footerContainer': {
     position: 'relative',
@@ -40,8 +39,34 @@ const FooterBox = styled(Box)(() => ({
     },
     '.footerLink': {
       textDecoration: 'none',
-      color: theme.palette.text.primary,
+      color: theme.palette.secondary.main,
       marginTop: '3px',
+    },
+    '.footerEmail': {
+      display: 'flex',
+      alignItems: 'center',
+      gap: theme.spacing(1),
+      [theme.breakpoints.down('sm')]: {
+        justifyContent: 'center',
+      },
+      '.emailBtn': {
+        borderRadius: '10px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '5px',
+      },
+    },
+  },
+  '.boxBtnUp': {
+    cursor: 'pointer',
+    ':hover .btnTop': {
+      background: '#76ABAE',
+    },
+    '.btnTop': {
+      background: theme.palette.secondary.main,
+      ':hover': {
+        background: theme.palette.backgroundGreen.green,
+      },
     },
   },
 }))
@@ -51,8 +76,7 @@ export const PublicFooter = () => {
     open: boolean
   }
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
-  const router = useRouter()
-  const iconColor = theme.palette.common.white
+  const iconColor = theme.palette.secondary.light
 
   const [state, setState] = React.useState<State>({
     open: false,
@@ -71,12 +95,17 @@ export const PublicFooter = () => {
 
   const action = (
     <React.Fragment>
-      <Button sx={{color: '#76ABAE'}} size='small' onClick={handleClose}>
+      <Button
+        aria-label='cerrar'
+        sx={{ color: theme.palette.backgroundGreen.green }}
+        size='small'
+        onClick={handleClose}
+      >
         Deshacer
       </Button>
       <IconButton
         size='small'
-        aria-label='close'
+        aria-label='Cerrar'
         color='inherit'
         onClick={handleClose}
       >
@@ -97,27 +126,14 @@ export const PublicFooter = () => {
         </Typography>
         <Box className='footerContainer'>
           <CopyToClipboard text='victhorq716@gmail.com'>
-            <Box
-              display={'flex'}
-              alignItems={'center'}
-              gap={1}
-              sx={{
-                [theme.breakpoints.down('sm')]: {
-                  justifyContent: 'center',
-                },
-              }}
-            >
+            <Box className='footerEmail'>
               <IconButton
+                aria-label='copiar correo'
+                className='emailBtn'
                 onClick={handleClick({
                   vertical: 'bottom',
                   horizontal: 'right',
                 })}
-                sx={{
-                  borderRadius: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5px',
-                }}
               >
                 <ContentCopy sx={{ color: theme.palette.common.white }} />
                 <Typography color={theme.palette.common.white} variant='body2'>
@@ -140,7 +156,11 @@ export const PublicFooter = () => {
           <Divider orientation='vertical' variant='middle' flexItem />
 
           <Box display={'flex'} alignItems={'center'} gap={2}>
-            <Link className='footerLink' href={'https://wa.me/+584127884439'}>
+            <Link
+              className='footerLink'
+              href={'https://wa.me/+584127884439'}
+              arial-label='Ir a whatsapp'
+            >
               <Box display={'flex'} alignItems={'center'} gap={1}>
                 <WhatsApp sx={{ color: iconColor }} fontSize='small' />
                 <Typography color={theme.palette.common.white} variant='body2'>
@@ -150,10 +170,14 @@ export const PublicFooter = () => {
             </Link>
             <Divider orientation='vertical' variant='middle' flexItem />
             <Box display={'flex'} alignItems={'center'} gap={2}>
-              <Link href={'https://github.com/Vctorqui'}>
+              <Link
+                href={'https://github.com/Vctorqui'}
+                arial-label='Ir a github'
+              >
                 <GitHub sx={{ color: iconColor }} />
               </Link>
               <Link
+                arial-label='Ir a linkedIn'
                 href={
                   'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
                 }
@@ -168,17 +192,12 @@ export const PublicFooter = () => {
           </Box>
         </Box>
         <Box
+          className='boxBtnUp'
           display={'flex'}
           justifyContent={'flex-end'}
           alignItems={'center'}
           gap={1}
           mt={2}
-          sx={{
-            cursor: 'pointer',
-            ':hover .btnTop': {
-              background: '#76ABAE',
-            },
-          }}
           onClick={() => {
             window.scroll({
               top: 0,
@@ -187,15 +206,7 @@ export const PublicFooter = () => {
           }}
         >
           <Typography variant='body2'>Ir arriba</Typography>
-          <IconButton
-            className='btnTop'
-            sx={{
-              background: '#d6e6e7',
-              ':hover': {
-                background: '#76ABAE',
-              },
-            }}
-          >
+          <IconButton className='btnTop'>
             <ArrowUpward fontSize='medium' />
           </IconButton>
         </Box>

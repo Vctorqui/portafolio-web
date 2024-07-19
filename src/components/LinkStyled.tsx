@@ -10,7 +10,7 @@ interface LinkProps {
 
 const LinkStyled = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
-  color: theme.palette.text.primary,
+  color: theme.palette.secondary.main,
   transition: 'all .2s ease-out',
   fontWeight: 800,
   position: 'relative',

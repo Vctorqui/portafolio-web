@@ -1,20 +1,52 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
+interface micolor {
+  backgroundGreen: {
+    green: string
+  }
+}
+
+declare module '@mui/material/styles' {
+  interface Palette extends micolor {}
+  interface PaletteOptions extends micolor {}
+}
+
 const colors = {
+  primary: {
+    main: '#222831',
+    light: '#31363F',
+    dark: '',
+  },
+  secondary: {
+    main: '#d6e6e7',
+    light: '#EEEEEE',
+  },
   text: {
     primary: '#EEEEEE',
-    // secondary: ' rgb(254, 249, 195)',
     secondary: '#76ABAE',
+  },
+  backgroundGreen: {
+    green: '#76ABAE',
   },
 }
 
 const theme = responsiveFontSizes(
   createTheme({
     palette: {
-      mode: 'light',
+      primary: {
+        main: colors.primary.main,
+        light: colors.primary.light,
+      },
+      secondary: {
+        main: colors.secondary.main,
+        light: colors.secondary.light,
+      },
       text: {
         primary: colors.text.primary,
         secondary: colors.text.secondary,
+      },
+      backgroundGreen: {
+        green: colors.backgroundGreen.green,
       },
     },
     typography: {

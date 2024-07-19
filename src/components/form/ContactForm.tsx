@@ -85,23 +85,6 @@ export const ContactForm = () => {
     }
   }
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault()
-  //   emailjs
-  //     .send('portafolio_contact', 'template_tok2wgk', form, 'Avb6LnstDi00ZVPvh')
-  //     .then(
-  //       (response) => {
-  //         console.log('SUCCESS!', response.status, response.text)
-  //         setForm(contactUsInit)
-  //         setShowMessage(true)
-  //       },
-  //       (err) => {
-  //         console.log('FAILED...', err)
-  //         setShowMessage(false)
-  //       }
-  //     )
-  // }
-
   const handleClose = () => {
     setOpenSuccessDialog(false)
     setOpenErrorDialog(false)
@@ -191,6 +174,7 @@ export const ContactForm = () => {
                   </Typography>
                 )}
                 <Button
+                  aria-label='Enviar'
                   sx={{
                     width: '120px',
                     fontWeight: 700,

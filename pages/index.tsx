@@ -1,3 +1,5 @@
+import React from 'react'
+import { NextPage } from 'next'
 import PublicLayout from '@/src/layouts/Public'
 import { containerWidth, tasks } from '@/src/utils/const'
 import theme from '@/theme/theme'
@@ -12,8 +14,6 @@ import {
   Typography,
   styled,
 } from '@mui/material'
-import { NextPage } from 'next'
-import React, { useEffect, useState } from 'react'
 import Timeline from '@mui/lab/Timeline'
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
@@ -28,13 +28,12 @@ import { LinkBlockStyled } from '@/src/components/LinkStyled'
 import { ContactForm } from '@/src/components/form/ContactForm'
 
 const Banner = styled(Box)(() => ({
-  background: '#222831',
+  background: theme.palette.primary.main,
   position: 'relative',
   height: 'calc(100vh - 224px)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  // minHeight: 'calc(100vh - 40px)',
   [theme.breakpoints.down('md')]: {
     minHeight: 'calc(100vh - 150px)',
   },
@@ -85,14 +84,14 @@ const Index: NextPage = () => {
             <Typography
               fontWeight={800}
               variant='h1'
-              color={theme.palette.common.white}
+              color={theme.palette.text.primary}
               className='titleBanner'
             >
               Hey, soy Victor
             </Typography>
             <Typography
               className='titleBanner'
-              color={theme.palette.common.white}
+              color={theme.palette.text.primary}
               variant='h5'
             >
               Soy
@@ -122,13 +121,16 @@ const Index: NextPage = () => {
         </Container>
       </Banner>
       <Divider />
-      <Box id={'experience'} sx={{ background: '#222831', padding: '40px 0' }}>
+      <Box
+        id={'experience'}
+        bgcolor={theme.palette.primary.main}
+        padding={theme.spacing(5, 0)}
+      >
         <Container maxWidth={containerWidth}>
           <Typography
             variant='h4'
             fontWeight={800}
-            sx={{ color: '#d6e6e7' }}
-            // color={theme.palette.text.secondary}
+            color={theme.palette.secondary.main}
           >
             Experiencia
           </Typography>
@@ -144,7 +146,7 @@ const Index: NextPage = () => {
               <TimelineSeparator>
                 <TimelineConnector />
                 <TimelineDot sx={{ background: theme.palette.text.secondary }}>
-                  <WorkOutline sx={{ color: '#000' }} />
+                  <WorkOutline sx={{ color: theme.palette.common.black }} />
                 </TimelineDot>
                 <TimelineConnector />
               </TimelineSeparator>
@@ -176,11 +178,18 @@ const Index: NextPage = () => {
       </Box>
       <ProjectCard />
       <Divider />
-      <Box sx={{ background: '#222831', padding: '80px 0' }} id={'about-me'}>
+      <Box
+        bgcolor={theme.palette.primary.main}
+        padding={theme.spacing(10, 0)}
+        id={'about-me'}
+      >
         <Container maxWidth={containerWidth}>
           <Box display={'flex'} flexDirection={'column'} gap={2}>
-            <Typography variant='h4' fontWeight={800} sx={{ color: '#d6e6e7' }}>
-              {/* // color={theme.palette.text.secondary} */}
+            <Typography
+              variant='h4'
+              fontWeight={800}
+              color={theme.palette.secondary.main}
+            >
               Sobre mí
             </Typography>
             <Typography variant='body1'>

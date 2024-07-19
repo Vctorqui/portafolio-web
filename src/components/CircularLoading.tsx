@@ -1,6 +1,7 @@
 import React from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
 import Box from '@mui/material/Box'
+import theme from '@/theme/theme'
 
 export const CircularLoading = ({ size = 80 }: { size?: number }) => {
   return (
@@ -12,7 +13,10 @@ export const CircularLoading = ({ size = 80 }: { size?: number }) => {
         padding: '40px 0 80px',
       }}
     >
-      <CircularProgress sx={{ color: '#222831' }} size={size} />
+      <CircularProgress
+        sx={{ color: theme.palette.primary.main }}
+        size={size}
+      />
     </Box>
   )
 }

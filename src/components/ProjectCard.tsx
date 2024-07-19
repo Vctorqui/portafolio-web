@@ -101,7 +101,11 @@ export const ProjectCard = () => {
             }
             return (
               <Grid key={i} item xl={6} md={6} xs={12}>
-                <Link className='linkCard' href={item.preview_link}>
+                <Link
+                  arial-label={`Ir a ${item.title}`}
+                  className='linkCard'
+                  href={item.preview_link}
+                >
                   <Box className='cardStyled'>
                     <Box display={'flex'} alignItems={'center'} gap={2}>
                       <Stack spacing={2}>
