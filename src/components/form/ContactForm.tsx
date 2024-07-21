@@ -13,7 +13,12 @@ import FancyInput, { isValidEmail } from '../CustomInput'
 import emailjs from 'emailjs-com'
 import { useRouter } from 'next/router'
 import CustomDialog from '../CustomDialog'
-import { Check, HighlightOffSharp } from '@mui/icons-material'
+import {
+  Check,
+  HighlightOffSharp,
+  SentimentDissatisfied,
+  SentimentVeryDissatisfied,
+} from '@mui/icons-material'
 import { CircularLoading } from '../CircularLoading'
 
 const GridForm = styled(Grid)(({ theme }) => ({
@@ -40,6 +45,7 @@ export const ContactForm = () => {
   const [clickSubmit, setClickSubmit] = useState<number>(0)
   const [fieldsWithError, setFieldsWithError] = useState(0)
   const router = useRouter()
+  const [errorForm, setErrorForm] = useState(true)
 
   const handleChange = (event: any) => {
     let { name, value } = event.target
@@ -108,90 +114,106 @@ export const ContactForm = () => {
             >
               CONTACTO
             </Typography>
-            <Box
-              component='form'
-              width={'100%'}
-              noValidate
-              autoComplete='off'
-              // onSubmit={submitForm}
-            >
-              <Grid container spacing={1}>
-                <Grid item lg={6} xs={12}>
-                  <FancyInput
-                    validateSubmit={validateInputs}
-                    required
-                    placeholder='Ej: Victor, DevInc'
-                    type='text'
-                    label='Nombre'
-                    name='full_name'
-                    value={form.full_name}
-                    onChange={handleChange}
-                  />
+            {errorForm === true ? (
+              <Box
+                display={'flex'}
+                flexDirection={'column'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                gap={1}
+              >
+                <Typography textAlign={'center'}>
+                  Lo siento. El formulario de contacto se encuentra en mantenimiento. Te
+                  invito a usar los metodos directos de abajo
+                </Typography>
+                <SentimentVeryDissatisfied fontSize='large' sx={{color: theme.palette.backgroundGreen.green}}/>
+              </Box>
+            ) : (
+              <Box
+                component='form'
+                width={'100%'}
+                noValidate
+                autoComplete='off'
+                // onSubmit={submitForm}
+              >
+                <Grid container spacing={1}>
+                  <Grid item lg={6} xs={12}>
+                    <FancyInput
+                      validateSubmit={validateInputs}
+                      required
+                      placeholder='Ej: Victor, DevInc'
+                      type='text'
+                      label='Nombre'
+                      name='full_name'
+                      value={form.full_name}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item lg={6} xs={12}>
+                    <FancyInput
+                      validateSubmit={validateInputs}
+                      value={form.email}
+                      required
+                      placeholder='Ej: tuemail@gmail.com'
+                      type='email'
+                      label='Correo'
+                      name='email'
+                      validation={[
+                        {
+                          validate: () => isValidEmail(form.email),
+                          msg: 'Correo no válido',
+                        },
+                      ]}
+                      onChange={handleChange}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item lg={6} xs={12}>
-                  <FancyInput
-                    validateSubmit={validateInputs}
-                    value={form.email}
-                    required
-                    placeholder='Ej: tuemail@gmail.com'
-                    type='email'
-                    label='Correo'
-                    name='email'
-                    validation={[
-                      {
-                        validate: () => isValidEmail(form.email),
-                        msg: 'Correo no válido',
-                      },
-                    ]}
-                    onChange={handleChange}
-                  />
-                </Grid>
-              </Grid>
-              <FancyInput
-                validateSubmit={validateInputs}
-                className='inputStyled'
-                value={form.subject}
-                required
-                type='text'
-                placeholder='Ej: Estoy interesado...'
-                label='Consulta'
-                name='subject'
-                onChange={handleChange}
-                multiline
-                rows={4}
-              />
+                <FancyInput
+                  validateSubmit={validateInputs}
+                  className='inputStyled'
+                  value={form.subject}
+                  required
+                  type='text'
+                  placeholder='Ej: Estoy interesado...'
+                  label='Consulta'
+                  name='subject'
+                  onChange={handleChange}
+                  multiline
+                  rows={4}
+                />
 
-              <Stack alignItems={'flex-end'}>
-                {fieldsWithError > 0 && loadComponent > 1 && (
-                  <Typography
-                    variant='body1'
-                    align='right'
-                    color='error'
-                    sx={{ marginBottom: 2 }}
+                <Stack alignItems={'flex-end'}>
+                  {fieldsWithError > 0 && loadComponent > 1 && (
+                    <Typography
+                      variant='body1'
+                      align='right'
+                      color='error'
+                      sx={{ marginBottom: 2 }}
+                    >
+                      Some fields are empty
+                    </Typography>
+                  )}
+                  <Button
+                    aria-label='Enviar'
+                    sx={{
+                      width: '120px',
+                      fontWeight: 700,
+                      borderRadius: '5px',
+                      ':hover': {
+                        background: '#76ABAE',
+                        color: '#EEE',
+                        borderColor: '#76ABAE',
+                      },
+                    }}
+                    type='submit'
+                    variant='outlined'
+                    onClick={validateForm}
                   >
-                    Some fields are empty
-                  </Typography>
-                )}
-                <Button
-                  aria-label='Enviar'
-                  sx={{
-                    width: '120px',
-                    fontWeight: 700,
-                    borderRadius: '5px',
-                    ':hover': {
-                      background: '#76ABAE',
-                      color: '#EEE',
-                      borderColor: '#76ABAE',
-                    },
-                  }}
-                  type='submit'
-                  variant='outlined'
-                  onClick={validateForm}
-                >
-                  Enviar
-                </Button>
-              </Stack>
-            </Box>
+                    Enviar
+                  </Button>
+                </Stack>
+              </Box>
+            )}
           </Box>
         </Container>
       </GridForm>
