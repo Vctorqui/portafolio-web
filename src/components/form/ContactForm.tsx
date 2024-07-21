@@ -9,7 +9,6 @@ import {
   useTheme,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { contactUsInit } from '@/src/utils/const'
 import FancyInput, { isValidEmail } from '../CustomInput'
 import emailjs from 'emailjs-com'
 import { useRouter } from 'next/router'
@@ -73,7 +72,7 @@ export const ContactForm = () => {
       )
       if (sendFormContact.status === 200) {
         setOpenSuccessDialog(true)
-        setForm(contactUsInit)
+        setForm(frmContact)
       } else {
         setOpenErrorDialog(true)
       }
