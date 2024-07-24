@@ -110,7 +110,7 @@ const Index: NextPage = () => {
               </span>
             </Typography>
             <Box display={'flex'} alignItems={'center'} gap={4} mt={2}>
-              <LinkBlockStyled href={'./CV-Victor-Quinones-dev.pdf'}>
+              <LinkBlockStyled href={'./CV-Victor-Quinones-Frontend-es.pdf'}>
                 Curriculum
               </LinkBlockStyled>
               <LinkBlockStyled
@@ -160,7 +160,7 @@ const Index: NextPage = () => {
                   color={theme.palette.text.secondary}
                   fontWeight={800}
                 >
-                  Desarrollador Frontend Freelance
+                  Coastal Insight Consulting 
                 </Typography>
                 <Typography fontWeight={800}>
                   Desarrollador Frontend Jr
