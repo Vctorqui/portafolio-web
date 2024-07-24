@@ -181,7 +181,7 @@ export const ProjectCard = () => {
                       )}
                       {item.languages.mui.text && (
                         <Typography variant='body2'>
-                          {item.languages.mui.text},
+                          {item.languages.mui.text}
                         </Typography>
                       )}
                     </Box>
