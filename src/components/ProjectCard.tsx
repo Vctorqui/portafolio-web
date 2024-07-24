@@ -160,7 +160,7 @@ export const ProjectCard = () => {
                       )}
                       {item.languages.bootstrap.text && (
                         <Typography variant='body2'>
-                          {item.languages.bootstrap.text},
+                          {item.languages.bootstrap.text}
                         </Typography>
                       )}
                       {item.languages.typescript.text && (
