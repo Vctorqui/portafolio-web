@@ -96,12 +96,12 @@ export const PublicFooter = ({ changeLang }: any) => {
   const action = (
     <React.Fragment>
       <Button
-        aria-label='cerrar'
+        aria-label='Cerrar ventana'
         sx={{ color: theme.palette.backgroundGreen.green }}
         size='small'
         onClick={handleClose}
       >
-        Deshacer
+        {changeLang === true ? 'Close' : 'Deshacer'}
       </Button>
       <IconButton
         size='small'
@@ -153,7 +153,7 @@ export const PublicFooter = ({ changeLang }: any) => {
             autoHideDuration={3000}
             open={open}
             onClose={handleClose}
-            message='Correo Copiado'
+            message={changeLang === true ? 'Email Copied ' : 'Correo Copiado'}
             action={action}
             key={vertical + horizontal}
           />

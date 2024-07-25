@@ -86,7 +86,7 @@ const Index: NextPage = () => {
       <Banner id='home'>
         <Container maxWidth={containerWidth}>
           <Box className='bannerContainer'>
-            <MusicPlayer additionalClassName='musicPlayer' />
+            <MusicPlayer changeLang={changeLang} additionalClassName='musicPlayer' />
             <Box display={'flex'} gap={1} mb={2}>
               <IconButton
                 sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}

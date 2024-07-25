@@ -8,6 +8,7 @@ import { FaSpotify } from 'react-icons/fa'
 import { Headphones, HeadsetOff, PlayArrow } from '@mui/icons-material'
 interface PlayerProps {
   additionalClassName?: string
+  changeLang: any
 }
 
 const MusicPlayerBox = styled(Box)(({ theme }) => ({
@@ -44,7 +45,7 @@ const MusicPlayerBox = styled(Box)(({ theme }) => ({
   },
 }))
 
-const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
+const MusicPlayer = ({ additionalClassName, changeLang }: PlayerProps) => {
   // create an audio
   const [currentSong, setCurrentSong] = useState<string | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -133,7 +134,7 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
                     variant='body1'
                     className='textPlayer'
                   >
-                    Code Vibes
+                    Coding Vibes
                   </Typography>
                   <Typography
                     className='textPlayer'
@@ -172,7 +173,9 @@ const MusicPlayer = ({ additionalClassName }: PlayerProps) => {
                     fontWeight={900}
                     variant='body1'
                   >
-                    Full playlist on Spotify
+                    {changeLang === true
+                      ? 'Full playlist on Spotify'
+                      : 'Playlist en Spotify'}
                   </Typography>
                   <Typography fontSize={'11px'} variant='body1'>
                     by Victor
