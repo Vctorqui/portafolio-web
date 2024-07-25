@@ -33,7 +33,7 @@ const GridForm = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const ContactForm = () => {
+export const ContactForm = ({ changeLang }: any) => {
   const frmContact = { full_name: '', email: '', subject: '' }
   const [form, setForm] = useState(frmContact)
   const theme = useTheme()
@@ -112,7 +112,7 @@ export const ContactForm = () => {
               variant='h5'
               color={theme.palette.common.white}
             >
-              CONTACTO
+              {changeLang === true ? 'CONTACT' : 'CONTACTO'}
             </Typography>
             {errorForm === true ? (
               <Box
@@ -123,10 +123,15 @@ export const ContactForm = () => {
                 gap={1}
               >
                 <Typography textAlign={'center'}>
-                  Lo siento. El formulario de contacto se encuentra en mantenimiento. Te
-                  invito a usar los metodos directos de abajo
+                  {changeLang === true
+                    ? `Sorry. The contact form is under maintenance. I invite you to use the following direct methods`
+                    : `Lo siento. El formulario de contacto se encuentra en
+                  mantenimiento. Te invito a usar los metodos directos de abajo`}
                 </Typography>
-                <SentimentVeryDissatisfied fontSize='large' sx={{color: theme.palette.backgroundGreen.green}}/>
+                <SentimentVeryDissatisfied
+                  fontSize='large'
+                  sx={{ color: theme.palette.backgroundGreen.green }}
+                />
               </Box>
             ) : (
               <Box

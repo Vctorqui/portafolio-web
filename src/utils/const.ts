@@ -14,30 +14,42 @@ export const contactUsInit: contactUsTypes = {
 export const tasks: taskTypes[] = [
   {
     id: 1,
-    description:
+    spanish_description:
       'Desarrollo de interfaces unificadas de componentes y herramientas para los diferentes proyectos de la empresa para converger técnicamente y acelerar la entrega de cada uno de los productos.',
+    english_description:
+      'Development of unified interfaces of components and tools for the different projects of the company in order to technically converge and accelerate the delivery of each of the products.',
   },
   {
     id: 2,
-    description: 'Gestión de estados en grandes aplicaciones con React Contex.',
+    spanish_description:
+      'Gestión de estados en grandes aplicaciones con React Context.',
+    english_description:
+      'State management in large applications with React Context.',
   },
   {
     id: 3,
-    description:
+    spanish_description:
       'Integración de APIs mediante el consumo para la implementación de datos dentro del Frontend.',
+    english_description:
+      'Integration of APIs through consumption for the implementation of data within the Frontend.',
   },
   {
     id: 4,
-    description: 'Adaptar paradigmas funcionales a problemas comunes.',
+    spanish_description: 'Adaptar paradigmas funcionales a problemas comunes.',
+    english_description: 'Adapt functional paradigms to common problems.',
   },
   {
     id: 5,
-    description: 'Planificación de proyectos mediante metodologías ágiles.',
+    spanish_description:
+      'Planificación de proyectos mediante metodologías ágiles.',
+    english_description: 'Project planning using agile methodologies.',
   },
   {
     id: 6,
-    description:
+    spanish_description:
       'Adaptar y plasmar ideas, necesidades y peticiones de los clientes para la creación de componentes funcionales y sostenibles dentro de la web.',
+    english_description:
+      'Adapt and translate ideas, needs and customer requests for the creation of functional and sustainable components within the web.',
   },
 ]
 
@@ -45,7 +57,7 @@ export const projects: projectsTypes[] = [
   {
     id: 1,
     title: 'Floraria',
-    description:
+    spanish_description:
       'Página web para promocionar el proyecto residencial Floraria. Diseño responsive usando el preprocesador Sass.',
     image: '/images/8.webp',
     source_code: undefined,
@@ -88,11 +100,13 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://floralia.com.uy/',
+    english_description:
+      'Website to promote the Floraria residential project. Responsive design using Sass preprocessor.',
   },
   {
     id: 2,
     title: 'Subasta de Propiedades',
-    description:
+    spanish_description:
       'Aplicación web para comprar, vender y principalmente subastar proyectos residenciales.',
     image: '/images/5.webp',
     source_code: undefined,
@@ -135,11 +149,13 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://subastadepropiedades.com/',
+    english_description:
+      'Web application to buy, sell and mainly auction residential projects.',
   },
   {
     id: 3,
     title: 'La Pituca',
-    description:
+    spanish_description:
       'Página web para promocionar el proyecto residencial La Pituca. Diseño responsive usando el preprocesador Sass.',
     image: '/images/3.webp',
     source_code: undefined,
@@ -182,11 +198,13 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://lapituca.com.py/',
+    english_description:
+      'Website to promote La Pituca residential project. Responsive design using Sass preprocessor.',
   },
   {
     id: 4,
     title: 'Blue Way Transportation',
-    description:
+    spanish_description:
       'Aplicación web donde puedes acceder a servicios de Transporte médico no urgente, fiable y accesible.',
     image: '/images/6.webp',
     source_code: undefined,
@@ -229,11 +247,13 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://bluewayisbetter.com/',
+    english_description:
+      'Web application where you can access non-emergency, reliable and accessible medical transportation services.',
   },
   {
     id: 5,
     title: 'Lyon',
-    description:
+    spanish_description:
       'Página web para promocionar el proyecto residencial Lyon. Diseño responsive usando el preprocesador Sass.',
     image: '/images/2.webp',
     source_code: undefined,
@@ -276,11 +296,13 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://lyon.com.uy/',
+    english_description:
+      'Website to promote Lyon residential project. Responsive design using Sass preprocessor.',
   },
   {
     id: 5,
     title: 'Lisboa',
-    description:
+    spanish_description:
       'Página web para promocionar el proyecto residencial Lisboa. Diseño responsive usando el preprocesador Sass.',
     image: '/images/1.webp',
     source_code: undefined,
@@ -323,5 +345,7 @@ export const projects: projectsTypes[] = [
       },
     },
     preview_link: 'https://lisboa.com.py/',
+    english_description:
+      'Website to promote Lisboa residential project. Responsive design using Sass preprocessor.',
   },
 ]

@@ -1,6 +1,7 @@
 export interface taskTypes {
   id: number
-  description: string
+  spanish_description: string
+  english_description: string
 }
 
 export interface contactUsTypes {
@@ -16,7 +17,8 @@ export interface contactUsTypes {
 export interface projectsTypes {
   id: number
   title: string
-  description: string
+  spanish_description: string
+  english_description: string
   image: string
   source_code: any
   preview_link: string

@@ -71,7 +71,7 @@ const FooterBox = styled(Box)(() => ({
   },
 }))
 
-export const PublicFooter = () => {
+export const PublicFooter = ({ changeLang }: any) => {
   interface State extends SnackbarOrigin {
     open: boolean
   }
@@ -122,7 +122,9 @@ export const PublicFooter = () => {
           color={theme.palette.common.white}
           variant='body2'
         >
-          Si deseas comunicarte conmigo directamente:
+          {changeLang === true
+            ? 'If you would like to contact me directly:'
+            : ' Si deseas comunicarte conmigo directamente:'}
         </Typography>
         <Box className='footerContainer'>
           <CopyToClipboard text='victhorq716@gmail.com'>
@@ -137,7 +139,9 @@ export const PublicFooter = () => {
               >
                 <ContentCopy sx={{ color: theme.palette.common.white }} />
                 <Typography color={theme.palette.common.white} variant='body2'>
-                  Click para Copiar:
+                  {changeLang === true
+                    ? 'Click to Copy: '
+                    : 'Click para Copiar:'}
                   <br style={{ display: isSm ? 'block' : 'none' }} />{' '}
                   victhorq716@gmail.com
                 </Typography>
@@ -205,7 +209,9 @@ export const PublicFooter = () => {
             })
           }}
         >
-          <Typography variant='body2'>Ir arriba</Typography>
+          <Typography variant='body2'>
+            {changeLang === true ? 'Jump to top ' : 'Ir arriba'}
+          </Typography>
           <IconButton className='btnTop'>
             <ArrowUpward fontSize='medium' />
           </IconButton>

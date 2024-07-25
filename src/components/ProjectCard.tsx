@@ -59,7 +59,7 @@ const CardProjects = styled(Box)(() => ({
   },
 }))
 
-export const ProjectCard = () => {
+export const ProjectCard = ({ changeLang }: any) => {
   const [showMore, setShowMore] = useState(false)
 
   return (
@@ -72,7 +72,7 @@ export const ProjectCard = () => {
           sx={{ color: '#d6e6e7' }}
           // color={theme.palette.text.secondary}
         >
-          Proyectos
+          {changeLang ? 'Projects' : 'Proyectos'}
         </Typography>
         <Grid container spacing={4}>
           {projects.map((item: projectsTypes, i: any) => {
@@ -117,7 +117,9 @@ export const ProjectCard = () => {
                           {item.title}
                         </Typography>
                         <Typography variant='body2'>
-                          {item.description}
+                          {changeLang === true
+                            ? item.english_description
+                            : item.spanish_description}
                         </Typography>
                       </Stack>
                       <Image

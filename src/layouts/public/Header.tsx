@@ -4,6 +4,7 @@ import { Menu, Home } from '@mui/icons-material'
 import {
   AppBar,
   Box,
+  Button,
   Container,
   Divider,
   Grid,
@@ -99,7 +100,7 @@ const ResponsiveBox = styled(Box)(() => ({
   justifyContent: 'end',
 }))
 
-export const PublicHeader = () => {
+export const PublicHeader = ({ changeLang }: any) => {
   const theme = useTheme()
   const isXs = useMediaQuery(theme.breakpoints.down('sm'))
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -117,7 +118,7 @@ export const PublicHeader = () => {
             color={theme.palette.common.black}
             fontWeight={700}
           >
-            Menú de opciones
+            {changeLang === true ? 'Menu' : ' Menú de opciones'}
           </Typography>
         </Grid>
       </Grid>
@@ -133,7 +134,9 @@ export const PublicHeader = () => {
         offset={-70}
         duration={500}
       >
-        <MenuItem className='link-text'>Experiencia</MenuItem>
+        <MenuItem className='link-text'>
+          {changeLang === true ? 'Experience' : 'Experiencia'}
+        </MenuItem>
       </LinkContainer>
       <LinkContainer
         href='#projects'
@@ -145,7 +148,9 @@ export const PublicHeader = () => {
         offset={-70}
         duration={500}
       >
-        <MenuItem className='link-text'>Proyectos</MenuItem>
+        <MenuItem className='link-text'>
+          {changeLang === true ? 'Proyects' : 'Proyectos'}
+        </MenuItem>
       </LinkContainer>
       <LinkContainer
         href='#about-me'
@@ -157,7 +162,9 @@ export const PublicHeader = () => {
         offset={-70}
         duration={500}
       >
-        <MenuItem className='link-text'>Sobre Mí</MenuItem>
+        <MenuItem className='link-text'>
+          {changeLang === true ? 'About me' : 'Sobre Mí'}
+        </MenuItem>
       </LinkContainer>
       <LinkContainer
         href='#contact'
@@ -169,7 +176,9 @@ export const PublicHeader = () => {
         offset={-70}
         duration={500}
       >
-        <MenuItem className='link-text'>Contacto</MenuItem>
+        <MenuItem className='link-text'>
+          {changeLang === true ? 'Contact' : 'Contacto'}
+        </MenuItem>
       </LinkContainer>
     </ResponsiveBox>
   )
@@ -212,7 +221,9 @@ export const PublicHeader = () => {
                 offset={-70}
                 duration={500}
               >
-                <Typography variant='body1'>Experiencia</Typography>
+                <Typography variant='body1'>
+                  {changeLang === true ? 'Experience' : 'Experiencia'}
+                </Typography>
               </Link>
               <Link
                 href='#projects'
@@ -224,7 +235,9 @@ export const PublicHeader = () => {
                 offset={-70}
                 duration={500}
               >
-                <Typography variant='body1'>Proyectos</Typography>
+                <Typography variant='body1'>
+                  {changeLang === true ? 'Proyects' : 'Proyectos'}
+                </Typography>
               </Link>
               <Link
                 href='#about-me'
@@ -236,7 +249,9 @@ export const PublicHeader = () => {
                 offset={-70}
                 duration={500}
               >
-                <Typography variant='body1'>Sobre Mí</Typography>
+                <Typography variant='body1'>
+                  {changeLang === true ? 'About me' : 'Sobre Mí'}
+                </Typography>
               </Link>
               <Link
                 href='#contact'
@@ -248,7 +263,9 @@ export const PublicHeader = () => {
                 offset={-70}
                 duration={500}
               >
-                <Typography variant='body1'>Contacto</Typography>
+                <Typography variant='body1'>
+                  {changeLang === true ? 'Contact' : 'Contacto'}
+                </Typography>
               </Link>
             </BoxNavContainer>
           </Toolbar>
