@@ -8,9 +8,8 @@ import {
   Button,
   useTheme,
 } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import FancyInput, { isValidEmail } from '../CustomInput'
-import emailjs from 'emailjs-com'
 import { useRouter } from 'next/router'
 import CustomDialog from '../CustomDialog'
 import {
@@ -20,6 +19,12 @@ import {
   SentimentVeryDissatisfied,
 } from '@mui/icons-material'
 import { CircularLoading } from '../CircularLoading'
+import emailjs from '@emailjs/browser'
+import theme from '@/theme/theme'
+
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
+const PUBLIC_ID = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
 
 const GridForm = styled(Grid)(({ theme }) => ({
   padding: '50px 0',
@@ -31,73 +36,56 @@ const GridForm = styled(Grid)(({ theme }) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  '.inputStyled': {
+    height: '30px',
+  },
+
+  '.inputStyled, .texteareaStyled': {
+    background: '#000',
+    border: 'none',
+    color: '#EEEEEE',
+    fontFamily: 'NeueMachina',
+    fontSize: '14px',
+    padding: '10px',
+  },
 }))
 
 export const ContactForm = ({ changeLang }: any) => {
-  const frmContact = { full_name: '', email: '', subject: '' }
-  const [form, setForm] = useState(frmContact)
+  const form = useRef<any>()
   const theme = useTheme()
   const [openSuccessDialog, setOpenSuccessDialog] = React.useState(false)
   const [openErrorDialog, setOpenErrorDialog] = React.useState(false)
-  const [validateInputs, setValidateInputs] = useState(false)
   const [dialogLoading, setDialogLoading] = useState(false)
-  const [loadComponent, setLoadComponent] = useState(0)
-  const [clickSubmit, setClickSubmit] = useState<number>(0)
-  const [fieldsWithError, setFieldsWithError] = useState(0)
   const router = useRouter()
-  const [errorForm, setErrorForm] = useState(true)
-
-  const handleChange = (event: any) => {
-    let { name, value } = event.target
-    setForm({
-      ...form,
-      [name]: value,
-    })
-  }
-
-  useEffect(() => {
-    if (loadComponent > 0 && clickSubmit > 0) {
-      const getAll = document.querySelectorAll('.textField-required.Mui-error')
-      setFieldsWithError(getAll.length)
-      if (getAll.length === 0) {
-        submitForm()
-      }
-    }
-    setLoadComponent(loadComponent + 1)
-    // eslint-disable-next-line
-  }, [clickSubmit])
-
-  const submitForm = async () => {
-    setDialogLoading(true)
-    try {
-      const sendFormContact = await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
-        form,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
-      )
-      if (sendFormContact.status === 200) {
-        setOpenSuccessDialog(true)
-        setForm(frmContact)
-      } else {
-        setOpenErrorDialog(true)
-      }
-      setDialogLoading(false)
-    } catch (error) {
-      console.log(error)
-      setDialogLoading(false)
-      setOpenErrorDialog(true)
-    }
-  }
+  const [errorForm, setErrorForm] = useState(false)
 
   const handleClose = () => {
     setOpenSuccessDialog(false)
     setOpenErrorDialog(false)
   }
 
-  const validateForm = () => {
-    setValidateInputs(true)
-    setClickSubmit(clickSubmit + 1)
+  const sendEmail = (e: any) => {
+    e.preventDefault()
+    setDialogLoading(true)
+
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+        publicKey: PUBLIC_ID,
+      })
+      .then(
+        (result) => {
+          console.log(result.text)
+          form.current.reset()
+          setOpenSuccessDialog(true)
+          setDialogLoading(false)
+        },
+        (error) => {
+          console.log('FAILED...', error.text)
+          setDialogLoading(false)
+          setOpenErrorDialog(true)
+        }
+      )
   }
 
   return (
@@ -134,70 +122,60 @@ export const ContactForm = ({ changeLang }: any) => {
                 />
               </Box>
             ) : (
-              <Box
-                component='form'
-                width={'100%'}
-                noValidate
-                autoComplete='off'
-                // onSubmit={submitForm}
+              <form
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  gap: '10px',
+                }}
+                ref={form}
+                onSubmit={sendEmail}
               >
-                <Grid container spacing={1}>
-                  <Grid item lg={6} xs={12}>
-                    <FancyInput
-                      validateSubmit={validateInputs}
-                      required
-                      placeholder='Ej: Victor, DevInc'
-                      type='text'
-                      label='Nombre'
-                      name='full_name'
-                      value={form.full_name}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                  <Grid item lg={6} xs={12}>
-                    <FancyInput
-                      validateSubmit={validateInputs}
-                      value={form.email}
-                      required
-                      placeholder='Ej: tuemail@gmail.com'
-                      type='email'
-                      label='Correo'
-                      name='email'
-                      validation={[
-                        {
-                          validate: () => isValidEmail(form.email),
-                          msg: 'Correo no válido',
-                        },
-                      ]}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-                </Grid>
-                <FancyInput
-                  validateSubmit={validateInputs}
-                  className='inputStyled'
-                  value={form.subject}
-                  required
-                  type='text'
-                  placeholder='Ej: Estoy interesado...'
-                  label='Consulta'
-                  name='subject'
-                  onChange={handleChange}
-                  multiline
-                  rows={4}
-                />
-
-                <Stack alignItems={'flex-end'}>
-                  {fieldsWithError > 0 && loadComponent > 1 && (
-                    <Typography
-                      variant='body1'
-                      align='right'
-                      color='error'
-                      sx={{ marginBottom: 2 }}
-                    >
-                      Some fields are empty
-                    </Typography>
-                  )}
+                <Stack width={'100%'}>
+                  <label>{changeLang === true ? 'Name' : 'Nombre'}</label>
+                  <input
+                    required
+                    className='inputStyled'
+                    placeholder={
+                      changeLang === true
+                        ? 'E.g. Victor, DevInc'
+                        : 'Ej: Victor, DevInc'
+                    }
+                    type='text'
+                    name='user_name'
+                  />
+                </Stack>
+                <Stack>
+                  <label> {changeLang === true ? 'Email' : 'Correo'}</label>
+                  <input
+                    required
+                    className='inputStyled'
+                    type='email'
+                    name='user_email'
+                    placeholder={
+                      changeLang === true
+                        ? 'E.g. your-email@gmail.com'
+                        : 'Ej: tu-correo@gmail.com'
+                    }
+                  />
+                </Stack>
+                <Stack>
+                  <label>{changeLang === true ? 'Message' : 'Mensaje'}</label>
+                  <textarea
+                    required
+                    rows={6}
+                    className='texteareaStyled'
+                    placeholder={
+                      changeLang === true
+                        ? `E.g. I'm interested in...`
+                        : 'Ej: Estoy interesado en...'
+                    }
+                    name='message'
+                  />
+                </Stack>
+                <Box alignSelf={'flex-end'}>
                   <Button
                     aria-label='Enviar'
                     sx={{
@@ -212,12 +190,11 @@ export const ContactForm = ({ changeLang }: any) => {
                     }}
                     type='submit'
                     variant='outlined'
-                    onClick={validateForm}
                   >
-                    Enviar
+                    {changeLang === true ? 'Send' : 'Enviar'}
                   </Button>
-                </Stack>
-              </Box>
+                </Box>
+              </form>
             )}
           </Box>
         </Container>

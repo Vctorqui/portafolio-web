@@ -28,7 +28,8 @@ import { taskTypes } from '@/src/types/types'
 import { ProjectCard } from '@/src/components/ProjectCard'
 import MusicPlayer from '@/src/components/MusicPlayer'
 import { LinkBlockStyled } from '@/src/components/LinkStyled'
-import { ContactForm } from '@/src/components/form/ContactForm'
+// import { ContactForm } from '@/src/components/form/ContactForm'
+import {ContactForm} from '@/src/components/form/ContactForm'
 import { PublicHeader } from '@/src/layouts/public/Header'
 import { PublicFooter } from '@/src/layouts/public/Footer'
 
@@ -86,7 +87,10 @@ const Index: NextPage = () => {
       <Banner id='home'>
         <Container maxWidth={containerWidth}>
           <Box className='bannerContainer'>
-            <MusicPlayer changeLang={changeLang} additionalClassName='musicPlayer' />
+            <MusicPlayer
+              changeLang={changeLang}
+              additionalClassName='musicPlayer'
+            />
             <Box display={'flex'} gap={1} mb={2}>
               <IconButton
                 sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}
@@ -137,7 +141,6 @@ const Index: NextPage = () => {
                   color={theme.palette.text.primary}
                   variant='h5'
                 >
-                  I&apos;m
                   <span style={{ color: theme.palette.text.secondary }}>
                     {' '}
                     Frontend Developer
@@ -164,7 +167,6 @@ const Index: NextPage = () => {
                   color={theme.palette.text.primary}
                   variant='h5'
                 >
-                  Soy
                   <span style={{ color: theme.palette.text.secondary }}>
                     {' '}
                     Frontend Developer
@@ -283,7 +285,7 @@ const Index: NextPage = () => {
             {changeLang === true ? (
               <>
                 <Typography variant='body1'>
-                  I am a Front-end Developer based in Venezuela who{' '}
+                  Front-end Developer based in Venezuela who{' '}
                   <span style={{ color: theme.palette.text.secondary }}>
                     loves to learn new things, work with particular startups and
                     collaborate with talented people around the world
@@ -303,7 +305,7 @@ const Index: NextPage = () => {
             ) : (
               <>
                 <Typography variant='body1'>
-                  Soy un Desarrollador Front-end ubicado en Venezuela a quien le{' '}
+                  Desarrollador Front-end ubicado en Venezuela a quien le{' '}
                   <span style={{ color: theme.palette.text.secondary }}>
                     encanta aprender cosas nuevas, trabajar con particulares
                     startups y colaborar con gente talentosa alrededor del mundo
@@ -326,6 +328,7 @@ const Index: NextPage = () => {
         </Container>
       </Box>
       <ContactForm changeLang={changeLang} />
+      {/* <ContactUs /> */}
       <PublicFooter changeLang={changeLang} />
     </>
   )
