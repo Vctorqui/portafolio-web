@@ -56,6 +56,55 @@ export const tasks: taskTypes[] = [
 export const projects: projectsTypes[] = [
   {
     id: 1,
+    title: 'Talks',
+    spanish_description:
+      'Página web para promocionar un evento que aborda temas como Inteligencia Artificial, liderazgo y marketing.',
+    image: '/images/9.jpeg',
+    source_code: undefined,
+    languages: {
+      html: {
+        icon: undefined,
+        text: 'HTML',
+      },
+      css: {
+        icon: undefined,
+        text: 'CSS',
+      },
+      javascript: {
+        icon: undefined,
+        text: 'JavaScript',
+      },
+      sass: {
+        icon: undefined,
+        text: 'Sass',
+      },
+      bootstrap: {
+        icon: undefined,
+        text: 'Bootstrap',
+      },
+      typescript: {
+        icon: undefined,
+        text: '',
+      },
+      nextjs: {
+        icon: undefined,
+        text: '',
+      },
+      mui: {
+        icon: undefined,
+        text: '',
+      },
+      react: {
+        icon: undefined,
+        text: '',
+      },
+    },
+    preview_link: 'https://talks.infocasas.com.uy/',
+    english_description:
+      'Website to promote an event that addresses topics such as Artificial Intelligence, leadership, marketing, among others.',
+  },
+  {
+    id: 2,
     title: 'Floraria',
     spanish_description:
       'Página web para promocionar el proyecto residencial Floraria. Diseño responsive usando el preprocesador Sass.',
@@ -104,7 +153,7 @@ export const projects: projectsTypes[] = [
       'Website to promote the Floraria residential project. Responsive design using Sass preprocessor.',
   },
   {
-    id: 2,
+    id: 3,
     title: 'Subasta de Propiedades',
     spanish_description:
       'Aplicación web para comprar, vender y principalmente subastar proyectos residenciales.',
@@ -153,7 +202,7 @@ export const projects: projectsTypes[] = [
       'Web application to buy, sell and mainly auction residential projects.',
   },
   {
-    id: 3,
+    id: 4,
     title: 'La Pituca',
     spanish_description:
       'Página web para promocionar el proyecto residencial La Pituca. Diseño responsive usando el preprocesador Sass.',
@@ -202,7 +251,7 @@ export const projects: projectsTypes[] = [
       'Website to promote La Pituca residential project. Responsive design using Sass preprocessor.',
   },
   {
-    id: 4,
+    id: 5,
     title: 'Blue Way Transportation',
     spanish_description:
       'Aplicación web donde puedes acceder a servicios de Transporte médico no urgente, fiable y accesible.',
@@ -251,7 +300,7 @@ export const projects: projectsTypes[] = [
       'Web application where you can access non-emergency, reliable and accessible medical transportation services.',
   },
   {
-    id: 5,
+    id: 6,
     title: 'Lyon',
     spanish_description:
       'Página web para promocionar el proyecto residencial Lyon. Diseño responsive usando el preprocesador Sass.',
@@ -300,7 +349,7 @@ export const projects: projectsTypes[] = [
       'Website to promote Lyon residential project. Responsive design using Sass preprocessor.',
   },
   {
-    id: 5,
+    id: 7,
     title: 'Lisboa',
     spanish_description:
       'Página web para promocionar el proyecto residencial Lisboa. Diseño responsive usando el preprocesador Sass.',
