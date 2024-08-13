@@ -29,9 +29,10 @@ import { ProjectCard } from '@/src/components/ProjectCard'
 import MusicPlayer from '@/src/components/MusicPlayer'
 import { LinkBlockStyled } from '@/src/components/LinkStyled'
 // import { ContactForm } from '@/src/components/form/ContactForm'
-import {ContactForm} from '@/src/components/form/ContactForm'
+import { ContactForm } from '@/src/components/form/ContactForm'
 import { PublicHeader } from '@/src/layouts/public/Header'
 import { PublicFooter } from '@/src/layouts/public/Footer'
+import Link from 'next/link'
 
 const Banner = styled(Box)(() => ({
   background: theme.palette.primary.main,
@@ -75,6 +76,88 @@ const Banner = styled(Box)(() => ({
       [theme.breakpoints.down('md')]: {
         textAlign: 'center',
       },
+    },
+  },
+
+  '.wrapperBtn': {
+    '.btn-styled2': {
+      textDecoration: 'none',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '220px',
+      height: '40px',
+      borderRadius: '10px',
+      background: 'transparent',
+      borderStyle: 'none',
+      color: '#fff',
+      fontWeight: 600,
+      outline: 'none',
+      cursor: 'pointer',
+      position: 'relative',
+      padding: '0px',
+      overflow: 'hidden',
+      transition: 'all 0.5s',
+      boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.2)',
+    },
+    '.btn-styled2 span': { position: 'absolute', display: 'block' },
+    '.btn-styled2 span:nth-child(1)': {
+      height: '3px',
+      width: '200px',
+      top: '0px',
+      left: '-200px',
+      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
+      borderTopRightRadius: '20px',
+      borderBottomRightRadius: '20px',
+      animation: 'span1 2s linear infinite',
+      animationDelay: '1s',
+    },
+    '@keyframes span1': { '0%': { left: '-200px' }, '100%': { left: '200px' } },
+    '.btn-styled2 span:nth-child(2)': {
+      height: '70px',
+      width: '3px',
+      top: '-70px',
+      right: '0px',
+      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
+      borderBottomLeftRadius: '20px',
+      borderBottomRightRadius: '20px',
+      animation: 'span2 2s linear infinite',
+      animationDelay: '2s',
+    },
+    '@keyframes span2': { '0%': { top: '-70px' }, '100%': { top: '70px' } },
+    '.btn-styled2 span:nth-child(3)': {
+      height: '3px',
+      width: '200px',
+      right: '-200px',
+      bottom: '0px',
+      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
+      borderTopLeftRadius: '20px',
+      borderBottomLeftRadius: '20px',
+      animation: 'span3 2s linear infinite',
+      animationDelay: '3s',
+    },
+    '@keyframes span3': {
+      '0%': { right: '-200px' },
+      '100%': { right: '200px' },
+    },
+    '.btn-styled2 span:nth-child(4)': {
+      height: '70px',
+      width: '3px',
+      bottom: '-70px',
+      left: '0px',
+      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
+      borderTopRightRadius: '20px',
+      borderTopLeftRadius: '20px',
+      animation: 'span4 2s linear infinite',
+      animationDelay: '4s',
+    },
+    '@keyframes span4': {
+      '0%': { bottom: '-70px' },
+      '100%': { bottom: '70px' },
+    },
+    '.btn-styled2:hover': {
+      transition: 'all .5s ease-out',
+      boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.4)',
     },
   },
 }))
@@ -121,11 +204,42 @@ const Index: NextPage = () => {
                 />
               </IconButton>
             </Box>
-            <Avatar
-              sx={{ width: 56, height: 56 }}
-              src={'/images/profile.webp'}
-              alt='Victor'
-            />
+            <Box
+              sx={{
+                [theme.breakpoints.down('sm')]: {
+                  flexDirection: 'column',
+                },
+              }}
+              display={'flex'}
+              alignItems={'center'}
+              gap={2}
+            >
+              <Avatar
+                sx={{ width: 56, height: 56 }}
+                src={'/images/profile.webp'}
+                alt='Victor'
+              />
+
+              <Box className='wrapperBtn'>
+                <Link
+                  className='btn btn-styled2'
+                  href={
+                    'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
+                  }
+                >
+                  <Typography variant='body2' fontWeight={700}>
+                    {changeLang === true
+                      ? 'Avaliable for work'
+                      : 'Disponible para trabajar'}
+                  </Typography>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </Link>
+              </Box>
+            </Box>
+
             {changeLang === true ? (
               <>
                 <Typography
