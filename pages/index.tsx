@@ -229,7 +229,7 @@ const Index: NextPage = () => {
                 >
                   <Typography variant='body2' fontWeight={700}>
                     {changeLang === true
-                      ? 'Avaliable for work'
+                      ? 'Available for work'
                       : 'Disponible para trabajar'}
                   </Typography>
                   <span></span>
