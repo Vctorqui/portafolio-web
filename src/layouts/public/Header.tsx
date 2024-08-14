@@ -73,6 +73,7 @@ const LinkContainer = styled(Link)(({ theme }) => ({
   color: theme.palette.common.black,
   fontWeight: '700',
   borderRadius: 4,
+  border: '1px solid #1E2022',
   position: 'relative',
   transition: 'all 0.3s ease-out',
   '&:hover': {
@@ -193,7 +194,7 @@ export const PublicHeader = ({ changeLang }: any) => {
                 aria-label='Abrir menu'
                 edge='start'
                 onClick={handleDrawerToggle}
-                sx={{ display: { lg: 'none' } }}
+                sx={{ display: { lg: 'none' },color: '#EEE' }}
               >
                 <Menu />
               </IconButton>

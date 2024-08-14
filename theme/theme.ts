@@ -14,7 +14,7 @@ declare module '@mui/material/styles' {
 const colors = {
   primary: {
     main: '#1E2022',
-    light: '#758694',
+    light: '#393E46',
     dark: '',
   },
   secondary: {
