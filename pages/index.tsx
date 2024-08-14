@@ -178,25 +178,26 @@ const Index: NextPage = () => {
                 src={'/images/profile.webp'}
                 alt='Victor'
               />
-
-              <Box className='wrapperBtn'>
-                <Link
-                  className='btn btn-styled2'
-                  href={
-                    'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
-                  }
-                >
-                  <Typography variant='body2' fontWeight={700}>
-                    {changeLang === true
-                      ? 'Avaliable for work'
-                      : 'Disponible para trabajar'}
-                  </Typography>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </Link>
-              </Box>
+              <Link
+                className='linkBtn'
+                href={
+                  'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
+                }
+              >
+                <Box className='wrapperBtn'>
+                  <Box position={'absolute'} zIndex={10}>
+                    <Typography
+                      variant='body2'
+                      color={theme.palette.common.white}
+                      fontWeight={700}
+                    >
+                      {changeLang === true
+                        ? 'Avaliable for work'
+                        : 'Disponible para trabajar'}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Link>
             </Box>
 
             {changeLang === true ? (
