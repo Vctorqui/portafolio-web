@@ -17,7 +17,7 @@ import theme from '@/theme/theme'
 import Image from 'next/image'
 
 const CardProjects = styled(Box)(() => ({
-  background: '#222831',
+  background: theme.palette.primary.main,
   padding: '40px 0',
   '.linkCard': {
     textDecoration: 'none',

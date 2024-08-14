@@ -90,7 +90,12 @@ export const ContactForm = ({ changeLang }: any) => {
 
   return (
     <>
-      <GridForm id='contact' sx={{ background: '#222831' }} item xs={12}>
+      <GridForm
+        id='contact'
+        sx={{ background: theme.palette.primary.main }}
+        item
+        xs={12}
+      >
         <Container maxWidth={'sm'}>
           <Box className='formContainer'>
             <Typography
