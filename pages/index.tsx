@@ -80,85 +80,44 @@ const Banner = styled(Box)(() => ({
   },
 
   '.wrapperBtn': {
-    '.btn-styled2': {
+    height: '40px',
+    width: '220px',
+    backgroundColor: 'transparent',
+    borderRadius: '20px',
+    position: 'relative',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'all .3s ease-out',
+
+    '.linkBtn': {
       textDecoration: 'none',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '220px',
-      height: '40px',
-      borderRadius: '10px',
-      background: 'transparent',
-      borderStyle: 'none',
-      color: '#fff',
-      fontWeight: 600,
-      outline: 'none',
-      cursor: 'pointer',
-      position: 'relative',
-      padding: '0px',
-      overflow: 'hidden',
-      transition: 'all 0.5s',
-      boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.2)',
     },
-    '.btn-styled2 span': { position: 'absolute', display: 'block' },
-    '.btn-styled2 span:nth-child(1)': {
-      height: '3px',
-      width: '200px',
-      top: '0px',
-      left: '-200px',
-      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
-      borderTopRightRadius: '20px',
-      borderBottomRightRadius: '20px',
-      animation: 'span1 2s linear infinite',
-      animationDelay: '1s',
-    },
-    '@keyframes span1': { '0%': { left: '-200px' }, '100%': { left: '200px' } },
-    '.btn-styled2 span:nth-child(2)': {
-      height: '70px',
-      width: '3px',
-      top: '-70px',
-      right: '0px',
-      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
-      borderBottomLeftRadius: '20px',
-      borderBottomRightRadius: '20px',
-      animation: 'span2 2s linear infinite',
-      animationDelay: '2s',
-    },
-    '@keyframes span2': { '0%': { top: '-70px' }, '100%': { top: '70px' } },
-    '.btn-styled2 span:nth-child(3)': {
-      height: '3px',
-      width: '200px',
-      right: '-200px',
-      bottom: '0px',
-      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
-      borderTopLeftRadius: '20px',
-      borderBottomLeftRadius: '20px',
-      animation: 'span3 2s linear infinite',
-      animationDelay: '3s',
-    },
-    '@keyframes span3': {
-      '0%': { right: '-200px' },
-      '100%': { right: '200px' },
-    },
-    '.btn-styled2 span:nth-child(4)': {
-      height: '70px',
-      width: '3px',
-      bottom: '-70px',
-      left: '0px',
-      background: `linear-gradient(to right, rgba(0, 0, 0, 0), ${theme.palette.backgroundGreen.green} )`,
-      borderTopRightRadius: '20px',
-      borderTopLeftRadius: '20px',
-      animation: 'span4 2s linear infinite',
-      animationDelay: '4s',
-    },
-    '@keyframes span4': {
-      '0%': { bottom: '-70px' },
-      '100%': { bottom: '70px' },
-    },
-    '.btn-styled2:hover': {
-      transition: 'all .5s ease-out',
-      boxShadow: '0px 3px 5px rgba(0, 0, 0, 0.4)',
-    },
+  },
+  '.wrapperBtn::before': {
+    content: '""',
+    position: 'absolute',
+    height: '250px',
+    width: '300px',
+    backgroundImage: `conic-gradient(${theme.palette.backgroundGreen.green} 20deg, transparent 120deg)`,
+    animation: 'rotar 3s linear infinite',
+  },
+  '@keyframes rotar': {
+    from: { transform: 'rotate(0deg)' },
+    to: { transform: 'rotate(-360deg)' },
+  },
+  '.wrapperBtn::after': {
+    content: '""',
+    position: 'absolute',
+    height: '30px',
+    width: '210px',
+    backgroundColor: theme.palette.primary.main,
+    borderRadius: '20px',
+  },
+
+  '.wrapperBtn:hover': {
+    boxShadow: 'inset 16px 14px 20px #0000008c',
   },
 }))
 
@@ -219,25 +178,26 @@ const Index: NextPage = () => {
                 src={'/images/profile.webp'}
                 alt='Victor'
               />
-
-              <Box className='wrapperBtn'>
-                <Link
-                  className='btn btn-styled2'
-                  href={
-                    'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
-                  }
-                >
-                  <Typography variant='body2' fontWeight={700}>
-                    {changeLang === true
-                      ? 'Avaliable for work'
-                      : 'Disponible para trabajar'}
-                  </Typography>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </Link>
-              </Box>
+              <Link
+                className='linkBtn'
+                href={
+                  'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
+                }
+              >
+                <Box className='wrapperBtn'>
+                  <Box position={'absolute'} zIndex={10}>
+                    <Typography
+                      variant='body2'
+                      color={theme.palette.common.white}
+                      fontWeight={700}
+                    >
+                      {changeLang === true
+                        ? 'Avaliable for work'
+                        : 'Disponible para trabajar'}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Link>
             </Box>
 
             {changeLang === true ? (
