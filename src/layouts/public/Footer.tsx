@@ -24,6 +24,8 @@ import { containerWidth } from '@/src/utils/const'
 import { LinkedinIcon } from '@/src/components/SvgIcon'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
+const iconColor = theme.palette.secondary.light
+
 const FooterBox = styled(Box)(() => ({
   background: theme.palette.primary.main,
   padding: theme.spacing(2, 0),
@@ -56,6 +58,9 @@ const FooterBox = styled(Box)(() => ({
         gap: '5px',
       },
     },
+    '.iconFooter': {
+      color: iconColor,
+    },
   },
   '.boxBtnUp': {
     cursor: 'pointer',
@@ -76,7 +81,6 @@ export const PublicFooter = ({ changeLang }: any) => {
     open: boolean
   }
   const isSm = useMediaQuery(theme.breakpoints.down('sm'))
-  const iconColor = theme.palette.secondary.light
 
   const [state, setState] = React.useState<State>({
     open: false,
@@ -166,9 +170,9 @@ export const PublicFooter = ({ changeLang }: any) => {
               arial-label='Ir a whatsapp'
             >
               <Box display={'flex'} alignItems={'center'} gap={1}>
-                <WhatsApp sx={{ color: iconColor }} fontSize='small' />
+                <WhatsApp className='iconFooter' fontSize='small' />
                 <Typography color={theme.palette.common.white} variant='body2'>
-                  +58 412 788 4439{' '}
+                  +58 412 788 4439
                 </Typography>
               </Box>
             </Link>
@@ -178,7 +182,7 @@ export const PublicFooter = ({ changeLang }: any) => {
                 href={'https://github.com/Vctorqui'}
                 arial-label='Ir a github'
               >
-                <GitHub sx={{ color: iconColor }} />
+                <GitHub className='iconFooter' />
               </Link>
               <Link
                 arial-label='Ir a linkedIn'
@@ -187,6 +191,7 @@ export const PublicFooter = ({ changeLang }: any) => {
                 }
               >
                 <LinkedinIcon
+                  additionalClassName='iconFooter'
                   width={'16px'}
                   height={'16px'}
                   color={iconColor}
