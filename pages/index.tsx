@@ -60,6 +60,9 @@ const Banner = styled(Box)(() => ({
       position: 'absolute',
       top: 90,
       right: 40,
+      [theme.breakpoints.up('xl')]: {
+        right: 200,
+      },
       [theme.breakpoints.down('md')]: {
         position: 'relative',
         display: 'flex',
@@ -117,6 +120,7 @@ const Banner = styled(Box)(() => ({
   },
 
   '.wrapperBtn:hover': {
+    backgroundColor: theme.palette.backgroundGreen.green,
     boxShadow: 'inset 16px 14px 20px #0000008c',
   },
 }))

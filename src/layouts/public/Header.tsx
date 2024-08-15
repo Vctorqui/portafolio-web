@@ -20,10 +20,21 @@ import { useState } from 'react'
 import { Link } from 'react-scroll'
 
 const AppBarContainer = styled(AppBar)(({ theme }) => ({
-  background: theme.palette.primary.light,
+  background: theme.palette.primary.main,
+  border: '1px solid #393E46',
+  marginTop: '10px',
+  borderRadius: '10px',
+  width: '60%',
+  margin: '0 auto',
+  left: 0,
+  right: 0,
   boxShadow: '0px 5px 19px rgba(0,0,0,.2901960784)',
   [theme.breakpoints.down('md')]: {
     paddingTop: 0,
+    width: '100%',
+    border: 'none',
+    boxShadow: 'none',
+    marginTop: 0,
   },
   '.navBrandImg': {
     '&:hover': {
@@ -46,6 +57,32 @@ const AppBarContainer = styled(AppBar)(({ theme }) => ({
         justifyContent: 'center',
         alignItems: 'center',
         gap: theme.spacing(1),
+      },
+    },
+    '.nav-link': {
+      textDecoration: 'none',
+      color: theme.palette.secondary.main,
+      transition: 'all .2s ease-out',
+      fontWeight: 800,
+      position: 'relative',
+      pointerEvents: 'all',
+      '&:after': {
+        content: '""',
+        bottom: '-3px',
+        width: '100%',
+        height: '1px',
+        position: 'absolute',
+        borderRadius: '2px',
+        left: '50%',
+        transform: 'translate(-50%, 0)',
+        transition: 'all .2s ease-out',
+        background: 'transparent',
+      },
+      '&:hover:after': {
+        background: '#fff',
+      },
+      '&.active': {
+        color: theme.palette.text.secondary,
       },
     },
   },
@@ -194,7 +231,7 @@ export const PublicHeader = ({ changeLang }: any) => {
                 aria-label='Abrir menu'
                 edge='start'
                 onClick={handleDrawerToggle}
-                sx={{ display: { lg: 'none' },color: '#EEE' }}
+                sx={{ display: { lg: 'none' }, color: '#EEE' }}
               >
                 <Menu />
               </IconButton>
@@ -215,6 +252,7 @@ export const PublicHeader = ({ changeLang }: any) => {
               <Link
                 href='#experience'
                 aria-label='Ir al experiencia'
+                activeClass='active'
                 className='nav-link'
                 to='experience'
                 spy={true}
@@ -228,6 +266,7 @@ export const PublicHeader = ({ changeLang }: any) => {
               </Link>
               <Link
                 href='#projects'
+                activeClass='active'
                 aria-label='Ir a proyectos'
                 className='nav-link'
                 to='projects'
@@ -242,6 +281,7 @@ export const PublicHeader = ({ changeLang }: any) => {
               </Link>
               <Link
                 href='#about-me'
+                activeClass='active'
                 aria-label='Ir a sobre mi'
                 className='nav-link'
                 to='about-me'
@@ -256,6 +296,7 @@ export const PublicHeader = ({ changeLang }: any) => {
               </Link>
               <Link
                 href='#contact'
+                activeClass='active'
                 aria-label='Ir a contacto'
                 className='nav-link'
                 to='contact'
