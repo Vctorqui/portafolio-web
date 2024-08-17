@@ -121,24 +121,27 @@ export const ProjectCard = ({ changeLang, project }: any) => {
     console.log(`Current Likes: ${likes}`)
     console.log(`Has Liked: ${hasLiked}`)
 
-    if (hasLiked) {
-      console.log('Removing Like')
-      await updateDoc(docRef, {
-        likes: increment(-1),
-        usersWhoLiked: arrayRemove(userId),
-      })
-      setLikes(likes - 1)
-    } else {
-      console.log('Adding Like')
-      await updateDoc(docRef, {
-        likes: increment(1),
-        usersWhoLiked: arrayUnion(userId),
-      })
-      setLikes(likes + 1)
-    }
+    try {
+      if (hasLiked) {
+        console.log('Removing Like')
+        await updateDoc(docRef, {
+          likes: increment(-1),
+          usersWhoLiked: arrayRemove(userId),
+        })
+      } else {
+        console.log('Adding Like')
+        await updateDoc(docRef, {
+          likes: increment(1),
+          usersWhoLiked: arrayUnion(userId),
+        })
+      }
 
-    // Actualiza el estado local
-    setHasLiked(!hasLiked)
+      // Actualiza el estado local
+      setLikes((prevLikes: any) => (hasLiked ? prevLikes - 1 : prevLikes + 1))
+      setHasLiked((prevHasLiked) => !prevHasLiked)
+    } catch (error) {
+      console.error('Error updating like:', error)
+    }
   }
 
   return (
