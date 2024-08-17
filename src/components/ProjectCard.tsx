@@ -98,14 +98,18 @@ export const ProjectCard = ({ changeLang, project }: any) => {
 
   useEffect(() => {
     const fetchLikes = async () => {
-      const docRef = doc(db, 'projects', project.id)
-      const docSnap = await getDoc(docRef)
-      if (docSnap.exists()) {
-        setLikes(docSnap.data().likes || 0)
-        // Verifica si el usuario ha dado "me gusta"
-        const userLikes = docSnap.data().usersWhoLiked || []
-        const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
-        setHasLiked(userLikes.includes(userId))
+      try {
+        const docRef = doc(db, 'projects', project.id)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+          const data = docSnap.data()
+          setLikes(data.likes || 0)
+          const userLikes = data.usersWhoLiked || []
+          const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+          setHasLiked(userLikes.includes(userId))
+        }
+      } catch (error) {
+        console.error('Error fetching likes:', error)
       }
     }
 
@@ -116,33 +120,79 @@ export const ProjectCard = ({ changeLang, project }: any) => {
     const docRef = doc(db, 'projects', project.id)
     const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
 
-    console.log(`Project ID: ${project.id}`)
-    console.log(`User ID: ${userId}`)
-    console.log(`Current Likes: ${likes}`)
-    console.log(`Has Liked: ${hasLiked}`)
-
     try {
       if (hasLiked) {
-        console.log('Removing Like')
         await updateDoc(docRef, {
           likes: increment(-1),
           usersWhoLiked: arrayRemove(userId),
         })
       } else {
-        console.log('Adding Like')
         await updateDoc(docRef, {
           likes: increment(1),
           usersWhoLiked: arrayUnion(userId),
         })
       }
 
-      // Actualiza el estado local
-      setLikes((prevLikes: any) => (hasLiked ? prevLikes - 1 : prevLikes + 1))
-      setHasLiked((prevHasLiked) => !prevHasLiked)
+      // Después de la actualización, obtén los datos más recientes
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        const data = docSnap.data()
+        setLikes(data.likes || 0)
+        const userLikes = data.usersWhoLiked || []
+        setHasLiked(userLikes.includes(userId))
+      }
     } catch (error) {
       console.error('Error updating like:', error)
     }
   }
+
+  // useEffect(() => {
+  //   const fetchLikes = async () => {
+  //     const docRef = doc(db, 'projects', project.id)
+  //     const docSnap = await getDoc(docRef)
+  //     if (docSnap.exists()) {
+  //       setLikes(docSnap.data().likes || 0)
+  //       // Verifica si el usuario ha dado "me gusta"
+  //       const userLikes = docSnap.data().usersWhoLiked || []
+  //       const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+  //       setHasLiked(userLikes.includes(userId))
+  //     }
+  //   }
+
+  //   fetchLikes()
+  // }, [project.id])
+
+  // const handleLike = async () => {
+  //   const docRef = doc(db, 'projects', project.id)
+  //   const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+
+  //   console.log(`Project ID: ${project.id}`)
+  //   console.log(`User ID: ${userId}`)
+  //   console.log(`Current Likes: ${likes}`)
+  //   console.log(`Has Liked: ${hasLiked}`)
+
+  //   try {
+  //     if (hasLiked) {
+  //       console.log('Removing Like')
+  //       await updateDoc(docRef, {
+  //         likes: increment(-1),
+  //         usersWhoLiked: arrayRemove(userId),
+  //       })
+  //     } else {
+  //       console.log('Adding Like')
+  //       await updateDoc(docRef, {
+  //         likes: increment(1),
+  //         usersWhoLiked: arrayUnion(userId),
+  //       })
+  //     }
+
+  //     // Actualiza el estado local
+  //     setLikes((prevLikes: any) => (hasLiked ? prevLikes - 1 : prevLikes + 1))
+  //     setHasLiked((prevHasLiked) => !prevHasLiked)
+  //   } catch (error) {
+  //     console.error('Error updating like:', error)
+  //   }
+  // }
 
   return (
     <Box id={'projects'}>
