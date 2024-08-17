@@ -1,230 +1,204 @@
-import { Add, Remove, Star, Visibility } from '@mui/icons-material'
+/* eslint-disable @next/next/no-img-element */
+import { Favorite, FavoriteBorder, Visibility } from '@mui/icons-material'
 import {
   Box,
-  Button,
-  Container,
-  Grid,
+  Card,
+  CardActions,
+  CardContent,
+  Divider,
   IconButton,
   Link,
-  Stack,
   Typography,
   styled,
 } from '@mui/material'
-import { projectsTypes } from '../types/types'
-import { containerWidth, projects } from '../utils/const'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import theme from '@/theme/theme'
-import Image from 'next/image'
+import {
+  db,
+  doc,
+  getDoc,
+  updateDoc,
+  increment,
+  arrayUnion,
+  arrayRemove,
+} from '@/src/firebase/config'
+import { collection, getDocs } from 'firebase/firestore'
 
-const CardProjects = styled(Box)(() => ({
-  background: theme.palette.primary.main,
-  padding: '40px 0',
-  '.linkCard': {
+const CardStyled = styled(Card)(() => ({
+  border: `1px solid ${theme.palette.primary.light}`,
+  position: 'relative',
+  borderRadius: '10px',
+  '.showBtn': {
     textDecoration: 'none',
-    color: '#EEE',
-    '.cardStyled': {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '20px',
-      position: 'relative',
-      border: '1px solid #EEE',
-      borderRadius: '5px',
-      padding: '30px 20px',
-      height: '270px',
-      transition: 'all .3s ease-out',
-      [theme.breakpoints.down('lg')]: {
-        height: '350px',
-      },
-      [theme.breakpoints.down('md')]: {
-        height: '280px',
-      },
-      // [theme.breakpoints.down('sm')]: {
-      //   height: '260px',
-      // },
-      '.cardImg': {
-        [theme.breakpoints.down('sm')]: {
-          display: 'none',
-        },
-      },
-    },
-    ':hover .cardStyled': {
-      transform: 'scale(1.04)',
-    },
+    cursor: 'pointer',
+    padding: '5px 10px',
+    background: 'transparent',
+    color: theme.palette.text.secondary,
+    border: `1px solid ${theme.palette.backgroundGreen.green}`,
+    borderRadius: '5px',
+    position: 'relative',
+    zIndex: 1,
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '5px',
   },
-  '.extendBtn': {
-    background: '#d6e6e7',
-    ':hover': {
-      background: '#76ABAE',
-    },
+  '.showBtn:hover': { color: theme.palette.text.primary },
+  '.showBtn::after': {
+    content: '""',
+    background: theme.palette.backgroundGreen.green,
+    position: 'absolute',
+    zIndex: -1,
+    padding: '16px 20px',
+    display: 'block',
+    left: '0',
+    right: '0',
+    top: '-200%',
+    bottom: '100%',
+    WebkitTransition: 'all 0.35s ease-out',
+    transition: 'all 0.35s ease-out',
+  },
+  '.showBtn:hover::after': {
+    left: '0',
+    right: '0',
+    top: '0',
+    bottom: '0',
+    WebkitTransition: 'all 0.35s ease-out',
+    transition: 'all 0.35s ease-out',
+  },
+
+  '.likeBtn': {
+    position: 'absolute',
+    zIndex: 2,
+    borderRadius: '50%',
+    left: 0,
+    top: 180,
+    transform: 'translateY(50%)',
   },
 }))
 
-export const ProjectCard = ({ changeLang }: any) => {
-  const [showMore, setShowMore] = useState(false)
+export async function getServerSideProps() {
+  const projectsCollection = collection(db, 'projects')
+  const projectSnapshot = await getDocs(projectsCollection)
+  const projects = projectSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }))
+
+  return {
+    props: {
+      projects,
+    },
+  }
+}
+
+export const ProjectCard = ({ changeLang, project }: any) => {
+  const [likes, setLikes] = useState(project.likes || 0)
+  const [hasLiked, setHasLiked] = useState(false)
+
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const docRef = doc(db, 'projects', project.id)
+      const docSnap = await getDoc(docRef)
+      if (docSnap.exists()) {
+        setLikes(docSnap.data().likes || 0)
+        // Verifica si el usuario ha dado "me gusta"
+        const userLikes = docSnap.data().usersWhoLiked || []
+        const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+        setHasLiked(userLikes.includes(userId))
+      }
+    }
+
+    fetchLikes()
+  }, [project.id])
+
+  const handleLike = async () => {
+    const docRef = doc(db, 'projects', project.id)
+    const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+
+    console.log(`Project ID: ${project.id}`)
+    console.log(`User ID: ${userId}`)
+    console.log(`Current Likes: ${likes}`)
+    console.log(`Has Liked: ${hasLiked}`)
+
+    if (hasLiked) {
+      console.log('Removing Like')
+      await updateDoc(docRef, {
+        likes: increment(-1),
+        usersWhoLiked: arrayRemove(userId),
+      })
+      setLikes(likes - 1)
+    } else {
+      console.log('Adding Like')
+      await updateDoc(docRef, {
+        likes: increment(1),
+        usersWhoLiked: arrayUnion(userId),
+      })
+      setLikes(likes + 1)
+    }
+
+    // Actualiza el estado local
+    setHasLiked(!hasLiked)
+  }
 
   return (
-    <CardProjects id={'projects'}>
-      <Container maxWidth={containerWidth}>
-        <Typography
-          mb={2}
-          variant='h4'
-          fontWeight={800}
-          sx={{ color: '#d6e6e7' }}
-          // color={theme.palette.text.secondary}
-        >
-          {changeLang ? 'Projects' : 'Proyectos'}
-        </Typography>
-        <Grid container spacing={4}>
-          {projects.map((item: projectsTypes, i: any) => {
-            const MyIcon =
-              item.languages.html.icon &&
-              item.languages.css.icon &&
-              item.languages.javascript.icon &&
-              item.languages.sass.icon &&
-              item.languages.bootstrap.icon &&
-              item.languages.typescript.icon &&
-              item.languages.react.icon &&
-              item.languages.nextjs.icon &&
-              item.languages.mui.icon
-                ? item.languages.html.icon &&
-                  item.languages.css.icon &&
-                  item.languages.javascript.icon &&
-                  item.languages.sass.icon &&
-                  item.languages.bootstrap.icon &&
-                  item.languages.typescript.icon &&
-                  item.languages.react.icon &&
-                  item.languages.nextjs.icon &&
-                  item.languages.mui.icon
-                : Star
-            if (!showMore && i >= 4) {
-              return null
-            }
-            return (
-              <Grid key={i} item xl={6} md={6} xs={12}>
-                <Link
-                  arial-label={`Ir a ${item.title}`}
-                  className='linkCard'
-                  href={item.preview_link}
-                >
-                  <Box className='cardStyled'>
-                    <Box display={'flex'} alignItems={'center'} gap={2}>
-                      <Stack spacing={2}>
-                        <Typography
-                          variant='h6'
-                          fontWeight={800}
-                          color={theme.palette.text.secondary}
-                        >
-                          {item.title}
-                        </Typography>
-                        <Typography variant='body2'>
-                          {changeLang === true
-                            ? item.english_description
-                            : item.spanish_description}
-                        </Typography>
-                      </Stack>
-                      <Image
-                        className='cardImg'
-                        src={item.image}
-                        width={220}
-                        height={200}
-                        style={{ maxWidth: '100%', height: 'auto' }}
-                        alt={item.title}
-                      />
-                    </Box>
-
-                    <Box
-                      display={'flex'}
-                      justifyContent={'flex-start'}
-                      alignItems={'center'}
-                      gap={'5px'}
-                      flexWrap={'wrap'}
-                    >
-                      <Typography variant='body2'>Stack:</Typography>
-                      {item.languages.html.text && (
-                        <Typography variant='body2'>
-                          {item.languages.html.text},
-                        </Typography>
-                      )}
-                      {item.languages.css.text && (
-                        <Typography variant='body2'>
-                          {item.languages.css.text},
-                        </Typography>
-                      )}
-                      {item.languages.javascript.text && (
-                        <Typography variant='body2'>
-                          {item.languages.javascript.text},
-                        </Typography>
-                      )}
-                      {item.languages.sass.text && (
-                        <Typography variant='body2'>
-                          {item.languages.sass.text},
-                        </Typography>
-                      )}
-                      {item.languages.bootstrap.text && (
-                        <Typography variant='body2'>
-                          {item.languages.bootstrap.text}
-                        </Typography>
-                      )}
-                      {item.languages.typescript.text && (
-                        <Typography variant='body2'>
-                          {item.languages.typescript.text},
-                        </Typography>
-                      )}
-                      {item.languages.react.text && (
-                        <Typography variant='body2'>
-                          {item.languages.react.text},
-                        </Typography>
-                      )}
-
-                      {item.languages.nextjs.text && (
-                        <Typography variant='body2'>
-                          {item.languages.nextjs.text},
-                        </Typography>
-                      )}
-                      {item.languages.mui.text && (
-                        <Typography variant='body2'>
-                          {item.languages.mui.text}
-                        </Typography>
-                      )}
-                    </Box>
-                    <Box>
-                      <Button
-                        sx={{
-                          borderRadius: '5px',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 1,
-                        }}
-                        variant='outlined'
-                      >
-                        <Visibility fontSize='small' />
-                        Ver
-                      </Button>
-                    </Box>
-                  </Box>
-                </Link>
-              </Grid>
-            )
-          })}
-        </Grid>
-        <Box
-          display={'flex'}
-          justifyContent={'center'}
-          alignItems={'center'}
-          mt={4}
-        >
-          <IconButton
-            className='extendBtn'
-            onClick={() => setShowMore(!showMore)}
-          >
-            {showMore ? (
-              <Remove className='extendIcon' />
-            ) : (
-              <Add className='extendIcon' />
-            )}
-          </IconButton>
+    <Box id={'projects'}>
+      <CardStyled>
+        <Box sx={{ maxHeight: '200px' }}>
+          <img
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '200px',
+            }}
+            src={project.image}
+            alt={project.title}
+          />
         </Box>
-      </Container>
-    </CardProjects>
+        <CardContent sx={{ background: theme.palette.primary.main }}>
+          <Typography
+            mt={2}
+            fontWeight={700}
+            gutterBottom
+            variant='h6'
+            component='div'
+            color={theme.palette.text.secondary}
+          >
+            {project.title}
+          </Typography>
+          <Typography variant='body2'>
+            {changeLang === true
+              ? project.english_description
+              : project.spanish_description}
+          </Typography>
+          <Typography
+            mt={2}
+            variant='caption'
+            color={theme.palette.text.secondary}
+          >
+            Stack: {project.stack}
+          </Typography>
+          <IconButton className='likeBtn' onClick={handleLike}>
+            {likes ? (
+              <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
+            ) : (
+              <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
+            )}
+            <Typography color={theme.palette.common.white} variant='caption'>
+              {likes}
+            </Typography>
+          </IconButton>
+        </CardContent>
+        <Divider sx={{ background: theme.palette.primary.light }} />
+        <CardActions sx={{ background: theme.palette.primary.main }}>
+          <Link href={project.preview_link} className='showBtn'>
+            <Visibility fontSize='small' />
+            <Typography variant='body2'>
+              {changeLang === true ? 'View' : 'Ver'}
+            </Typography>
+          </Link>
+        </CardActions>
+      </CardStyled>
+    </Box>
   )
 }

@@ -10,6 +10,7 @@ import {
   Button,
   Container,
   Divider,
+  Grid,
   IconButton,
   List,
   ListItem,
@@ -22,7 +23,7 @@ import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
 import TimelineConnector from '@mui/lab/TimelineConnector'
 import TimelineContent from '@mui/lab/TimelineContent'
-import { WorkOutline } from '@mui/icons-material'
+import { Add, Remove, WorkOutline } from '@mui/icons-material'
 import { TimelineDot } from '@mui/lab'
 import { taskTypes } from '@/src/types/types'
 import { ProjectCard } from '@/src/components/ProjectCard'
@@ -33,6 +34,8 @@ import { ContactForm } from '@/src/components/form/ContactForm'
 import { PublicHeader } from '@/src/layouts/public/Header'
 import { PublicFooter } from '@/src/layouts/public/Footer'
 import Link from 'next/link'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { db } from '@/src/firebase/config'
 
 const Banner = styled(Box)(() => ({
   background: theme.palette.primary.main,
@@ -125,8 +128,37 @@ const Banner = styled(Box)(() => ({
   },
 }))
 
-const Index: NextPage = () => {
+const ProyectContainer = styled(Box)(() => ({
+  background: theme.palette.primary.main,
+  paddingBottom: theme.spacing(4),
+  '.extendBtn': {
+    background: theme.palette.secondary.main,
+    ':hover': {
+      background: theme.palette.backgroundGreen.green,
+    },
+  },
+}))
+
+export async function getServerSideProps() {
+  const projectsCollection = collection(db, 'projects')
+  const q = query(projectsCollection, orderBy('order', 'asc')) // Ordenar por el campo 'order'
+  const projectSnapshot = await getDocs(q)
+  const projects = projectSnapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }))
+
+  return {
+    props: {
+      projects,
+    },
+  }
+}
+
+const Index: NextPage = ({ projects }: any) => {
   const [changeLang, setChangeLang] = useState(false)
+  const [showMore, setShowMore] = useState(false)
+
   return (
     <>
       <PublicHeader sx={{ position: 'relative' }} changeLang={changeLang} />
@@ -344,7 +376,47 @@ const Index: NextPage = () => {
           </Timeline>
         </Container>
       </Box>
-      <ProjectCard changeLang={changeLang} />
+      <ProyectContainer>
+        <Container maxWidth={containerWidth}>
+          <Typography
+            mb={2}
+            variant='h4'
+            fontWeight={800}
+            color={theme.palette.secondary.main}
+          >
+            {changeLang ? 'Projects' : 'Proyectos'}
+          </Typography>
+          <Grid container spacing={4}>
+            {projects.map((project: any, i: any) => {
+              if (!showMore && i >= 6) {
+                return null
+              }
+              return (
+                <Grid key={i} item lg={4} md={4} sm={6} xs={12}>
+                  <ProjectCard project={project} changeLang={changeLang} />
+                </Grid>
+              )
+            })}
+          </Grid>
+          <Box
+            display={'flex'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            mt={4}
+          >
+            <IconButton
+              className='extendBtn'
+              onClick={() => setShowMore(!showMore)}
+            >
+              {showMore ? (
+                <Remove className='extendIcon' />
+              ) : (
+                <Add className='extendIcon' />
+              )}
+            </IconButton>
+          </Box>
+        </Container>
+      </ProyectContainer>
       <Divider />
       <Box
         bgcolor={theme.palette.primary.main}
