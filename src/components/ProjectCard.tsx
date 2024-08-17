@@ -97,15 +97,15 @@ export const ProjectCard = ({ changeLang, project }: any) => {
   const [hasLiked, setHasLiked] = useState(false)
 
   const getUserId = () => {
-    const storedId = localStorage.getItem('userId');
+    const storedId = localStorage.getItem('userId')
     if (storedId) {
-      return storedId;
+      return storedId
     } else {
-      const newId = 'user_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('userId', newId);
-      return newId;
+      const newId = 'user_' + Math.random().toString(36).substr(2, 9)
+      localStorage.setItem('userId', newId)
+      return newId
     }
-  };
+  }
 
   useEffect(() => {
     const fetchLikes = async () => {
@@ -156,54 +156,6 @@ export const ProjectCard = ({ changeLang, project }: any) => {
       console.error('Error updating like:', error)
     }
   }
-
-  // useEffect(() => {
-  //   const fetchLikes = async () => {
-  //     const docRef = doc(db, 'projects', project.id)
-  //     const docSnap = await getDoc(docRef)
-  //     if (docSnap.exists()) {
-  //       setLikes(docSnap.data().likes || 0)
-  //       // Verifica si el usuario ha dado "me gusta"
-  //       const userLikes = docSnap.data().usersWhoLiked || []
-  //       const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
-  //       setHasLiked(userLikes.includes(userId))
-  //     }
-  //   }
-
-  //   fetchLikes()
-  // }, [project.id])
-
-  // const handleLike = async () => {
-  //   const docRef = doc(db, 'projects', project.id)
-  //   const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
-
-  //   console.log(`Project ID: ${project.id}`)
-  //   console.log(`User ID: ${userId}`)
-  //   console.log(`Current Likes: ${likes}`)
-  //   console.log(`Has Liked: ${hasLiked}`)
-
-  //   try {
-  //     if (hasLiked) {
-  //       console.log('Removing Like')
-  //       await updateDoc(docRef, {
-  //         likes: increment(-1),
-  //         usersWhoLiked: arrayRemove(userId),
-  //       })
-  //     } else {
-  //       console.log('Adding Like')
-  //       await updateDoc(docRef, {
-  //         likes: increment(1),
-  //         usersWhoLiked: arrayUnion(userId),
-  //       })
-  //     }
-
-  //     // Actualiza el estado local
-  //     setLikes((prevLikes: any) => (hasLiked ? prevLikes - 1 : prevLikes + 1))
-  //     setHasLiked((prevHasLiked) => !prevHasLiked)
-  //   } catch (error) {
-  //     console.error('Error updating like:', error)
-  //   }
-  // }
 
   return (
     <Box id={'projects'}>

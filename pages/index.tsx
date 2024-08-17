@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import PublicLayout from '@/src/layouts/Public'
 import { containerWidth, tasks } from '@/src/utils/const'
 import theme from '@/theme/theme'
 import {
   Avatar,
   Box,
-  Button,
   Container,
   Divider,
   Grid,
@@ -29,7 +27,6 @@ import { taskTypes } from '@/src/types/types'
 import { ProjectCard } from '@/src/components/ProjectCard'
 import MusicPlayer from '@/src/components/MusicPlayer'
 import { LinkBlockStyled } from '@/src/components/LinkStyled'
-// import { ContactForm } from '@/src/components/form/ContactForm'
 import { ContactForm } from '@/src/components/form/ContactForm'
 import { PublicHeader } from '@/src/layouts/public/Header'
 import { PublicFooter } from '@/src/layouts/public/Footer'
