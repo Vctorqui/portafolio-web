@@ -96,6 +96,17 @@ export const ProjectCard = ({ changeLang, project }: any) => {
   const [likes, setLikes] = useState(project.likes || 0)
   const [hasLiked, setHasLiked] = useState(false)
 
+  const getUserId = () => {
+    const storedId = localStorage.getItem('userId');
+    if (storedId) {
+      return storedId;
+    } else {
+      const newId = 'user_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem('userId', newId);
+      return newId;
+    }
+  };
+
   useEffect(() => {
     const fetchLikes = async () => {
       try {
@@ -105,7 +116,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
           const data = docSnap.data()
           setLikes(data.likes || 0)
           const userLikes = data.usersWhoLiked || []
-          const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+          const userId = getUserId() // Obtén el ID del usuario de alguna manera
           setHasLiked(userLikes.includes(userId))
         }
       } catch (error) {
@@ -118,7 +129,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
 
   const handleLike = async () => {
     const docRef = doc(db, 'projects', project.id)
-    const userId = 'currentUserId' // Obtén el ID del usuario de alguna manera
+    const userId = getUserId() // Obtén el ID del usuario de alguna manera
 
     try {
       if (hasLiked) {
