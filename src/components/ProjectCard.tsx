@@ -182,7 +182,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
             Stack: {project.stack}
           </Typography>
           <IconButton className='likeBtn' onClick={handleLike}>
-            {likes ? (
+            {hasLiked ? (
               <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
             ) : (
               <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
