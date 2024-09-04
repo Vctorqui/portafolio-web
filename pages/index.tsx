@@ -289,11 +289,11 @@ const Index: NextPage = ({ projects }: any) => {
 
             <Box display={'flex'} alignItems={'center'} gap={4} mt={2}>
               {changeLang === true ? (
-                <LinkBlockStyled href={'./CV-Victor-Quiñones-Frontend-en.pdf'}>
+                <LinkBlockStyled href={'./CV-Victor-Quinones-Frontend-en.pdf'}>
                   Resume
                 </LinkBlockStyled>
               ) : (
-                <LinkBlockStyled href={'./CV-Victor-Quiñones-Frontend-es.pdf'}>
+                <LinkBlockStyled href={'./CV-Victor-Quinones-Frontend-es.pdf'}>
                   Curriculum
                 </LinkBlockStyled>
               )}
