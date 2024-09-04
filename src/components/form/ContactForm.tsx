@@ -8,19 +8,16 @@ import {
   Button,
   useTheme,
 } from '@mui/material'
-import React, { useEffect, useRef, useState } from 'react'
-import FancyInput, { isValidEmail } from '../CustomInput'
+import React, { useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 import CustomDialog from '../CustomDialog'
 import {
   Check,
   HighlightOffSharp,
-  SentimentDissatisfied,
   SentimentVeryDissatisfied,
 } from '@mui/icons-material'
 import { CircularLoading } from '../CircularLoading'
 import emailjs from '@emailjs/browser'
-import theme from '@/theme/theme'
 
 const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string
 const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string
