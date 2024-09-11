@@ -180,12 +180,12 @@ export const PublicFooter = ({ changeLang }: any) => {
             <Box display={'flex'} alignItems={'center'} gap={2}>
               <Link
                 href={'https://github.com/Vctorqui'}
-                arial-label='Ir a github'
+                arial-label='Know more at my github'
               >
                 <GitHub className='iconFooter' />
               </Link>
               <Link
-                arial-label='Ir a linkedIn'
+                arial-label='Know more at my linkedIn'
                 href={
                   'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
                 }
@@ -217,7 +217,7 @@ export const PublicFooter = ({ changeLang }: any) => {
           <Typography variant='body2'>
             {changeLang === true ? 'Jump to top ' : 'Ir arriba'}
           </Typography>
-          <IconButton className='btnTop'>
+          <IconButton className='btnTop' aria-label='click to jump to top'>
             <ArrowUpward fontSize='medium' />
           </IconButton>
         </Box>

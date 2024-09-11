@@ -402,6 +402,7 @@ const Index: NextPage = ({ projects }: any) => {
             mt={4}
           >
             <IconButton
+              aria-label='click to extend button'
               className='extendBtn'
               onClick={() => setShowMore(!showMore)}
             >
