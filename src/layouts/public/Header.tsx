@@ -24,7 +24,7 @@ const AppBarContainer = styled(AppBar)(({ theme }) => ({
   border: '1px solid #393E46',
   marginTop: '10px',
   borderRadius: '10px',
-  width: '60%',
+  width: '100%',
   margin: '0 auto',
   left: 0,
   right: 0,

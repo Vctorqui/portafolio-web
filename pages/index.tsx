@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { containerWidth, tasks } from '@/src/utils/const'
@@ -13,6 +13,7 @@ import {
   List,
   ListItem,
   ListItemText,
+  Stack,
   Typography,
   styled,
 } from '@mui/material'
@@ -37,7 +38,7 @@ import { db } from '@/src/firebase/config'
 const Banner = styled(Box)(() => ({
   background: theme.palette.primary.main,
   position: 'relative',
-  height: 'calc(100vh - 224px)',
+  height: 'calc(100vh - 100px)',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -57,19 +58,10 @@ const Banner = styled(Box)(() => ({
       alignItems: 'center',
     },
     '.musicPlayer': {
-      position: 'absolute',
-      top: 90,
-      right: 40,
-      [theme.breakpoints.up('xl')]: {
-        right: 200,
-      },
+      alignSelf: 'flex-end',
+
       [theme.breakpoints.down('md')]: {
-        position: 'relative',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        right: 0,
-        top: -60,
+        alignSelf: 'center',
       },
       [theme.breakpoints.down('sm')]: {
         top: 0,
@@ -430,48 +422,152 @@ const Index: NextPage = ({ projects }: any) => {
             >
               {changeLang === true ? 'About me' : ' Sobre mí'}
             </Typography>
-            {changeLang === true ? (
-              <>
-                <Typography variant='body1'>
-                  Front-end Developer based in Venezuela who{' '}
-                  <span style={{ color: theme.palette.text.secondary }}>
-                    loves to learn new things, work with particular startups and
-                    collaborate with talented people around the world
-                  </span>{' '}
-                  building websites and applications with a wide range of
-                  technologies.
-                </Typography>
-                <Typography variant='body1'>
-                  <span style={{ color: theme.palette.text.secondary }}>
-                    My main goal is to improve, learn more every day
-                  </span>{' '}
-                  and be able to help new entrepreneurs and small businesses to
-                  reach bigger markets and build web presence using the latest
-                  and most demanding development trends.
-                </Typography>
-              </>
-            ) : (
-              <>
-                <Typography variant='body1'>
-                  Desarrollador Front-end ubicado en Venezuela a quien le{' '}
-                  <span style={{ color: theme.palette.text.secondary }}>
-                    encanta aprender cosas nuevas, trabajar con particulares
-                    startups y colaborar con gente talentosa alrededor del mundo
-                  </span>{' '}
-                  construyendo sitios web y aplicaciones con una amplia gama de
-                  tecnologías.
-                </Typography>
-                <Typography variant='body1'>
-                  <span style={{ color: theme.palette.text.secondary }}>
-                    Mi principal objetivo es mejorar, aprender más cada día
-                  </span>{' '}
-                  y ser capaz de ayudar a nuevos emprendedores y pequeñas
-                  empresas a alcanzar mercados más grandes y construir presencia
-                  web utilizando las últimas y más exigentes tendencias de
-                  desarrollo.
-                </Typography>
-              </>
-            )}
+            <Box
+              sx={{
+                [theme.breakpoints.down('md')]: {
+                  flexDirection: 'column',
+                },
+              }}
+              display={'flex'}
+              alignItems={'center'}
+              gap={4}
+            >
+              <Stack>
+                {changeLang === true ? (
+                  <Box display={'flex'} flexDirection={'column'} gap={1}>
+                    <Typography variant='body1'>
+                      Hi!{' '}
+                      <span style={{ color: theme.palette.text.secondary }}>
+                        I&apos;m Victor Quiñones, a passionate Front-end
+                        Developer based in Venezuela.
+                      </span>{' '}
+                      Throughout my career, I have had the opportunity to
+                      participate in more than{' '}
+                      <span style={{ color: theme.palette.text.secondary }}>
+                        8 projects with different clients
+                      </span>
+                      , where I have designed and implemented attractive and
+                      functional interfaces. My focus is on creating intuitive
+                      and accessible user experiences.
+                    </Typography>
+                    <Typography
+                      variant='h6'
+                      fontWeight={700}
+                      color={theme.palette.text.secondary}
+                    >
+                      But what&apos;s beyond the code?
+                    </Typography>
+
+                    <Typography variant='body1'>
+                      Let me share with you some personal details:
+                    </Typography>
+                    <ul>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Videogame lover:
+                        </span>{' '}
+                        When I&apos;m not immersed in lines of code, I find
+                        myself exploring virtual worlds. Video games are my
+                        creative outlet and a constant source of inspiration.
+                      </li>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Technology & Curiosity:
+                        </span>{' '}
+                        I am always on top of the latest technology trends.
+                        trends. I am excited to learn about new tools and tools
+                        and approaches to improve my skills.
+                      </li>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Anime & Animated Movies:
+                        </span>{' '}
+                        Who says developers only live at the terminal? I&apos;m
+                        also a fan of anime and animated movies. From classics
+                        to the latest productions, I find inspiration in
+                        storytelling and visual creativity.
+                      </li>
+                    </ul>
+                    <Typography fontWeight={700}>
+                      My main goal is to keep improving, learn every day and be
+                      able to help new entrepreneurs, small companies and big
+                      startups to reach bigger markets.
+                    </Typography>
+                  </Box>
+                ) : (
+                  <Box display={'flex'} flexDirection={'column'} gap={1}>
+                    <Typography variant='body1'>
+                      ¡Hola!{' '}
+                      <span style={{ color: theme.palette.text.secondary }}>
+                        Soy Víctor Quiñones, un apasionado Desarrollador
+                        Front-end ubicado en Venezuela.
+                      </span>{' '}
+                      A lo largo de mi carrera, he tenido la oportunidad de
+                      participar en más de{' '}
+                      <span style={{ color: theme.palette.text.secondary }}>
+                        8 proyectos con diferentes clientes
+                      </span>
+                      , donde he diseñado e implementado interfaces atractivas y
+                      funcionales. Mi enfoque se centra en crear experiencias de
+                      usuario intuitivas y accesibles.
+                    </Typography>
+                    <Typography
+                      variant='h6'
+                      fontWeight={700}
+                      color={theme.palette.text.secondary}
+                    >
+                      Pero, ¿qué hay más allá del código?
+                    </Typography>
+
+                    <Typography variant='body1'>
+                      Permíteme compartirte algunos detalles personales:
+                    </Typography>
+                    <ul>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Amante de los Videojuegos:
+                        </span>{' '}
+                        Cuando no estoy sumergido en líneas de código, me
+                        encuentro explorando mundos virtuales. Los videojuegos
+                        son mi escape creativo y una fuente constante de
+                        inspiración.
+                      </li>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Tecnología y Curiosidad:
+                        </span>{' '}
+                        Siempre estoy al tanto de las últimas tendencias
+                        tecnológicas. Me emociona aprender sobre nuevas
+                        herramientas y enfoques para mejorar mis habilidades.
+                      </li>
+                      <li>
+                        <span style={{ color: theme.palette.text.secondary }}>
+                          Anime y Películas Animadas:
+                        </span>{' '}
+                        ¿Quién dice que los desarrolladores solo viven en la
+                        terminal? También soy un fanático del anime y las
+                        películas animadas. Desde clásicos hasta las últimas
+                        producciones, encuentro inspiración en la narrativa y la
+                        creatividad visual.
+                      </li>
+                    </ul>
+                    <Typography fontWeight={700}>
+                      Mi principal objetivo es seguir mejorando, aprender cada
+                      día y ser capaz de ayudar a nuevos emprendedores, pequeñas
+                      empresas y grandes startups a alcanzar mercados más
+                      grandes.
+                    </Typography>
+                  </Box>
+                )}
+              </Stack>
+
+              <Image
+                src={'/images/avatar.png'}
+                width={250}
+                height={200}
+                alt='avatar'
+              />
+            </Box>
           </Box>
         </Container>
       </Box>

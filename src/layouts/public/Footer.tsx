@@ -47,6 +47,7 @@ const FooterBox = styled(Box)(() => ({
     '.footerEmail': {
       display: 'flex',
       alignItems: 'center',
+      justifyContent: 'center',
       gap: theme.spacing(1),
       [theme.breakpoints.down('sm')]: {
         justifyContent: 'center',
@@ -163,8 +164,13 @@ export const PublicFooter = ({ changeLang }: any) => {
           />
           <Divider orientation='vertical' variant='middle' flexItem />
 
-          <Box display={'flex'} alignItems={'center'} gap={2}>
-            <Link
+          <Box
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            gap={2}
+          >
+            {/* <Link
               className='footerLink'
               href={'https://wa.me/+584127884439'}
               arial-label='Ir a whatsapp'
@@ -175,7 +181,7 @@ export const PublicFooter = ({ changeLang }: any) => {
                   +58 412 788 4439
                 </Typography>
               </Box>
-            </Link>
+            </Link> */}
             <Divider orientation='vertical' variant='middle' flexItem />
             <Box display={'flex'} alignItems={'center'} gap={2}>
               <Link
