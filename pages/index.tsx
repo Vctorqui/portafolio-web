@@ -206,7 +206,7 @@ const Index: NextPage = ({ projects }: any) => {
               <Link
                 className='linkBtn'
                 href={
-                  'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
+                  'https://www.linkedin.com/in/victorqui/'
                 }
               >
                 <Box className='wrapperBtn'>
