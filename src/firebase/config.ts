@@ -1,6 +1,4 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getAnalytics } from 'firebase/analytics'
 import {
   getFirestore,
   doc,
@@ -9,27 +7,38 @@ import {
   updateDoc,
   increment,
   arrayRemove,
-  arrayUnion
+  arrayUnion,
 } from 'firebase/firestore'
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const FIREBASE_APIKEY = process.env.NEXT_PUBLIC_FIREBASE_APIKEY as string
+const FIREBASE_AUTH_DOMAIN = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN as string
+const FIREBASE_PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID as string
+const FIREBASE_STORAGE = process.env.NEXT_PUBLIC_FIREBASE_STORAGE as string
+const FIREBASE_MESSAGING = process.env.NEXT_PUBLIC_FIREBASE_MESSAGING as string
+const FIREBASE_APPID = process.env.NEXT_PUBLIC_FIREBASE_APP_ID as string
+const FIREBASE_MEASUREMENT = process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT as string
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyDPZ9IiIkvDAArgaW27NoMMcgrgzs4DwPA',
-  authDomain: 'portfolio-web-71501.firebaseapp.com',
-  projectId: 'portfolio-web-71501',
-  storageBucket: 'portfolio-web-71501.appspot.com',
-  messagingSenderId: '1042206839990',
-  appId: '1:1042206839990:web:40ec9099f1e17c78410217',
-  measurementId: 'G-9MF50X1T5L',
+  apiKey: FIREBASE_APIKEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE,
+  messagingSenderId: FIREBASE_MESSAGING,
+  appId: FIREBASE_APPID,
+  measurementId: FIREBASE_MEASUREMENT,
 }
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
-// const analytics = getAnalytics(app)
 
-export { db, doc, getDoc, setDoc, updateDoc, increment, arrayRemove, arrayUnion }
+export {
+  db,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment,
+  arrayRemove,
+  arrayUnion,
+}

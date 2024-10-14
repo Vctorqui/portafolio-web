@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react'
 import { Box, Button, Stack, Typography, styled } from '@mui/material'
-import { MuteIcon, SoundIcon } from './SvgIcon'
 import Link from 'next/link'
 import { Fade } from 'react-awesome-reveal'
 import { data } from '../mocks/data'
