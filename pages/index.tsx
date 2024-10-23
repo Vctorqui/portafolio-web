@@ -205,9 +205,7 @@ const Index: NextPage = ({ projects }: any) => {
               />
               <Link
                 className='linkBtn'
-                href={
-                  'https://www.linkedin.com/in/victorqui/'
-                }
+                href={'https://www.linkedin.com/in/victorqui/'}
               >
                 <Box className='wrapperBtn'>
                   <Box position={'absolute'} zIndex={10}>
@@ -341,8 +339,8 @@ const Index: NextPage = ({ projects }: any) => {
                 </Typography>
                 <Typography fontWeight={800}>
                   {changeLang === true
-                    ? 'Junior Frontend Developer'
-                    : 'Desarrollador Frontend Junior'}
+                    ? 'Frontend Developer'
+                    : 'Desarrollador Frontend'}
                 </Typography>
                 <Typography variant='body2'>
                   {changeLang === true
