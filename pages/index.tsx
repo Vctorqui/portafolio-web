@@ -120,6 +120,7 @@ const Banner = styled(Box)(() => ({
 const ProyectContainer = styled(Box)(() => ({
   background: theme.palette.primary.main,
   paddingBottom: theme.spacing(4),
+  paddingTop: theme.spacing(2),
   '.extendBtn': {
     background: theme.palette.secondary.main,
     ':hover': {
@@ -351,12 +352,57 @@ const Index: NextPage = ({ projects }: any) => {
                   {tasks.map((item: taskTypes, i: any) => (
                     <ListItem sx={{ paddingTop: 0 }} key={i}>
                       {changeLang === true ? (
-                        <ListItemText>{item.english_description}</ListItemText>
+                        <ListItemText>{`- ${item.english_description}`}</ListItemText>
                       ) : (
-                        <ListItemText>{item.spanish_description}</ListItemText>
+                        <ListItemText>{`- ${item.spanish_description}`}</ListItemText>
                       )}
                     </ListItem>
                   ))}
+                </List>
+              </TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineConnector />
+                <TimelineDot sx={{ background: theme.palette.text.secondary }}>
+                  <WorkOutline sx={{ color: theme.palette.common.black }} />
+                </TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent sx={{ py: '12px', px: 2 }}>
+                <Typography
+                  variant='h6'
+                  color={theme.palette.text.secondary}
+                  fontWeight={800}
+                >
+                  Freelance
+                </Typography>
+                <Typography fontWeight={800}>
+                  {changeLang === true
+                    ? 'Frontend Web Developer'
+                    : 'Desarrollador Web Frontend'}
+                </Typography>
+                <Typography variant='body2'>
+                  {changeLang === true
+                    ? 'February 2023 - Current...'
+                    : ' Febrero 2023 - Actualmente...'}
+                </Typography>
+                <List>
+                  <ListItem sx={{ paddingTop: 0 }}>
+                    {changeLang === true ? (
+                      <ListItemText>
+                        - Freelance developer in charge of creating custom web
+                        pages and applications for clients according to their
+                        needs.
+                      </ListItemText>
+                    ) : (
+                      <ListItemText>
+                        - Desarrollador freelance encargado de crear páginas web
+                        y aplicaciones a medida para clientes según sus
+                        necesidades.
+                      </ListItemText>
+                    )}
+                  </ListItem>
                 </List>
               </TimelineContent>
             </TimelineItem>

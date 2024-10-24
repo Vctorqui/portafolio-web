@@ -398,3 +398,19 @@ export const projects: projectsTypes[] = [
       'Website to promote Lisboa residential project. Responsive design using Sass preprocessor.',
   },
 ]
+
+export const navSpanishItems = [
+  { label: 'Inicio', href: '#home' },
+  { label: 'Experiencia', href: '#experience' },
+  { label: 'Proyectos', href: '#projects' },
+  { label: 'Sobre mi', href: '#about-me' },
+  { label: 'Contacto', href: '#contact' },
+]
+
+export const navEnglishItems = [
+  { label: 'Home', href: '#home' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'About me', href: '#about-me' },
+  { label: 'Contact', href: '#contact' },
+]

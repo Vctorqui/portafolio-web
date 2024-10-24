@@ -1,6 +1,10 @@
 import CustomDialog from '@/src/components/CustomDialog'
-import { containerWidth } from '@/src/utils/const'
-import { Menu, Home } from '@mui/icons-material'
+import {
+  containerWidth,
+  navEnglishItems,
+  navSpanishItems,
+} from '@/src/utils/const'
+import { Menu } from '@mui/icons-material'
 import {
   AppBar,
   Box,
@@ -161,63 +165,41 @@ export const PublicHeader = ({ changeLang }: any) => {
         </Grid>
       </Grid>
       <Divider sx={{ marginBottom: '20px' }} />
-      <LinkContainer
-        href='#experience'
-        aria-label='Ir al experiencia'
-        className='nav-link'
-        activeClass='active'
-        to='experience'
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        <MenuItem className='link-text'>
-          {changeLang === true ? 'Experience' : 'Experiencia'}
-        </MenuItem>
-      </LinkContainer>
-      <LinkContainer
-        href='#projects'
-        className='nav-link'
-        aria-label='Ir a proyectos'
-        to='projects'
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        <MenuItem className='link-text'>
-          {changeLang === true ? 'Proyects' : 'Proyectos'}
-        </MenuItem>
-      </LinkContainer>
-      <LinkContainer
-        href='#about-me'
-        aria-label='Ir a sobre mi'
-        className='nav-link'
-        to='about-me'
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        <MenuItem className='link-text'>
-          {changeLang === true ? 'About me' : 'Sobre Mí'}
-        </MenuItem>
-      </LinkContainer>
-      <LinkContainer
-        href='#contact'
-        aria-label='Ir a contacto'
-        className='nav-link'
-        to='contact'
-        spy={true}
-        smooth={true}
-        offset={-70}
-        duration={500}
-      >
-        <MenuItem className='link-text'>
-          {changeLang === true ? 'Contact' : 'Contacto'}
-        </MenuItem>
-      </LinkContainer>
+      {changeLang === true
+        ? navEnglishItems.map((item) => (
+            <LinkContainer
+              aria-label={`Go to ${item.label}`}
+              key={item.href}
+              href={item.href}
+              className='nav-link'
+              activeClass='active'
+              to={item.href.slice(1)}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              onClick={handleDrawerToggle}
+            >
+              <MenuItem className='link-text'>{item.label}</MenuItem>
+            </LinkContainer>
+          ))
+        : navSpanishItems.map((item) => (
+            <LinkContainer
+              aria-label={`Ir a ${item.label}`}
+              key={item.href}
+              href={item.href}
+              className='nav-link'
+              activeClass='active'
+              to={item.href.slice(1)}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              onClick={handleDrawerToggle}
+            >
+              <MenuItem className='link-text'>{item.label}</MenuItem>
+            </LinkContainer>
+          ))}
     </ResponsiveBox>
   )
 
@@ -237,78 +219,39 @@ export const PublicHeader = ({ changeLang }: any) => {
               </IconButton>
             </Box>
             <BoxNavContainer>
-              <Link
-                href='#home'
-                className='nav-link'
-                activeClass='active'
-                to='home'
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                <Home sx={{ marginTop: '5px' }} fontSize='medium' />
-              </Link>
-              <Link
-                href='#experience'
-                aria-label='Ir al experiencia'
-                activeClass='active'
-                className='nav-link'
-                to='experience'
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                <Typography variant='body1'>
-                  {changeLang === true ? 'Experience' : 'Experiencia'}
-                </Typography>
-              </Link>
-              <Link
-                href='#projects'
-                activeClass='active'
-                aria-label='Ir a proyectos'
-                className='nav-link'
-                to='projects'
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                <Typography variant='body1'>
-                  {changeLang === true ? 'Proyects' : 'Proyectos'}
-                </Typography>
-              </Link>
-              <Link
-                href='#about-me'
-                activeClass='active'
-                aria-label='Ir a sobre mi'
-                className='nav-link'
-                to='about-me'
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                <Typography variant='body1'>
-                  {changeLang === true ? 'About me' : 'Sobre Mí'}
-                </Typography>
-              </Link>
-              <Link
-                href='#contact'
-                activeClass='active'
-                aria-label='Ir a contacto'
-                className='nav-link'
-                to='contact'
-                spy={true}
-                smooth={true}
-                offset={-70}
-                duration={500}
-              >
-                <Typography variant='body1'>
-                  {changeLang === true ? 'Contact' : 'Contacto'}
-                </Typography>
-              </Link>
+              {changeLang === true
+                ? navEnglishItems.map((item) => (
+                    <Link
+                      aria-label={`Go to ${item.label}`}
+                      key={item.href}
+                      href={item.href}
+                      className='nav-link'
+                      activeClass='active'
+                      to={item.href.slice(1)}
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                    >
+                      <Typography variant='body1'>{item.label}</Typography>
+                    </Link>
+                  ))
+                : navSpanishItems.map((item) => (
+                    <Link
+                      aria-label={`Ir a ${item.label}`}
+                      key={item.href}
+                      href={item.href}
+                      className='nav-link'
+                      activeClass='active'
+                      to={item.href.slice(1)}
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                    >
+                      <Typography variant='body1'>{item.label}</Typography>
+                    </Link>
+                  ))}
             </BoxNavContainer>
           </Toolbar>
         </Container>

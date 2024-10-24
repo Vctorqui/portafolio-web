@@ -67,13 +67,13 @@ const CardStyled = styled(Card)(() => ({
     transition: 'all 0.35s ease-out',
   },
 
-  '.likeBtn': {
-    position: 'absolute',
-    zIndex: 2,
-    borderRadius: '50%',
-    left: 0,
-    top: 180,
-    transform: 'translateY(50%)',
+  '.containerImg': {
+    position: 'relative',
+    overflow: 'hidden',
+    '&:hover .imgProject': {
+      transition: 'all 0.35s ease-out',
+      transform: 'scale(1.05)',
+    },
   },
 }))
 
@@ -160,8 +160,9 @@ export const ProjectCard = ({ changeLang, project }: any) => {
   return (
     <Box id={'projects'}>
       <CardStyled>
-        <Box sx={{ maxHeight: '200px' }}>
+        <Box className='containerImg' sx={{ maxHeight: '200px' }}>
           <img
+            className='imgProject'
             style={{
               objectFit: 'cover',
               width: '100%',
@@ -172,16 +173,32 @@ export const ProjectCard = ({ changeLang, project }: any) => {
           />
         </Box>
         <CardContent sx={{ background: theme.palette.primary.main }}>
-          <Typography
-            mt={2}
-            fontWeight={700}
-            gutterBottom
-            variant='h6'
-            component='div'
-            color={theme.palette.text.secondary}
+          <Box
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'space-between'}
           >
-            {project.title}
-          </Typography>
+            <Typography
+              // mt={2}
+              fontWeight={700}
+              gutterBottom
+              variant='h6'
+              component='div'
+              color={theme.palette.text.secondary}
+            >
+              {project.title}
+            </Typography>
+            <IconButton className='likeBtn' onClick={handleLike}>
+              {hasLiked ? (
+                <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
+              ) : (
+                <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
+              )}
+              <Typography color={theme.palette.common.white} variant='caption'>
+                {likes}
+              </Typography>
+            </IconButton>
+          </Box>
           <Typography variant='body2'>
             {changeLang === true
               ? project.english_description
@@ -194,7 +211,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
           >
             Stack: {project.stack}
           </Typography>
-          <IconButton className='likeBtn' onClick={handleLike}>
+          {/* <IconButton className='likeBtn' onClick={handleLike}>
             {hasLiked ? (
               <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
             ) : (
@@ -203,7 +220,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
             <Typography color={theme.palette.common.white} variant='caption'>
               {likes}
             </Typography>
-          </IconButton>
+          </IconButton> */}
         </CardContent>
         <Divider sx={{ background: theme.palette.primary.light }} />
         <CardActions sx={{ background: theme.palette.primary.main }}>
