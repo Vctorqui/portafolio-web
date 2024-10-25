@@ -356,7 +356,17 @@ const Index: NextPage = ({ projects }: any) => {
                         <ListItemText>{`- ${item.spanish_description}`}</ListItemText>
                       )}
                     </ListItem>
-                    <Box display={'flex'} alignItems={'center'} gap={2}>
+                    <Box
+                      display={'flex'}
+                      alignItems={'center'}
+                      gap={2}
+                      flexWrap={'wrap'}
+                      sx={{
+                        [theme.breakpoints.down('sm')]: {
+                          display: 'none',
+                        },
+                      }}
+                    >
                       {item.stacks.map((stack: any) => (
                         <Button key={i} variant='contained'>
                           {stack}

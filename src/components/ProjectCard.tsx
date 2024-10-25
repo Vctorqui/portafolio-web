@@ -188,7 +188,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
           </CardContent>
         </CardStyled>
       </Box>
-      <CustomDialog open={projectOpen} onClose={handleDrawerToggle}>
+      <CustomDialog fullMobile open={projectOpen} onClose={handleDrawerToggle}>
         <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <Stack spacing={2} padding={5}>
             <Box
