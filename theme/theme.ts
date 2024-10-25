@@ -13,8 +13,8 @@ declare module '@mui/material/styles' {
 
 const colors = {
   primary: {
-    main: '#1E2022',
-    light: '#393E46',
+    main: '#0B192C',
+    light: '#1E3E62',
     dark: '',
   },
   secondary: {
@@ -23,10 +23,10 @@ const colors = {
   },
   text: {
     primary: '#EEEEEE',
-    secondary: '#76ABAE',
+    secondary: '#F2613F',
   },
   backgroundGreen: {
-    green: '#76ABAE',
+    green: '#F2613F',
   },
 }
 
@@ -67,15 +67,15 @@ const theme = responsiveFontSizes(
           },
           outlinedPrimary: {
             // fontWeight: '700',
-            border: 'solid 1px #76ABAE',
+            border: `solid 1px ${colors.backgroundGreen.green}`,
             borderRadius: 10,
             position: 'relative',
             color: colors.text.primary,
             background: 'transparent',
             transition: 'background .2s ease-out,color .2s ease-out',
             '&:hover': {
-              background: '#76ABAE',
-              border: 'solid 1px #76ABAE',
+              background: colors.backgroundGreen.green,
+              border: `solid 1px ${colors.backgroundGreen.green}`,
             },
           },
         },

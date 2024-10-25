@@ -15,7 +15,7 @@ const MusicPlayerBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifiyContent: 'center',
     alignItems: 'center',
-    border: 'solid 1px #76ABAE',
+    border: `1px solid ${theme.palette.backgroundGreen.green}`,
     position: 'relative',
     padding: 20,
     color: theme.palette.secondary.light,

@@ -25,7 +25,7 @@ import { Link } from 'react-scroll'
 
 const AppBarContainer = styled(AppBar)(({ theme }) => ({
   background: theme.palette.primary.main,
-  border: '1px solid #393E46',
+  border: `1px solid ${theme.palette.primary.light}`,
   marginTop: '10px',
   borderRadius: '10px',
   width: '100%',
@@ -114,7 +114,7 @@ const LinkContainer = styled(Link)(({ theme }) => ({
   color: theme.palette.common.white,
   fontWeight: '700',
   borderRadius: 4,
-  border: '1px solid #76ABAE',
+  border: `1px solid ${theme.palette.backgroundGreen.green}`,
   position: 'relative',
   transition: 'all 0.3s ease-out',
   '&:hover': {

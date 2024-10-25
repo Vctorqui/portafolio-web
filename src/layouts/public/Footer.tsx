@@ -66,7 +66,7 @@ const FooterBox = styled(Box)(() => ({
   '.boxBtnUp': {
     cursor: 'pointer',
     ':hover .btnTop': {
-      background: '#76ABAE',
+      background: theme.palette.backgroundGreen.green,
     },
     '.btnTop': {
       background: theme.palette.secondary.main,

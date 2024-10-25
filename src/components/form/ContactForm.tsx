@@ -185,9 +185,9 @@ export const ContactForm = ({ changeLang }: any) => {
                       fontWeight: 700,
                       borderRadius: '5px',
                       ':hover': {
-                        background: '#76ABAE',
+                        background: theme.palette.backgroundGreen.green,
                         color: '#EEE',
-                        borderColor: '#76ABAE',
+                        borderColor: theme.palette.backgroundGreen.green,
                       },
                     }}
                     type='submit'
