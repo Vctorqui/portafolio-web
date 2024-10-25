@@ -207,7 +207,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
             variant='caption'
             color={theme.palette.text.secondary}
           >
-            Stack: {project.test}
+            Stack: {project.stack}
           </Typography>
           {/* <IconButton className='likeBtn' onClick={handleLike}>
             {hasLiked ? (
