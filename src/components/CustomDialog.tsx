@@ -26,6 +26,10 @@ const BoxClose = styled(Box)(({ theme }) => ({
 }))
 
 const BoxDialog = styled(Dialog)(({ theme }) => ({
+  background: '#000',
+  '.MuiDialogContent-root': {
+    background: '#393E46',
+  },
   '.css-43llcs-MuiPaper-root-MuiDialog-paper': {
     borderRadius: 10,
     color: theme.palette.text.secondary,
@@ -83,7 +87,7 @@ const CustomDialog = ({
               sx={{ color: '#222831' }}
               onClick={onClose}
             >
-              <Close width={'20px'} height={'20px'} sx={{ color: '#222831' }} />
+              <Close width={'20px'} height={'20px'} sx={{ color: '#76ABAE' }} />
             </IconButton>
           </BoxClose>
         )}

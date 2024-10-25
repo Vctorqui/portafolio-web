@@ -1,13 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
-import { Favorite, FavoriteBorder, Visibility } from '@mui/icons-material'
 import {
+  Close,
+  Favorite,
+  FavoriteBorder,
+  Visibility,
+} from '@mui/icons-material'
+import {
+  AppBar,
   Box,
+  Button,
   Card,
   CardActions,
   CardContent,
+  Dialog,
   Divider,
   IconButton,
   Link,
+  Stack,
+  Toolbar,
   Typography,
   styled,
 } from '@mui/material'
@@ -23,50 +33,12 @@ import {
   arrayRemove,
 } from '@/src/firebase/config'
 import { collection, getDocs } from 'firebase/firestore'
+import CustomDialog from './CustomDialog'
 
 const CardStyled = styled(Card)(() => ({
   border: `1px solid ${theme.palette.primary.light}`,
   position: 'relative',
   borderRadius: '10px',
-  '.showBtn': {
-    textDecoration: 'none',
-    cursor: 'pointer',
-    padding: '5px 10px',
-    background: 'transparent',
-    color: theme.palette.text.secondary,
-    border: `1px solid ${theme.palette.backgroundGreen.green}`,
-    borderRadius: '5px',
-    position: 'relative',
-    zIndex: 1,
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '5px',
-  },
-  '.showBtn:hover': { color: theme.palette.text.primary },
-  '.showBtn::after': {
-    content: '""',
-    background: theme.palette.backgroundGreen.green,
-    position: 'absolute',
-    zIndex: -1,
-    padding: '16px 20px',
-    display: 'block',
-    left: '0',
-    right: '0',
-    top: '-200%',
-    bottom: '100%',
-    WebkitTransition: 'all 0.35s ease-out',
-    transition: 'all 0.35s ease-out',
-  },
-  '.showBtn:hover::after': {
-    left: '0',
-    right: '0',
-    top: '0',
-    bottom: '0',
-    WebkitTransition: 'all 0.35s ease-out',
-    transition: 'all 0.35s ease-out',
-  },
-
   '.containerImg': {
     position: 'relative',
     overflow: 'hidden',
@@ -95,6 +67,11 @@ export async function getServerSideProps() {
 export const ProjectCard = ({ changeLang, project }: any) => {
   const [likes, setLikes] = useState(project.likes || 0)
   const [hasLiked, setHasLiked] = useState(false)
+  const [projectOpen, setProjectOpen] = useState(false)
+
+  const handleDrawerToggle = () => {
+    setProjectOpen((prevState) => !prevState)
+  }
 
   const getUserId = () => {
     const storedId = localStorage.getItem('userId')
@@ -158,78 +135,111 @@ export const ProjectCard = ({ changeLang, project }: any) => {
   }
 
   return (
-    <Box id={'projects'}>
-      <CardStyled>
-        <Box className='containerImg' sx={{ maxHeight: '200px' }}>
-          <img
-            className='imgProject'
-            style={{
-              objectFit: 'cover',
-              width: '100%',
-              height: '200px',
-            }}
-            src={project.image}
-            alt={project.title}
-          />
-        </Box>
-        <CardContent sx={{ background: theme.palette.primary.main }}>
+    <>
+      <Box id={'projects'}>
+        <CardStyled>
           <Box
-            display={'flex'}
-            alignItems={'center'}
-            justifyContent={'space-between'}
+            onClick={handleDrawerToggle}
+            className='containerImg'
+            sx={{ maxHeight: '200px' }}
           >
+            <img
+              className='imgProject'
+              style={{
+                objectFit: 'cover',
+                width: '100%',
+                height: '200px',
+              }}
+              src={project.image}
+              alt={project.title}
+            />
+          </Box>
+          <CardContent sx={{ background: theme.palette.primary.main, paddingBottom: 0 }}>
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              justifyContent={'space-between'}
+            >
+              <Typography
+                // mt={2}
+                fontWeight={700}
+                variant='h6'
+                color={theme.palette.text.secondary}
+              >
+                {project.title}
+              </Typography>
+              <IconButton className='likeBtn' onClick={handleLike}>
+                {hasLiked ? (
+                  <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
+                ) : (
+                  <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
+                )}
+                <Typography
+                  color={theme.palette.common.white}
+                  variant='caption'
+                >
+                  {likes}
+                </Typography>
+              </IconButton>
+            </Box>
+            <Button onClick={handleDrawerToggle} variant='outlined'>
+              Ver mas
+            </Button>
+          </CardContent>
+        </CardStyled>
+      </Box>
+      <CustomDialog open={projectOpen} onClose={handleDrawerToggle}>
+        <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+          <Stack spacing={2} padding={5}>
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              justifyContent={'space-between'}
+            >
+              <Typography
+                // mt={2}
+                fontWeight={700}
+                variant='h6'
+                color={theme.palette.text.secondary}
+              >
+                {project.title}
+              </Typography>
+              <Box display={'flex'} alignItems={'center'}>
+                <Typography
+                  color={theme.palette.common.white}
+                  variant='caption'
+                >
+                  {likes}
+                </Typography>
+                <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
+              </Box>
+            </Box>
+
+            <Typography variant='body2' color={theme.palette.common.white}>
+              {changeLang === true
+                ? project.english_description
+                : project.spanish_description}
+            </Typography>
             <Typography
-              // mt={2}
-              fontWeight={700}
-              variant='h6'
+              mt={2}
+              variant='caption'
               color={theme.palette.text.secondary}
             >
-              {project.title}
+              Stack: {project.stack}
             </Typography>
-            <IconButton className='likeBtn' onClick={handleLike}>
-              {hasLiked ? (
-                <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
-              ) : (
-                <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
-              )}
-              <Typography color={theme.palette.common.white} variant='caption'>
-                {likes}
+
+            <Link
+              href={project.preview_link}
+              sx={{ color: '#eeee' }}
+              className='showBtn'
+            >
+              <Typography variant='body2'>
+                {changeLang === true ? 'Visit the site' : 'Visita el sitio web'}
               </Typography>
-            </IconButton>
-          </Box>
-          {/* <Typography variant='body2'>
-            {changeLang === true
-              ? project.english_description
-              : project.spanish_description}
-          </Typography> */}
-          <Typography
-            mt={2}
-            variant='caption'
-            color={theme.palette.text.secondary}
-          >
-            Stack: {project.stack}
-          </Typography>
-          {/* <IconButton className='likeBtn' onClick={handleLike}>
-            {hasLiked ? (
-              <Favorite fontSize='medium' sx={{ color: '#A02334' }} />
-            ) : (
-              <FavoriteBorder fontSize='medium' sx={{ color: '#A02334' }} />
-            )}
-            <Typography color={theme.palette.common.white} variant='caption'>
-              {likes}
-            </Typography>
-          </IconButton> */}
-        </CardContent>
-        <Divider sx={{ background: theme.palette.primary.light }} />
-        <CardActions sx={{ background: theme.palette.primary.main }}>
-          <Link href={project.preview_link} className='showBtn'>
-            <Visibility fontSize='small' />
-            <Typography variant='body2'>
-              {changeLang === true ? 'View' : 'Ver'}
-            </Typography>
-          </Link>
-        </CardActions>
-      </CardStyled>
-    </Box>
+            </Link>
+          </Stack>
+        </Box>
+      </CustomDialog>
+    </>
   )
 }

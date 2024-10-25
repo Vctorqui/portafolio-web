@@ -111,10 +111,10 @@ const BoxNavContainer = styled(Box)(({ theme }) => ({
 const LinkContainer = styled(Link)(({ theme }) => ({
   display: 'flex',
   textDecoration: 'none',
-  color: theme.palette.common.black,
+  color: theme.palette.common.white,
   fontWeight: '700',
   borderRadius: 4,
-  border: '1px solid #1E2022',
+  border: '1px solid #76ABAE',
   position: 'relative',
   transition: 'all 0.3s ease-out',
   '&:hover': {
@@ -157,7 +157,7 @@ export const PublicHeader = ({ changeLang }: any) => {
         <Grid item xs={12} textAlign={'start'} marginBottom={'10px'}>
           <Typography
             variant='h6'
-            color={theme.palette.common.black}
+            color={theme.palette.common.white}
             fontWeight={700}
           >
             {changeLang === true ? 'Menu' : ' Menú de opciones'}
