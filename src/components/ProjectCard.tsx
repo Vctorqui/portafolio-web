@@ -181,9 +181,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
             <Typography
               // mt={2}
               fontWeight={700}
-              gutterBottom
               variant='h6'
-              component='div'
               color={theme.palette.text.secondary}
             >
               {project.title}
@@ -199,17 +197,17 @@ export const ProjectCard = ({ changeLang, project }: any) => {
               </Typography>
             </IconButton>
           </Box>
-          <Typography variant='body2'>
+          {/* <Typography variant='body2'>
             {changeLang === true
               ? project.english_description
               : project.spanish_description}
-          </Typography>
+          </Typography> */}
           <Typography
             mt={2}
             variant='caption'
             color={theme.palette.text.secondary}
           >
-            Stack: {project.stack}
+            Stack: {project.test}
           </Typography>
           {/* <IconButton className='likeBtn' onClick={handleLike}>
             {hasLiked ? (
