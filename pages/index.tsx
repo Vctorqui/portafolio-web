@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { containerWidth, tasks } from '@/src/utils/const'
+import { containerWidth, experiences } from '@/src/utils/const'
 import theme from '@/theme/theme'
 import {
   Avatar,
   Box,
+  Button,
   Container,
   Divider,
   Grid,
@@ -24,7 +25,7 @@ import TimelineConnector from '@mui/lab/TimelineConnector'
 import TimelineContent from '@mui/lab/TimelineContent'
 import { Add, Remove, WorkOutline } from '@mui/icons-material'
 import { TimelineDot } from '@mui/lab'
-import { taskTypes } from '@/src/types/types'
+import { experienceTypes } from '@/src/types/types'
 import { ProjectCard } from '@/src/components/ProjectCard'
 import MusicPlayer from '@/src/components/MusicPlayer'
 import { LinkBlockStyled } from '@/src/components/LinkStyled'
@@ -322,34 +323,32 @@ const Index: NextPage = ({ projects }: any) => {
               },
             }}
           >
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot sx={{ background: theme.palette.text.secondary }}>
-                  <WorkOutline sx={{ color: theme.palette.common.black }} />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent sx={{ py: '12px', px: 2 }}>
-                <Typography
-                  variant='h6'
-                  color={theme.palette.text.secondary}
-                  fontWeight={800}
-                >
-                  Coastal Insight Consulting
-                </Typography>
-                <Typography fontWeight={800}>
-                  {changeLang === true
-                    ? 'Frontend Developer'
-                    : 'Desarrollador Frontend'}
-                </Typography>
-                <Typography variant='body2'>
-                  {changeLang === true
-                    ? 'March 2023 - Current...'
-                    : ' Marzo 2023 - Actualmente...'}
-                </Typography>
-                <List>
-                  {tasks.map((item: taskTypes, i: any) => (
+            {experiences.map((item: experienceTypes, i: number) => (
+              <TimelineItem key={i}>
+                <TimelineSeparator>
+                  <TimelineConnector />
+                  <TimelineDot
+                    sx={{ background: theme.palette.text.secondary }}
+                  >
+                    <WorkOutline sx={{ color: theme.palette.common.black }} />
+                  </TimelineDot>
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent sx={{ py: '12px', px: 2 }}>
+                  <Typography
+                    variant='h6'
+                    color={theme.palette.text.secondary}
+                    fontWeight={800}
+                  >
+                    {item.company}
+                  </Typography>
+                  <Typography fontWeight={800}>{item.position}</Typography>
+                  <Typography variant='body2'>
+                    {changeLang === true
+                      ? item.english_date
+                      : item.spanish_date}
+                  </Typography>
+                  <List>
                     <ListItem sx={{ paddingTop: 0 }} key={i}>
                       {changeLang === true ? (
                         <ListItemText>{`- ${item.english_description}`}</ListItemText>
@@ -357,55 +356,17 @@ const Index: NextPage = ({ projects }: any) => {
                         <ListItemText>{`- ${item.spanish_description}`}</ListItemText>
                       )}
                     </ListItem>
-                  ))}
-                </List>
-              </TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot sx={{ background: theme.palette.text.secondary }}>
-                  <WorkOutline sx={{ color: theme.palette.common.black }} />
-                </TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent sx={{ py: '12px', px: 2 }}>
-                <Typography
-                  variant='h6'
-                  color={theme.palette.text.secondary}
-                  fontWeight={800}
-                >
-                  Freelance
-                </Typography>
-                <Typography fontWeight={800}>
-                  {changeLang === true
-                    ? 'Frontend Web Developer'
-                    : 'Desarrollador Web Frontend'}
-                </Typography>
-                <Typography variant='body2'>
-                  {changeLang === true
-                    ? 'February 2023 - Current...'
-                    : ' Febrero 2023 - Actualmente...'}
-                </Typography>
-                <List>
-                  <ListItem sx={{ paddingTop: 0 }}>
-                    {changeLang === true ? (
-                      <ListItemText>
-                        - Freelance developer in charge of creating custom web
-                        pages and applications for clients according to their
-                        needs.
-                      </ListItemText>
-                    ) : (
-                      <ListItemText>
-                        - Desarrollador freelance encargado de crear páginas web
-                        y aplicaciones a medida para clientes según sus
-                        necesidades.
-                      </ListItemText>
-                    )}
-                  </ListItem>
-                </List>
-              </TimelineContent>
-            </TimelineItem>
+                    <Box display={'flex'} alignItems={'center'} gap={2}>
+                      {item.stacks.map((stack: any) => (
+                        <Button key={i} variant='contained'>
+                          {stack}
+                        </Button>
+                      ))}
+                    </Box>
+                  </List>
+                </TimelineContent>
+              </TimelineItem>
+            ))}
           </Timeline>
         </Container>
       </Box>

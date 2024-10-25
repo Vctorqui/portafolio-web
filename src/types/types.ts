@@ -1,7 +1,12 @@
-export interface taskTypes {
+export interface experienceTypes {
   id: number
+  company: string
+  position: string
+  english_date: string
+  spanish_date: string
   spanish_description: string
   english_description: string
+  stacks: any
 }
 
 export interface contactUsTypes {
@@ -11,53 +16,4 @@ export interface contactUsTypes {
   phone: string
   country: string
   city: string
-}
-
-
-export interface projectsTypes {
-  id: number
-  title: string
-  spanish_description: string
-  english_description: string
-  image: string
-  source_code: any
-  preview_link: string
-  languages: {
-    html: {
-      icon: any
-      text: string | null
-    }
-    css: {
-      icon: any
-      text: string | null
-    }
-    javascript: {
-      icon: any
-      text: string | null
-    }
-    sass: {
-      icon: any
-      text: string | null
-    }
-    bootstrap: {
-      icon: any
-      text: string | null
-    }
-    typescript: {
-      icon: any
-      text: string | null
-    }
-    react: {
-      icon: any
-      text: string | null
-    }
-    nextjs: {
-      icon: any
-      text: string | null
-    }
-    mui: {
-      icon: any
-      text: string | null
-    }
-  }
 }
