@@ -154,7 +154,9 @@ export const ProjectCard = ({ changeLang, project }: any) => {
               alt={project.title}
             />
           </Box>
-          <CardContent sx={{ background: theme.palette.primary.main, paddingBottom: 0 }}>
+          <CardContent
+            sx={{ background: theme.palette.primary.main, paddingBottom: 0 }}
+          >
             <Box
               display={'flex'}
               alignItems={'center'}
@@ -183,7 +185,7 @@ export const ProjectCard = ({ changeLang, project }: any) => {
               </IconButton>
             </Box>
             <Button onClick={handleDrawerToggle} variant='outlined'>
-              Ver mas
+              {changeLang === true ? 'View more' : 'Ver más'}
             </Button>
           </CardContent>
         </CardStyled>
