@@ -285,7 +285,7 @@ const Index: NextPage = ({ projects }: any) => {
                   Resume
                 </LinkBlockStyled>
               ) : (
-                <LinkBlockStyled href={'./CV-Victor-Quinones-Frontend-es.pdf'}>
+                <LinkBlockStyled href={'./CV-Victor-Quinones-Frontend-en.pdf'}>
                   Curriculum
                 </LinkBlockStyled>
               )}
