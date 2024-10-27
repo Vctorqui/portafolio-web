@@ -229,16 +229,34 @@ export const ProjectCard = ({ changeLang, project }: any) => {
             >
               Stack: {project.stack}
             </Typography>
-
-            <Link
-              href={project.preview_link}
-              sx={{ color: '#eeee' }}
-              className='showBtn'
-            >
-              <Typography variant='body2'>
-                {changeLang === true ? 'Visit the site' : 'Visita el sitio web'}
-              </Typography>
-            </Link>
+            {project.preview_link === '' ? (
+              <Box
+                display={'flex'}
+                justifyContent={'flex-start'}
+                alignItems={'center'}
+              >
+                <Button disabled variant='contained'>
+                  <Typography
+                    color={theme.palette.secondary.main}
+                    variant='body2'
+                  >
+                    {changeLang === true ? 'Coming soon...' : 'Muy pronto...'}
+                  </Typography>
+                </Button>
+              </Box>
+            ) : (
+              <Link
+                href={project.preview_link}
+                sx={{ color: '#eeee' }}
+                className='showBtn'
+              >
+                <Typography variant='body2'>
+                  {changeLang === true
+                    ? 'Visit the site'
+                    : 'Visita el sitio web'}
+                </Typography>
+              </Link>
+            )}
           </Stack>
         </Box>
       </CustomDialog>
