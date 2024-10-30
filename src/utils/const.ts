@@ -1,4 +1,9 @@
-import { contactUsTypes, experienceTypes } from '../types/types'
+import { Cake, CalendarMonth, Link, Place, Work } from '@mui/icons-material'
+import {
+  contactUsTypes,
+  experienceTypes,
+  infoHeaderTypes,
+} from '../types/types'
 
 export const containerWidth = 'lg'
 
@@ -52,7 +57,7 @@ export const experiences: experienceTypes[] = [
       'HTML',
       'Material UI',
       'Firebase',
-      'MongoDB'
+      'MongoDB',
     ],
   },
 ]
@@ -71,4 +76,38 @@ export const navEnglishItems = [
   { label: 'Projects', href: '#projects' },
   { label: 'About me', href: '#about-me' },
   { label: 'Contact', href: '#contact' },
+]
+
+export const iconList: any = {
+  Work: Work,
+  Place: Place,
+  Cake: Cake,
+  CalendarMonth: CalendarMonth,
+}
+
+export const infoHeader: infoHeaderTypes[] = [
+  {
+    id: 1,
+    title: 'Falcón, Ven',
+    icon: 'Place',
+    path: '',
+  },
+  {
+    id: 2,
+    title: 'Avaliable',
+    icon: 'Work',
+    path: undefined,
+  },
+  {
+    id: 3,
+    title: 'December 18th',
+    icon: 'Cake',
+    path: undefined,
+  },
+  {
+    id: 4,
+    title: 'Joined October 2024',
+    icon: 'CalendarMonth',
+    path: undefined,
+  },
 ]

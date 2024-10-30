@@ -17,3 +17,10 @@ export interface contactUsTypes {
   country: string
   city: string
 }
+
+export interface infoHeaderTypes {
+  id: number
+  title: string
+  icon: any
+  path: string | undefined
+}

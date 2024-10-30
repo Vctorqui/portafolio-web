@@ -297,6 +297,7 @@ const Index: NextPage = ({ projects }: any) => {
               >
                 LinkedIn
               </LinkBlockStyled>
+              <LinkBlockStyled href={'/test'}>New portfolio</LinkBlockStyled>
             </Box>
           </Box>
         </Container>
@@ -449,69 +450,9 @@ const Index: NextPage = ({ projects }: any) => {
             >
               <Stack>
                 {changeLang === true ? (
-                  // <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  //   <Typography variant='body1'>
-                  //     Hi!{' '}
-                  //     <span style={{ color: theme.palette.text.secondary }}>
-                  //       I&apos;m Victor Quiñones, a passionate Front-end
-                  //       Developer based in Venezuela.
-                  //     </span>{' '}
-                  //     Throughout my career, I have had the opportunity to
-                  //     participate in more than{' '}
-                  //     <span style={{ color: theme.palette.text.secondary }}>
-                  //       8 projects with different clients
-                  //     </span>
-                  //     , where I have designed and implemented attractive and
-                  //     functional interfaces. My focus is on creating intuitive
-                  //     and accessible user experiences.
-                  //   </Typography>
-                  //   <Typography
-                  //     variant='h6'
-                  //     fontWeight={700}
-                  //     color={theme.palette.text.secondary}
-                  //   >
-                  //     But what&apos;s beyond the code?
-                  //   </Typography>
-
-                  //   <Typography variant='body1'>
-                  //     Let me share with you some personal details:
-                  //   </Typography>
-                  //   <ul>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Videogame lover:
-                  //       </span>{' '}
-                  //       When I&apos;m not immersed in lines of code, I find
-                  //       myself exploring virtual worlds. Video games are my
-                  //       creative outlet and a constant source of inspiration.
-                  //     </li>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Technology & Curiosity:
-                  //       </span>{' '}
-                  //       I am always on top of the latest technology trends.
-                  //       trends. I am excited to learn about new tools and tools
-                  //       and approaches to improve my skills.
-                  //     </li>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Anime & Animated Movies:
-                  //       </span>{' '}
-                  //       Who says developers only live at the terminal? I&apos;m
-                  //       also a fan of anime and animated movies. From classics
-                  //       to the latest productions, I find inspiration in
-                  //       storytelling and visual creativity.
-                  //     </li>
-                  //   </ul>
-                  //   <Typography fontWeight={700}>
-                  //     My main goal is to keep improving, learn every day and be
-                  //     able to help new entrepreneurs, small companies and big
-                  //     startups to reach bigger markets.
-                  //   </Typography>
-                  // </Box>
                   <Box display={'flex'} flexDirection={'column'} gap={1}>
-                    <Typography variant='h4'>Hey!</Typography>
                     <Typography variant='body1'>
+                      Hi!{' '}
                       <span style={{ color: theme.palette.text.secondary }}>
                         I&apos;m Victor Quiñones, a passionate Front-end
                         Developer based in Venezuela.
@@ -525,12 +466,6 @@ const Index: NextPage = ({ projects }: any) => {
                       functional interfaces. My focus is on creating intuitive
                       and accessible user experiences.
                     </Typography>
-                    {/* <Image
-                      src={'/images/avatar.png'}
-                      width={250}
-                      height={200}
-                      alt='avatar'
-                    /> */}
                     <Typography
                       variant='h6'
                       fontWeight={700}
@@ -562,69 +497,6 @@ const Index: NextPage = ({ projects }: any) => {
                     </Typography>
                   </Box>
                 ) : (
-                  // <Box display={'flex'} flexDirection={'column'} gap={1}>
-                  //   <Typography variant='body1'>
-                  //     ¡Hola!{' '}
-                  //     <span style={{ color: theme.palette.text.secondary }}>
-                  //       Soy Víctor Quiñones, un apasionado Desarrollador
-                  //       Front-end ubicado en Venezuela.
-                  //     </span>{' '}
-                  //     A lo largo de mi carrera, he tenido la oportunidad de
-                  //     participar en más de{' '}
-                  //     <span style={{ color: theme.palette.text.secondary }}>
-                  //       8 proyectos con diferentes clientes
-                  //     </span>
-                  //     , donde he diseñado e implementado interfaces atractivas y
-                  //     funcionales. Mi enfoque se centra en crear experiencias de
-                  //     usuario intuitivas y accesibles.
-                  //   </Typography>
-                  //   <Typography
-                  //     variant='h6'
-                  //     fontWeight={700}
-                  //     color={theme.palette.text.secondary}
-                  //   >
-                  //     Pero, ¿qué hay más allá del código?
-                  //   </Typography>
-
-                  //   <Typography variant='body1'>
-                  //     Permíteme compartirte algunos detalles personales:
-                  //   </Typography>
-                  //   <ul>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Amante de los Videojuegos:
-                  //       </span>{' '}
-                  //       Cuando no estoy sumergido en líneas de código, me
-                  //       encuentro explorando mundos virtuales. Los videojuegos
-                  //       son mi escape creativo y una fuente constante de
-                  //       inspiración.
-                  //     </li>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Tecnología y Curiosidad:
-                  //       </span>{' '}
-                  //       Siempre estoy al tanto de las últimas tendencias
-                  //       tecnológicas. Me emociona aprender sobre nuevas
-                  //       herramientas y enfoques para mejorar mis habilidades.
-                  //     </li>
-                  //     <li>
-                  //       <span style={{ color: theme.palette.text.secondary }}>
-                  //         Anime y Películas Animadas:
-                  //       </span>{' '}
-                  //       ¿Quién dice que los desarrolladores solo viven en la
-                  //       terminal? También soy un fanático del anime y las
-                  //       películas animadas. Desde clásicos hasta las últimas
-                  //       producciones, encuentro inspiración en la narrativa y la
-                  //       creatividad visual.
-                  //     </li>
-                  //   </ul>
-                  //   <Typography fontWeight={700}>
-                  //     Mi principal objetivo es seguir mejorando, aprender cada
-                  //     día y ser capaz de ayudar a nuevos emprendedores, pequeñas
-                  //     empresas y grandes startups a alcanzar mercados más
-                  //     grandes.
-                  //   </Typography>
-                  // </Box>
                   <Box display={'flex'} flexDirection={'column'} gap={1}>
                     <Typography variant='h4'>Hey!</Typography>
                     <Typography variant='body1'>
@@ -641,12 +513,6 @@ const Index: NextPage = ({ projects }: any) => {
                       atractivas y funcionales. Me centro en crear experiencias
                       de usuario intuitivas y accesibles.
                     </Typography>
-                    {/* <Image
-                    src={'/images/avatar.png'}
-                    width={250}
-                    height={200}
-                    alt='avatar'
-                  /> */}
                     <Typography
                       variant='h6'
                       fontWeight={700}
@@ -654,7 +520,6 @@ const Index: NextPage = ({ projects }: any) => {
                     >
                       Pero, ¿qué hay más allá del código?
                     </Typography>
-
                     <Typography variant='body1'>
                       Permiteme compartir algunos detalles personales:
                     </Typography>
@@ -689,7 +554,6 @@ const Index: NextPage = ({ projects }: any) => {
         </Container>
       </Box>
       <ContactForm changeLang={changeLang} />
-      {/* <ContactUs /> */}
       <PublicFooter changeLang={changeLang} />
     </>
   )

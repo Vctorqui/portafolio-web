@@ -23,10 +23,12 @@ const colors = {
   },
   text: {
     primary: '#EEEEEE',
-    secondary: '#F2613F',
+    secondary: '#ea580c',
+    // secondary: '#F2613F',
   },
   backgroundGreen: {
-    green: '#F2613F',
+    green: '#ea580c',
+    // green: '#F2613F',
   },
 }
 
@@ -50,7 +52,7 @@ const theme = responsiveFontSizes(
       },
     },
     typography: {
-      fontFamily: ['NeueMachina', 'Helvetica', 'Arial'].join(','),
+      fontFamily: ['system-ui', 'Helvetica', 'Arial'].join(','),
       button: {
         fontSize: 12,
       },
@@ -66,7 +68,7 @@ const theme = responsiveFontSizes(
             },
           },
           outlinedPrimary: {
-            // fontWeight: '700',
+            fontWeight: '700',
             border: `solid 1px ${colors.backgroundGreen.green}`,
             borderRadius: 10,
             position: 'relative',
