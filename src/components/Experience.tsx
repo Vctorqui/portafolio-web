@@ -10,11 +10,10 @@ export const Experience = () => {
           <Tweet
             key={i}
             content={exp.position}
-            image=''
             date={exp.english_date}
-            likes={142}
-            retweets={23}
-            replies={12}
+            likes={0}
+            retweets={0}
+            replies={0}
             description={exp.english_description}
             avatar={''}
             name={exp.company}
