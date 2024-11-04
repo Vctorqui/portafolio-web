@@ -11,13 +11,7 @@ import {
   styled,
   useMediaQuery,
 } from '@mui/material'
-import {
-  ContentCopy,
-  WhatsApp,
-  Close,
-  GitHub,
-  ArrowUpward,
-} from '@mui/icons-material'
+import { ContentCopy, Close, GitHub, ArrowUpward } from '@mui/icons-material'
 import theme from '../../../theme/theme'
 import Link from 'next/link'
 import { containerWidth } from '@/src/utils/const'
@@ -27,7 +21,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 const iconColor = theme.palette.secondary.light
 
 const FooterBox = styled(Box)(() => ({
-  background: theme.palette.primary.main,
+  background: theme.palette.common.black,
   padding: theme.spacing(2, 0),
   '.footerContainer': {
     position: 'relative',
@@ -57,6 +51,10 @@ const FooterBox = styled(Box)(() => ({
         display: 'flex',
         alignItems: 'center',
         gap: '5px',
+        '&:hover': {
+          background: theme.palette.backgroundGreen.green,
+          color: theme.palette.common.black,
+        },
       },
     },
     '.iconFooter': {
@@ -77,7 +75,7 @@ const FooterBox = styled(Box)(() => ({
   },
 }))
 
-export const PublicFooter = ({ changeLang }: any) => {
+export const Footer = () => {
   interface State extends SnackbarOrigin {
     open: boolean
   }
@@ -101,12 +99,12 @@ export const PublicFooter = ({ changeLang }: any) => {
   const action = (
     <React.Fragment>
       <Button
-        aria-label='Cerrar ventana'
+        aria-label='Close snackbar'
         sx={{ color: theme.palette.backgroundGreen.green }}
         size='small'
         onClick={handleClose}
       >
-        {changeLang === true ? 'Close' : 'Deshacer'}
+        Close
       </Button>
       <IconButton
         size='small'
@@ -126,10 +124,9 @@ export const PublicFooter = ({ changeLang }: any) => {
           textAlign={'center'}
           color={theme.palette.common.white}
           variant='body2'
+          fontWeight={600}
         >
-          {changeLang === true
-            ? 'If you would like to contact me directly:'
-            : ' Si deseas comunicarte conmigo directamente:'}
+          If you would like to contact me directly
         </Typography>
         <Box className='footerContainer'>
           <CopyToClipboard text='victhorq716@gmail.com'>
@@ -144,11 +141,7 @@ export const PublicFooter = ({ changeLang }: any) => {
               >
                 <ContentCopy sx={{ color: theme.palette.common.white }} />
                 <Typography color={theme.palette.common.white} variant='body2'>
-                  {changeLang === true
-                    ? 'Click to Copy: '
-                    : 'Click para Copiar:'}
-                  <br style={{ display: isSm ? 'block' : 'none' }} />{' '}
-                  victhorq716@gmail.com
+                  Click to Copy: victhorq716@gmail.com
                 </Typography>
               </IconButton>
             </Box>
@@ -158,7 +151,7 @@ export const PublicFooter = ({ changeLang }: any) => {
             autoHideDuration={3000}
             open={open}
             onClose={handleClose}
-            message={changeLang === true ? 'Email Copied ' : 'Correo Copiado'}
+            message={'Email Copied'}
             action={action}
             key={vertical + horizontal}
           />
@@ -170,18 +163,6 @@ export const PublicFooter = ({ changeLang }: any) => {
             justifyContent={'center'}
             gap={2}
           >
-            {/* <Link
-              className='footerLink'
-              href={'https://wa.me/+584127884439'}
-              arial-label='Ir a whatsapp'
-            >
-              <Box display={'flex'} alignItems={'center'} gap={1}>
-                <WhatsApp className='iconFooter' fontSize='small' />
-                <Typography color={theme.palette.common.white} variant='body2'>
-                  +58 412 788 4439
-                </Typography>
-              </Box>
-            </Link> */}
             <Divider orientation='vertical' variant='middle' flexItem />
             <Box display={'flex'} alignItems={'center'} gap={2}>
               <Link
@@ -220,9 +201,7 @@ export const PublicFooter = ({ changeLang }: any) => {
             })
           }}
         >
-          <Typography variant='body2'>
-            {changeLang === true ? 'Jump to top ' : 'Ir arriba'}
-          </Typography>
+          <Typography variant='body2'>Jump to top</Typography>
           <IconButton className='btnTop' aria-label='click to jump to top'>
             <ArrowUpward fontSize='medium' />
           </IconButton>
