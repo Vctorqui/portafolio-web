@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Tweet } from './Tweet'
 
 const QUOTE_RANDOM_ENDPOINT =
-  'https://programming-quotesapi.vercel.app/api/random'
+  'https://programming-quotesapi.vercel.app/api/rando'
 
 export const Feed = () => {
   const [programmingQuote, setProgrammingQuote] = useState<any>()
