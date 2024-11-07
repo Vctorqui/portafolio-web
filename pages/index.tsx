@@ -102,29 +102,26 @@ const Index = ({ projects }: any) => {
                 >
                   <Tab
                     className='flex-1 font-semibold'
-                    label='Feed'
+                    label='Home'
                     value='1'
                   />
-                  <Tab className='flex-1 font-semibold' label='Me' value='2' />
                   <Tab
                     className='flex-1 font-semibold'
                     label='Projects'
-                    value='3'
+                    value='2'
                   />
                   <Tab
                     className='flex-1 font-semibold'
                     label='Experience'
-                    value='4'
+                    value='3'
                   />
+                  <Tab className='flex-1 font-semibold' label='Me' value='4' />
                 </TabList>
               </Box>
               <TabPanel sx={{ padding: 0 }} value='1'>
                 <Feed />
               </TabPanel>
               <TabPanel sx={{ padding: 0 }} value='2'>
-                <AboutMe />
-              </TabPanel>
-              <TabPanel sx={{ padding: 0 }} value='3'>
                 {projects.map((project: any, i: any) => {
                   return (
                     <Projects
@@ -135,8 +132,11 @@ const Index = ({ projects }: any) => {
                   )
                 })}
               </TabPanel>
-              <TabPanel sx={{ padding: 0 }} value='4'>
+              <TabPanel sx={{ padding: 0 }} value='3'>
                 <Experience />
+              </TabPanel>
+              <TabPanel sx={{ padding: 0 }} value='4'>
+                <AboutMe />
               </TabPanel>
             </TabContext>
           </Box>
