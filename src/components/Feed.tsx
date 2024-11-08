@@ -6,30 +6,30 @@ const QUOTE_RANDOM_ENDPOINT =
 
 export const Feed = () => {
   const [programmingQuote, setProgrammingQuote] = useState<any>()
-  const [quoteError, setQuoteError] = useState('')
-  const [fadeTransition, setFadeTransition] = useState(true)
+  // const [quoteError, setQuoteError] = useState('')
+  // const [fadeTransition, setFadeTransition] = useState(true)
 
-  useEffect(() => {
-    const fetchQuote = () => {
-      setFadeTransition(false)
-      fetch(QUOTE_RANDOM_ENDPOINT)
-        .then((res) => {
-          if (!res.ok) {
-            setQuoteError('Unavailable quote')
-          }
-          return res.json()
-        })
-        .then((quote) => {
-          setProgrammingQuote(quote)
-          setFadeTransition(true)
-        })
-    }
-    fetchQuote()
+  // useEffect(() => {
+  //   const fetchQuote = () => {
+  //     setFadeTransition(false)
+  //     fetch(QUOTE_RANDOM_ENDPOINT)
+  //       .then((res) => {
+  //         if (!res.ok) {
+  //           setQuoteError('Unavailable quote')
+  //         }
+  //         return res.json()
+  //       })
+  //       .then((quote) => {
+  //         setProgrammingQuote(quote)
+  //         setFadeTransition(true)
+  //       })
+  //   }
+  //   fetchQuote()
 
-    const intervalTime = setInterval(fetchQuote, 1800000)
+  //   const intervalTime = setInterval(fetchQuote, 1800000)
 
-    return () => clearInterval(intervalTime)
-  }, [])
+  //   return () => clearInterval(intervalTime)
+  // }, [])
   return (
     <>
       <Tweet
