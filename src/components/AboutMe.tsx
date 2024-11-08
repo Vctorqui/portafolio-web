@@ -2,7 +2,7 @@ import { Tweet } from './Tweet'
 
 export const AboutMe = () => {
   return (
-    <>
+    <section className='about-me-section'>
       <Tweet
         content={`About me`}
         description={`👋🏻 Hey, I'm Victor Quiñones, a passionate Front-end Developer based in Venezuela.Throughout my career, I have had the opportunity to participate in more than 8 projects with different clients, , where I have designed and implemented attractive and functional interfaces. My focus is on creating intuitive and accessible user  experiences.`}
@@ -46,6 +46,6 @@ export const AboutMe = () => {
         redirect={''}
         contentMg={''}
       />
-    </>
+    </section>
   )
 }

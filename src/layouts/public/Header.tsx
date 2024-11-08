@@ -65,7 +65,7 @@ export const Header = () => {
           ></Toolbar>
         </Container>
         <Box sx={{ position: 'absolute', left: 20, top: 10 }}>
-          <Image width={40} height={40} alt='logo' src='/images/avatar.png' />
+          <Image width={40} height={40} alt='Logo Victor`s web portfolio' src='/images/avatar.webp' />
         </Box>
       </AppBarContainer>
     </Box>

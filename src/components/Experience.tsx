@@ -4,7 +4,7 @@ import { Tweet } from './Tweet'
 
 export const Experience = () => {
   return (
-    <div className='space-y-4 py-4'>
+    <section className='experience-section space-y-4 py-4'>
       {experiences.map((exp: experienceTypes, i: number) => (
         <>
           <Tweet
@@ -23,6 +23,6 @@ export const Experience = () => {
           />
         </>
       ))}
-    </div>
+    </section>
   )
 }

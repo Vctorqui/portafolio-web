@@ -99,92 +99,94 @@ export const Projects = ({ project }: any) => {
   }
 
   return (
-    <Card className='p-4 hover:bg-slate-800 transition-colors cursor-pointer bg-black'>
-      <div className='flex gap-3'>
-        <Avatar>
-          <Image
-            src='/images/profile.webp'
-            alt='Profile'
-            width={48}
-            height={48}
-            className='rounded-full object-cover'
-          />
-        </Avatar>
-        <div className='flex-1'>
-          <div className='flex items-center gap-2'>
-            <span className='font-semibold'>Victor Q</span>
-            <span className='text-muted-foreground'>@victorqui</span>
-            <span className='text-muted-foreground'>·</span>
-            {/* <span className='text-muted-foreground'>{date}</span> */}
-          </div>
-          <p className='mt-2 font-bold'>{project.title}</p>
-          <p className='mt-2 text-left'>{project.english_description}</p>
-          <p className='mt-2 font-semibold'>Stack: #{project.stack}</p>
-          {Image && (
-            <div className='mt-3 rounded-lg overflow-hidden'>
-              <Image
-                src={project.image}
-                alt='Tweet image'
-                width={500}
-                height={280}
-                className='w-full object-cover'
-              />
+    <section className='project-section'>
+      <Card className='p-4 hover:bg-slate-800 transition-colors cursor-pointer bg-black'>
+        <div className='flex gap-3'>
+          <Avatar>
+            <Image
+              src='/images/profile.webp'
+              alt='Victor Quiñones Profile Picture'
+              width={48}
+              height={48}
+              className='rounded-full object-cover'
+            />
+          </Avatar>
+          <div className='flex-1'>
+            <div className='flex items-center gap-2'>
+              <span className='font-semibold'>Victor Q</span>
+              <span className='text-muted-foreground'>@victorqui</span>
+              <span className='text-muted-foreground'>·</span>
+              {/* <span className='text-muted-foreground'>{date}</span> */}
             </div>
-          )}
-          <div className='flex justify-between mt-3 text-muted-foreground'>
-            <LightTooltip title='Not available for now'>
-              <button
-                disabled
-                className='flex items-center gap-2 disabled:opacity-30'
-              >
-                <MessageCircle className='w-4 h-4' />
-                <span>0</span>
-              </button>
-            </LightTooltip>
-            <>
-              <ShareBtn
-                insert={project.preview_link}
-                classTailwind={'flex items-center gap-2 '}
-                content={'¡Mira%20este%20proyecto%21%20'}
-              />
-            </>
-            <LightTooltip title='Like post'>
-              <button
-                className={`flex items-center gap-2 transition-colors ${
-                  hasLiked ? 'text-red-500' : 'hover:text-red-500'
-                }`}
-                onClick={handleLike}
-              >
-                <Heart
-                  className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`}
+            <p className='mt-2 font-bold'>{project.title}</p>
+            <p className='mt-2 text-left'>{project.english_description}</p>
+            <p className='mt-2 font-semibold'>Stack: #{project.stack}</p>
+            {Image && (
+              <div className='mt-3 rounded-lg overflow-hidden'>
+                <Image
+                  src={project.image}
+                  alt={`Picture of ${project.title} project`}
+                  width={500}
+                  height={280}
+                  className='w-full object-cover'
                 />
-                <span>{likes}</span>
-              </button>
-            </LightTooltip>
-            {project.preview_link ? (
-              <LightTooltip title={'Go to the web'}>
-                <Link
-                  style={{ fontSize: 'small' }}
-                  rel='noopener noreferrer'
-                  href={project.preview_link}
-                  className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-                >
-                  <OpenInNew fontSize='small' />
-                </Link>
-              </LightTooltip>
-            ) : (
-              <LightTooltip title={'Not available for now'}>
+              </div>
+            )}
+            <div className='flex justify-between mt-3 text-muted-foreground'>
+              <LightTooltip title='Not available for now'>
                 <button
                   disabled
                   className='flex items-center gap-2 disabled:opacity-30'
                 >
-                  <OpenInNew fontSize='small' />
+                  <MessageCircle className='w-4 h-4' />
+                  <span>0</span>
                 </button>
               </LightTooltip>
-            )}
+              <>
+                <ShareBtn
+                  insert={project.preview_link}
+                  classTailwind={'flex items-center gap-2 '}
+                  content={'¡Mira%20este%20proyecto%21%20'}
+                />
+              </>
+              <LightTooltip title='Like post'>
+                <button
+                  className={`flex items-center gap-2 transition-colors ${
+                    hasLiked ? 'text-red-500' : 'hover:text-red-500'
+                  }`}
+                  onClick={handleLike}
+                >
+                  <Heart
+                    className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`}
+                  />
+                  <span>{likes}</span>
+                </button>
+              </LightTooltip>
+              {project.preview_link ? (
+                <LightTooltip title={'Go to the web'}>
+                  <Link
+                    style={{ fontSize: 'small' }}
+                    rel='noopener noreferrer'
+                    href={project.preview_link}
+                    className='flex items-center gap-2 hover:text-blue-400 transition-colors'
+                  >
+                    <OpenInNew fontSize='small' />
+                  </Link>
+                </LightTooltip>
+              ) : (
+                <LightTooltip title={'Not available for now'}>
+                  <button
+                    disabled
+                    className='flex items-center gap-2 disabled:opacity-30'
+                  >
+                    <OpenInNew fontSize='small' />
+                  </button>
+                </LightTooltip>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </section>
   )
 }

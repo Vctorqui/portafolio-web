@@ -167,15 +167,13 @@ export const Footer = () => {
             <Box display={'flex'} alignItems={'center'} gap={2}>
               <Link
                 href={'https://github.com/Vctorqui'}
-                arial-label='Know more at my github'
+                arial-label='Click to know more at my github site'
               >
                 <GitHub className='iconFooter' />
               </Link>
               <Link
-                arial-label='Know more at my linkedIn'
-                href={
-                  'https://www.linkedin.com/in/victor-qui%C3%B1ones-a41084249/'
-                }
+                arial-label='Click to know more at my linkedIn site'
+                href={'www.linkedin.com/in/victorqui'}
               >
                 <LinkedinIcon
                   additionalClassName='iconFooter'

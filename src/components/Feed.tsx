@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { Tweet } from './Tweet'
 
-const QUOTE_RANDOM_ENDPOINT =
-  'https://programming-quotesapi.vercel.app/api/rando'
+// const QUOTE_RANDOM_ENDPOINT =
+//   'https://programming-quotesapi.vercel.app/api/rando'
 
-export const Feed = () => {
+const Feed = () => {
   const [programmingQuote, setProgrammingQuote] = useState<any>()
   // const [quoteError, setQuoteError] = useState('')
   // const [fadeTransition, setFadeTransition] = useState(true)
@@ -31,7 +31,7 @@ export const Feed = () => {
   //   return () => clearInterval(intervalTime)
   // }, [])
   return (
-    <>
+    <section className='home-section'>
       <Tweet
         content={
           programmingQuote
@@ -49,7 +49,7 @@ export const Feed = () => {
         likes={0}
         retweets={0}
         replies={0}
-        avatar={'/images/quote-img.jpg'}
+        avatar={'/images/quote-img.webp'}
         redirect={''}
         contentMg={''}
       />
@@ -85,6 +85,8 @@ export const Feed = () => {
         }
         contentMg={'¡Mira%20este%20componente%21%20'}
       />
-    </>
+    </section>
   )
 }
+
+export default Feed

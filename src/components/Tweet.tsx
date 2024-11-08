@@ -40,7 +40,7 @@ export const Tweet = ({
       <div className='flex gap-3'>
         {avatar ? (
           <Avatar
-            alt='Remy Sharp'
+            alt='Victor Quiñones Profile Picture'
             className='rounded-full object-cover'
             src={avatar}
             sx={{ width: 48, height: 48 }}
@@ -63,7 +63,7 @@ export const Tweet = ({
             <div className='mt-3 rounded-lg overflow-hidden'>
               <Image
                 src={image}
-                alt='Tweet image'
+                alt={`Picture of ${content} resource`}
                 width={500}
                 height={280}
                 className='w-full object-cover'
