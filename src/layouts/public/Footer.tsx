@@ -129,7 +129,7 @@ export const Footer = () => {
           If you would like to contact me directly
         </Typography>
         <Box className='footerContainer'>
-          <CopyToClipboard text='victhorq716@gmail.com'>
+          <CopyToClipboard text='victor.quinones.ch@gmail.com'>
             <Box className='footerEmail'>
               <IconButton
                 aria-label='copiar correo'
@@ -141,7 +141,7 @@ export const Footer = () => {
               >
                 <ContentCopy sx={{ color: theme.palette.common.white }} />
                 <Typography color={theme.palette.common.white} variant='body2'>
-                  Click to Copy: victhorq716@gmail.com
+                  Click to Copy: victor.quinones.ch@gmail.com
                 </Typography>
               </IconButton>
             </Box>

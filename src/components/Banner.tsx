@@ -42,7 +42,7 @@ const Banner = () => {
           </div>
           <div className='flex items-center gap-1'>
             <Mail className='w-4 h-4' />
-            victhorq716@gmail.com
+            victor.quinones.ch@gmail.com
           </div>
           <div className='flex items-center gap-1'>
             <CalendarMonth className='w-4 h-4' />
