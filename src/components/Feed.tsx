@@ -33,6 +33,21 @@ const Feed = () => {
   return (
     <section className='home-section'>
       <Tweet
+        content='Home Section'
+        date='pinned'
+        likes={0}
+        retweets={0}
+        replies={0}
+        description={
+          'Welcome to my portfolio! This section is about the resources I have created or have been working on to help the community. If you want to know more about me and my projects. Click on another option tab👨🏻‍💻'
+        }
+        name={'Victor Q'}
+        userName={'@victorqui'}
+        avatar={'/images/profile.webp'}
+        redirect={''}
+        contentMg={''}
+      />
+      <Tweet
         content={
           programmingQuote
             ? `${programmingQuote?.author} said: `

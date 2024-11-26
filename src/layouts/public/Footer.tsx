@@ -17,6 +17,7 @@ import Link from 'next/link'
 import { containerWidth } from '@/src/utils/const'
 import { LinkedinIcon } from '@/src/components/SvgIcon'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { LightTooltip } from '@/src/components/LightToolTip'
 
 const iconColor = theme.palette.secondary.light
 
@@ -165,23 +166,27 @@ export const Footer = () => {
           >
             <Divider orientation='vertical' variant='middle' flexItem />
             <Box display={'flex'} alignItems={'center'} gap={2}>
-              <Link
-                href={'https://github.com/Vctorqui'}
-                arial-label='Click to know more at my github site'
-              >
-                <GitHub className='iconFooter' />
-              </Link>
-              <Link
-                arial-label='Click to know more at my linkedIn site'
-                href={'www.linkedin.com/in/victorqui'}
-              >
-                <LinkedinIcon
-                  additionalClassName='iconFooter'
-                  width={'16px'}
-                  height={'16px'}
-                  color={iconColor}
-                />
-              </Link>
+              <LightTooltip title='Go to my GitHub'>
+                <Link
+                  href={'https://github.com/Vctorqui'}
+                  arial-label='Click to know more at my github site'
+                >
+                  <GitHub className='iconFooter' />
+                </Link>
+              </LightTooltip>
+              <LightTooltip title='Go to my LinkedIn'>
+                <Link
+                  arial-label='Click to know more at my linkedIn site'
+                  href={'www.linkedin.com/in/victorqui'}
+                >
+                  <LinkedinIcon
+                    additionalClassName='iconFooter'
+                    width={'16px'}
+                    height={'16px'}
+                    color={iconColor}
+                  />
+                </Link>
+              </LightTooltip>
             </Box>
           </Box>
         </Box>

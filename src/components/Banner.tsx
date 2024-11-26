@@ -1,8 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { Avatar } from '@mui/material'
 import Link from 'next/link'
-import { CalendarMonth, Mail, Place } from '@mui/icons-material'
+import {
+  CalendarMonth,
+  GitHub,
+  LinkedIn,
+  Mail,
+  Place,
+} from '@mui/icons-material'
 import Image from 'next/image'
+import { LightTooltip } from './LightToolTip'
 
 const Banner = () => {
   return (
@@ -26,7 +33,7 @@ const Banner = () => {
         />
       </div>
       <div className='pt-20 pb-4'>
-        <h1 className='text-2xl font-bold'>Victor Quiñones</h1>
+        <h1 className='text-2xl font-bold '>Victor Quiñones</h1>
         <p>Frontend Developer</p>
         <Link
           className='font-semibold'
@@ -36,22 +43,28 @@ const Banner = () => {
         </Link>
 
         <div className='flex flex-wrap gap-4 mt-3 text-gray-400 text-sm'>
-          <div className='flex items-center gap-1'>
-            <Place className='w-4 h-4' />
-            Falcon, VE
-          </div>
-          <div className='flex items-center gap-1'>
+          <Link
+            href={'https://www.linkedin.com/in/victorqui/'}
+            className='flex items-center gap-1  hover:text-red-500 transition-colors'
+          >
+            <LinkedIn className='w-4 h-4' />
+            LinkedIn
+          </Link>
+          <Link
+            href={'https://github.com/Vctorqui'}
+            className='flex items-center gap-1 hover:text-red-500 transition-colors'
+          >
+            <GitHub className='w-4 h-4' />
+            GitHub
+          </Link>
+          <div className='flex items-center gap-1 hover:text-red-500 transition-colors'>
             <Mail className='w-4 h-4' />
             victor.quinones.ch@gmail.com
           </div>
-          <div className='flex items-center gap-1'>
-            <CalendarMonth className='w-4 h-4' />
-            Joined 2024
-          </div>
         </div>
         <p className='mt-4'>
-          Technology lover, with skills and experience in developing unique web
-          applications.
+          Specialized in creating efficient, intuitive, and scalable web
+          interfaces.
         </p>
       </div>
     </div>

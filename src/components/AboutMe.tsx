@@ -5,7 +5,7 @@ export const AboutMe = () => {
     <section className='about-me-section'>
       <Tweet
         content={`About me`}
-        description={`👋🏻 Hey, I'm Victor Quiñones, a passionate Front-end Developer based in Venezuela.Throughout my career, I have had the opportunity to participate in more than 8 projects with different clients, , where I have designed and implemented attractive and functional interfaces. My focus is on creating intuitive and accessible user  experiences.`}
+        description={`👋🏻 I'm Victor Quiñones, FrontEnd Developer with experience in creating innovative and attractive user interfaces. Throughout my career, I have worked on a variety of projects both freelance and in the corporate environment.`}
         name={'Victor Q'}
         userName={'@victorqui'}
         date={'pinned'}
@@ -19,7 +19,7 @@ export const AboutMe = () => {
       <Tweet
         content={``}
         description={
-          '🎯 My main goal is to keep improving, and be able to help new entrepreneurs, small companies and big startups to reach bigger markets.'
+          '🎯 My main goal is to keep improving and to be able to grow both personally and professionally. '
         }
         name={'Victor Q'}
         userName={'@victorqui'}
@@ -34,7 +34,7 @@ export const AboutMe = () => {
       <Tweet
         content={`But what's beyond the code?`}
         description={
-          'Besides coding, I love to play videogames, watch anime, learn about the latest technology tends, and create resources to help other frontend developers🚀'
+          'Besides coding, I love watching anime movies, playing video games, and playing soccer. One of my favorite teams is Barcelona, but the truth is that I started to like soccer because of watching Messi. As I mentioned, I love video games, and my favorite game of all time is Uncharted. Sic parvis magna—Greatness from small beginnings. I always strive to live by that phrase in my life🚀'
         }
         name={'Victor'}
         userName={'@victorqui'}
