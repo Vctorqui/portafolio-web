@@ -111,3 +111,20 @@ export const infoHeader: infoHeaderTypes[] = [
     path: undefined,
   },
 ]
+
+export const feed = [
+  {
+    id: 1,
+    isPinned: true,
+    content: 'Hello World!',
+    description:
+      'Welcome to my portfolio! This section is about the resources I have created or have been working on to help the community. If you want to know more about me and my projects. Click on another option tab👨🏻‍💻',
+    name: 'Victor Q',
+    userName: '@victorqui',
+    avatar: '/images/profile.webp',
+    redirect: '',
+    contenMg: '',
+    status: `💪🏻 fellin' happy`,
+  },
+  {},
+]

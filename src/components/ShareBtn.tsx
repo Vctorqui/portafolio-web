@@ -64,20 +64,22 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
       {insert ? (
         <div>
           <LightTooltip title='Share'>
-            <IconButton
-              className={classTailwind}
-              id='fade-button'
-              aria-controls={menuOpen ? 'fade-menu' : undefined}
-              aria-haspopup='true'
-              aria-expanded={menuOpen ? 'true' : undefined}
-              onClick={handleClick}
-            >
-              <Repeat
-                fontSize='small'
-                color='secondary'
-                className='hover:text-green-500 transition-colors'
-              />
-            </IconButton>
+            <span>
+              <IconButton
+                className={classTailwind}
+                id='fade-button'
+                aria-controls={menuOpen ? 'fade-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={menuOpen ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <Repeat
+                  fontSize='small'
+                  color='secondary'
+                  className='hover:text-green-500 transition-colors'
+                />
+              </IconButton>
+            </span>
           </LightTooltip>
           <Menu
             id='fade-menu'
@@ -121,12 +123,14 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
         </div>
       ) : (
         <LightTooltip title={'Not available for now'}>
-          <button
-            disabled
-            className='flex items-center gap-2 disabled:opacity-30'
-          >
-            <Repeat fontSize='small' />
-          </button>
+          <span>
+            <button
+              disabled
+              className='flex items-center gap-2 disabled:opacity-30'
+            >
+              <Repeat fontSize='small' />
+            </button>
+          </span>
         </LightTooltip>
       )}
       <Snackbar

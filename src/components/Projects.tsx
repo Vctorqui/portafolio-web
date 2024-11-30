@@ -99,8 +99,8 @@ export const Projects = ({ project }: any) => {
   }
 
   return (
-    <section className='project-section'>
-      <Card className='p-4 hover:bg-slate-800 transition-colors cursor-pointer bg-black'>
+    <section className='project-section space-y-4 py-4'>
+      <Card className='p-4 mt-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-950'>
         <div className='flex gap-3'>
           <Avatar>
             <Image
@@ -134,13 +134,15 @@ export const Projects = ({ project }: any) => {
             )}
             <div className='flex justify-between mt-3 text-muted-foreground'>
               <LightTooltip title='Not available for now'>
-                <button
-                  disabled
-                  className='flex items-center gap-2 disabled:opacity-30'
-                >
-                  <MessageCircle className='w-4 h-4' />
-                  <span>0</span>
-                </button>
+                <span>
+                  <button
+                    disabled
+                    className='flex items-center gap-2 disabled:opacity-30'
+                  >
+                    <MessageCircle className='w-4 h-4' />
+                    <span>0</span>
+                  </button>
+                </span>
               </LightTooltip>
               <>
                 <ShareBtn
@@ -150,37 +152,43 @@ export const Projects = ({ project }: any) => {
                 />
               </>
               <LightTooltip title='Like post'>
-                <button
-                  className={`flex items-center gap-2 transition-colors ${
-                    hasLiked ? 'text-red-500' : 'hover:text-red-500'
-                  }`}
-                  onClick={handleLike}
-                >
-                  <Heart
-                    className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`}
-                  />
-                  <span>{likes}</span>
-                </button>
+                <span>
+                  <button
+                    className={`flex items-center gap-2 transition-colors ${
+                      hasLiked ? 'text-red-500' : 'hover:text-red-500'
+                    }`}
+                    onClick={handleLike}
+                  >
+                    <Heart
+                      className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`}
+                    />
+                    <span>{likes}</span>
+                  </button>
+                </span>
               </LightTooltip>
               {project.preview_link ? (
                 <LightTooltip title={'Go to the web'}>
-                  <Link
-                    style={{ fontSize: 'small' }}
-                    rel='noopener noreferrer'
-                    href={project.preview_link}
-                    className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-                  >
-                    <OpenInNew fontSize='small' />
-                  </Link>
+                  <span>
+                    <Link
+                      style={{ fontSize: 'small' }}
+                      rel='noopener noreferrer'
+                      href={project.preview_link}
+                      className='flex items-center gap-2 hover:text-blue-400 transition-colors'
+                    >
+                      <OpenInNew fontSize='small' />
+                    </Link>
+                  </span>
                 </LightTooltip>
               ) : (
                 <LightTooltip title={'Not available for now'}>
-                  <button
-                    disabled
-                    className='flex items-center gap-2 disabled:opacity-30'
-                  >
-                    <OpenInNew fontSize='small' />
-                  </button>
+                  <span>
+                    <button
+                      disabled
+                      className='flex items-center gap-2 disabled:opacity-30'
+                    >
+                      <OpenInNew fontSize='small' />
+                    </button>
+                  </span>
                 </LightTooltip>
               )}
             </div>

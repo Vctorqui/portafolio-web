@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { Avatar } from '@mui/material'
+import { Alert, Avatar, Box, Snackbar, SnackbarOrigin } from '@mui/material'
 import Link from 'next/link'
 import {
   CalendarMonth,
@@ -10,8 +10,15 @@ import {
 } from '@mui/icons-material'
 import Image from 'next/image'
 import { LightTooltip } from './LightToolTip'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import { useState } from 'react'
 
 const Banner = () => {
+  const [snackbarCopy, setSnackbarCopy] = useState(false)
+  const handleClick = () => {
+    setSnackbarCopy(true)
+  }
+
   return (
     <div id='profile-banner' className='profile-banner max-w-2xl mx-auto px-4'>
       <div className='h-48'>
@@ -29,7 +36,7 @@ const Banner = () => {
         <Avatar
           alt='Victor Quiñones Profile Picture'
           className='w-32 h-32 border-4 border-black absolute -top-16 left-4 rounded-full object-cover'
-          src='/images/profile.webp'
+          src='/images/profile-perfil.webp'
         />
       </div>
       <div className='pt-20 pb-4'>
@@ -39,28 +46,51 @@ const Banner = () => {
           className='font-semibold'
           href='https://www.linkedin.com/in/victorqui/'
         >
-          <p className='text-orange-600'>@victorqui</p>
+          <p className='text-[#EF5A6F]'>@victorqui</p>
         </Link>
 
         <div className='flex flex-wrap gap-4 mt-3 text-gray-400 text-sm'>
           <Link
             href={'https://www.linkedin.com/in/victorqui/'}
-            className='flex items-center gap-1  hover:text-red-500 transition-colors'
+            className='flex items-center gap-1  hover:text-[#EF5A6F] transition-colors'
           >
             <LinkedIn className='w-4 h-4' />
             LinkedIn
           </Link>
           <Link
             href={'https://github.com/Vctorqui'}
-            className='flex items-center gap-1 hover:text-red-500 transition-colors'
+            className='flex items-center gap-1 hover:text-[#EF5A6F] transition-colors'
           >
             <GitHub className='w-4 h-4' />
             GitHub
           </Link>
-          <div className='flex items-center gap-1 hover:text-red-500 transition-colors'>
-            <Mail className='w-4 h-4' />
-            victor.quinones.ch@gmail.com
-          </div>
+          <LightTooltip title={'Copy email'}>
+            <span>
+              <CopyToClipboard text='victor.quinones.ch@gmail.com'>
+                <Box
+                  onClick={handleClick}
+                  className='flex items-center gap-1 hover:text-[#EF5A6F] transition-colors cursor-pointer'
+                >
+                  <Mail className='w-4 h-4' />
+                  victor.quinones.ch@gmail.com
+                </Box>
+              </CopyToClipboard>
+            </span>
+          </LightTooltip>
+
+          <Snackbar
+            open={snackbarCopy}
+            autoHideDuration={3000}
+            onClose={() => setSnackbarCopy(false)}
+          >
+            <Alert
+              onClose={() => setSnackbarCopy(false)}
+              severity='success'
+              variant='filled'
+            >
+              Email copied successfully
+            </Alert>
+          </Snackbar>
         </div>
         <p className='mt-4'>
           Specialized in creating efficient, intuitive, and scalable web

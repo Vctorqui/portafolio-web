@@ -1,7 +1,7 @@
-import { Avatar, Card } from '@mui/material'
+import { Avatar, Card, Box, Typography, IconButton } from '@mui/material'
 import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
-import { OpenInNew, WorkOutline } from '@mui/icons-material'
+import { OpenInNew, PushPin, WorkOutline } from '@mui/icons-material'
 import { LightTooltip } from './LightToolTip'
 import { ShareBtn } from './ShareBtn'
 import Link from 'next/link'
@@ -12,13 +12,15 @@ interface TweetProps {
   name: string
   userName: string
   image?: string
-  date: string
-  likes: number
-  retweets: number
-  replies: number
+  date?: string
+  likes?: number
+  retweets?: number
+  replies?: number
   avatar: string
   redirect: string
   contentMg: string
+  isPinned?: boolean
+  status?: string
 }
 
 export const Tweet = ({
@@ -34,9 +36,26 @@ export const Tweet = ({
   redirect,
   replies,
   contentMg,
+  isPinned,
+  status,
 }: TweetProps) => {
   return (
-    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-black'>
+    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-950 mt-2'>
+      {isPinned && (
+        <Box
+          className='text-zinc-600'
+          display={'flex'}
+          justifyContent={'flex-start'}
+          alignItems={'center'}
+          gap={1}
+          mb={2}
+        >
+          <PushPin fontSize='small' />
+          <Typography fontWeight={'bold'} variant='caption'>
+            Pinned Cheep
+          </Typography>
+        </Box>
+      )}
       <div className='flex gap-3'>
         {avatar ? (
           <Avatar
@@ -46,8 +65,8 @@ export const Tweet = ({
             sx={{ width: 48, height: 48 }}
           />
         ) : (
-          <div className='p-2 bg-[#ea580c/10 rounded-full w-10 h-10'>
-            <WorkOutline className='h-6 w-6 text-[#ea580c]' />
+          <div className='p-2 bg-[#EF5A6F/10 rounded-full w-10 h-10'>
+            <WorkOutline className='h-6 w-6 text-[#EF5A6F]' />
           </div>
         )}
         <div className='flex-1'>
@@ -57,7 +76,20 @@ export const Tweet = ({
             <span className='text-muted-foreground'>·</span>
             <span className='text-gray-400'>{date}</span>
           </div>
-          <p className='mt-2 font-bold whitespace-pre-line'>{content}</p>
+          <Box
+            display={'flex'}
+            justifyContent={'flex-start'}
+            alignItems={'center'}
+          >
+            <Box className='bg-slate-500 rounded-full px-2  flex justify-center'>
+              <Typography variant='body2' fontWeight={700}>
+                {status}
+              </Typography>
+            </Box>
+          </Box>
+          <p className='mt-2 font-bold whitespace-pre-line text-[#EF5A6F]'>
+            {content}
+          </p>
           <p className='mt-2 whitespace-pre-line'>{description}</p>
           {image && (
             <div className='mt-3 rounded-lg overflow-hidden'>
@@ -71,25 +103,18 @@ export const Tweet = ({
             </div>
           )}
           <div className='flex justify-between mt-3 text-muted-foreground'>
-            {replies ? (
-              <LightTooltip title={'Go to the web'}>
+            <LightTooltip
+              title={replies ? 'See comments' : 'Not available for now'}
+            >
+              <span className='flex items-center gap-2'>
                 <button
-                  disabled
-                  className='flex items-center gap-2 disabled:opacity-30'
+                  disabled={replies ? false : true}
+                  className=' disabled:opacity-30'
                 >
                   <MessageCircle className='w-4 h-4' />
                 </button>
-              </LightTooltip>
-            ) : (
-              <LightTooltip title={'Not available for now'}>
-                <button
-                  disabled
-                  className='flex items-center gap-2 disabled:opacity-30'
-                >
-                  <MessageCircle className='w-4 h-4' />
-                </button>
-              </LightTooltip>
-            )}
+              </span>
+            </LightTooltip>
             <>
               <ShareBtn
                 insert={redirect}
@@ -98,32 +123,32 @@ export const Tweet = ({
               />
             </>
             <LightTooltip title={'Not available for now'}>
-              <button
-                disabled
-                className='flex items-center gap-2 disabled:opacity-30'
-              >
-                <Heart className='w-4 h-4' />
-              </button>
+              <span className='flex items-center gap-2'>
+                <button disabled className=' disabled:opacity-30'>
+                  <Heart className='w-4 h-4' />
+                </button>
+              </span>
             </LightTooltip>
             {redirect ? (
               <LightTooltip title={`Go to Victor's LinkedIn`}>
-                <Link
-                  style={{ fontSize: 'small' }}
-                  rel='noopener noreferrer'
-                  href={redirect}
-                  className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-                >
-                  <OpenInNew fontSize='small' />
-                </Link>
+                <span className='flex items-center gap-2'>
+                  <Link
+                    style={{ fontSize: 'small' }}
+                    rel='noopener noreferrer'
+                    href={redirect}
+                    className=' hover:text-blue-400 transition-colors'
+                  >
+                    <OpenInNew fontSize='small' />
+                  </Link>
+                </span>
               </LightTooltip>
             ) : (
               <LightTooltip title={'Not available for now'}>
-                <button
-                  disabled
-                  className='flex items-center gap-2 disabled:opacity-30'
-                >
-                  <OpenInNew fontSize='small' />
-                </button>
+                <span className='flex items-center gap-2 '>
+                  <button disabled className=' disabled:opacity-30'>
+                    <OpenInNew fontSize='small' />
+                  </button>
+                </span>
               </LightTooltip>
             )}
           </div>

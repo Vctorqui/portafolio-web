@@ -31,23 +31,22 @@ const Feed = () => {
   //   return () => clearInterval(intervalTime)
   // }, [])
   return (
-    <section className='home-section'>
+    <section className='home-section space-y-4 py-4'>
       <Tweet
-        content='Home Section'
-        date='pinned'
-        likes={0}
-        retweets={0}
-        replies={0}
+        isPinned={true}
+        content='Hello World!'
         description={
           'Welcome to my portfolio! This section is about the resources I have created or have been working on to help the community. If you want to know more about me and my projects. Click on another option tab👨🏻‍💻'
         }
         name={'Victor Q'}
         userName={'@victorqui'}
-        avatar={'/images/profile.webp'}
+        avatar={'/images/profile-perfil.webp'}
         redirect={''}
         contentMg={''}
+        status={`💪🏻 fellin' happy`}
       />
       <Tweet
+        status={`🤔 Inspired `}
         content={
           programmingQuote
             ? `${programmingQuote?.author} said: `
@@ -60,37 +59,15 @@ const Feed = () => {
         }
         name={'Programming Quotes'}
         userName={`@coduotes`}
-        date={''}
-        likes={0}
-        retweets={0}
-        replies={0}
+        isPinned={true}
         avatar={'/images/quote-img.webp'}
         redirect={''}
         contentMg={''}
       />
       <Tweet
-        content='Coming Soon DevDash: '
-        image='/images/10.webp'
-        date='pinned'
-        likes={0}
-        retweets={0}
-        replies={0}
-        description={
-          'A website where you can find tips and tools for frontend developers for registered users.!🚀 #webdev #next.js #express.js #mongodb #docker'
-        }
-        name={'Victor Q'}
-        userName={'@victorqui'}
-        avatar={'/images/profile.webp'}
-        redirect={''}
-        contentMg={'¡Mira%20este%20proyecto%21%20'}
-      />
-      <Tweet
+        status={`👨🏻‍💻 Nerdin'`}
         content='Autocomplete with React'
         image='/images/resource.png'
-        date='pinned'
-        likes={0}
-        retweets={0}
-        replies={0}
         description={`A component created with React.js without dependencies. Contribution to the community 👨🏻‍💻 #webdev #react #frontend`}
         name={'Victor Quiñones'}
         userName={'@victorqui'}

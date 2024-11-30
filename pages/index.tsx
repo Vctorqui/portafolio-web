@@ -41,34 +41,33 @@ const Index = ({ projects }: any) => {
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList
-              className='w-full bg-black border-b border-gray-800'
+              className='w-full bg-slate-950 border-b border-none justify-center '
               centered
-              sx={{ justifyContent: 'center' }}
               textColor='secondary'
               indicatorColor='secondary'
               onChange={handleChange}
               aria-label='Tabs list portfolio options'
             >
               <Tab
-                className='flex-1 font-semibold'
+                className='flex-1 font-black'
                 label='Home'
                 value='Home'
                 aria-label='Home'
               />
               <Tab
-                className='flex-1 font-semibold'
+                className='flex-1 font-black'
                 label='Projects'
                 value='Projects'
                 aria-label='Projects'
               />
               <Tab
-                className='flex-1 font-semibold'
+                className='flex-1 font-black'
                 label='Experience'
                 value='Experience'
                 aria-label='Experience'
               />
               <Tab
-                className='flex-1 font-semibold'
+                className='flex-1 font-black'
                 label='Me'
                 value='Me'
                 aria-label='About me'

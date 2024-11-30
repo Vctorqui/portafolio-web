@@ -23,11 +23,12 @@ const colors = {
   },
   text: {
     primary: '#EEEEEE',
-    secondary: '#ea580c',
+    secondary: '#EF5A6F',
+    // secondary: '#ea580c',
     // secondary: '#F2613F',
   },
   backgroundGreen: {
-    green: '#ea580c',
+    green: '#EF5A6F',
     // green: '#F2613F',
   },
 }
