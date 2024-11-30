@@ -117,15 +117,12 @@ export const Projects = ({ project }: any) => {
           </Box>
         )}
         <div className='flex gap-3'>
-          <Avatar>
-            <Image
-              src='/images/profile-perfil.webp'
-              alt='Victor Quiñones Profile Picture'
-              width={48}
-              height={48}
-              className='rounded-full object-cover'
-            />
-          </Avatar>
+          <Avatar
+            alt='Victor Quiñones Profile Picture'
+            className='rounded-full object-cover'
+            src={'/images/profile-perfil.webp'}
+            sx={{ width: 48, height: 48 }}
+          />
           <div className='flex-1'>
             <div className='flex items-center gap-2'>
               <span className='font-semibold'>Victor Q</span>

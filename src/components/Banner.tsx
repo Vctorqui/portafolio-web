@@ -7,6 +7,7 @@ import { LightTooltip } from './LightToolTip'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { useState } from 'react'
 import { LuCodepen } from 'react-icons/lu'
+import { File } from 'lucide-react'
 
 const Banner = () => {
   const [snackbarCopy, setSnackbarCopy] = useState(false)
@@ -39,6 +40,13 @@ const Banner = () => {
         <p className='font-bold text-[#EF5A6F] italic'>Frontend Developer</p>
 
         <div className='flex flex-wrap gap-4 mt-3 text-gray-400 text-sm'>
+          <Link
+            href={'./Victor_Quinones_Frontend_Resume.pdf'}
+            className='flex items-center gap-1  hover:text-[#EF5A6F] transition-colors'
+          >
+            <File className='w-4 h-4' />
+            Resume
+          </Link>
           <Link
             href={'https://www.linkedin.com/in/victorqui/'}
             className='flex items-center gap-1  hover:text-[#EF5A6F] transition-colors'
