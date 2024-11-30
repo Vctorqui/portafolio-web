@@ -10,7 +10,6 @@ import { LightTooltip } from '@/src/components/LightToolTip'
 const iconColor = theme.palette.secondary.light
 
 const FooterBox = styled(Box)(() => ({
-  background: theme.palette.common.black,
   padding: theme.spacing(2, 0),
   '.footerContainer': {
     position: 'relative',
@@ -22,30 +21,6 @@ const FooterBox = styled(Box)(() => ({
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       gap: '0',
-    },
-    '.footerLink': {
-      textDecoration: 'none',
-      color: theme.palette.secondary.main,
-      marginTop: '3px',
-    },
-    '.footerEmail': {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: theme.spacing(1),
-      [theme.breakpoints.down('sm')]: {
-        justifyContent: 'center',
-      },
-      '.emailBtn': {
-        borderRadius: '10px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '5px',
-        '&:hover': {
-          background: theme.palette.backgroundGreen.green,
-          color: theme.palette.common.black,
-        },
-      },
     },
     '.iconFooter': {
       color: iconColor,
@@ -75,7 +50,7 @@ const FooterBox = styled(Box)(() => ({
 
 export const Footer = () => {
   return (
-    <FooterBox>
+    <FooterBox className='bg-slate-950'>
       <Container maxWidth={containerWidth}>
         <Box className='footerContainer'>
           <Typography

@@ -1,5 +1,5 @@
-import { OpenInNew } from '@mui/icons-material'
-import { Card } from '@mui/material'
+import { OpenInNew, PushPin } from '@mui/icons-material'
+import { Box, Card, Typography } from '@mui/material'
 import { collection, getDocs } from 'firebase/firestore'
 import {
   db,
@@ -101,10 +101,25 @@ export const Projects = ({ project }: any) => {
   return (
     <section className='project-section space-y-4 py-4'>
       <Card className='p-4 mt-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-950'>
+        {project.isPinned && (
+          <Box
+            className='text-zinc-600'
+            display={'flex'}
+            justifyContent={'flex-start'}
+            alignItems={'center'}
+            gap={1}
+            mb={2}
+          >
+            <PushPin fontSize='small' />
+            <Typography fontWeight={'bold'} variant='caption'>
+              Pinned Cheep
+            </Typography>
+          </Box>
+        )}
         <div className='flex gap-3'>
           <Avatar>
             <Image
-              src='/images/profile.webp'
+              src='/images/profile-perfil.webp'
               alt='Victor Quiñones Profile Picture'
               width={48}
               height={48}
@@ -118,9 +133,22 @@ export const Projects = ({ project }: any) => {
               <span className='text-muted-foreground'>·</span>
               {/* <span className='text-muted-foreground'>{date}</span> */}
             </div>
-            <p className='mt-2 font-bold'>{project.title}</p>
+            <Box
+              display={'flex'}
+              justifyContent={'flex-start'}
+              alignItems={'center'}
+            >
+              <Box className='bg-slate-500 rounded-full px-2  flex justify-center'>
+                <Typography variant='body2' fontWeight={700}>
+                  👨🏻‍💻{project.status}
+                </Typography>
+              </Box>
+            </Box>
+            <p className='mt-2 font-bold whitespace-pre-line  text-[#EF5A6F]'>
+              {project.title}
+            </p>
             <p className='mt-2 text-left'>{project.english_description}</p>
-            <p className='mt-2 font-semibold'>Stack: #{project.stack}</p>
+            <p className='mt-2 font-bold'>Stack: {project.stack}</p>
             {Image && (
               <div className='mt-3 rounded-lg overflow-hidden'>
                 <Image
@@ -134,7 +162,7 @@ export const Projects = ({ project }: any) => {
             )}
             <div className='flex justify-between mt-3 text-muted-foreground'>
               <LightTooltip title='Not available for now'>
-                <span>
+                <span className='flex items-center gap-2 '>
                   <button
                     disabled
                     className='flex items-center gap-2 disabled:opacity-30'
@@ -152,10 +180,10 @@ export const Projects = ({ project }: any) => {
                 />
               </>
               <LightTooltip title='Like post'>
-                <span>
+                <span className='flex items-center gap-2 '>
                   <button
                     className={`flex items-center gap-2 transition-colors ${
-                      hasLiked ? 'text-red-500' : 'hover:text-red-500'
+                      hasLiked ? 'text-[#EF5A6F]' : 'hover:text-[#EF5A6F]'
                     }`}
                     onClick={handleLike}
                   >
@@ -168,7 +196,7 @@ export const Projects = ({ project }: any) => {
               </LightTooltip>
               {project.preview_link ? (
                 <LightTooltip title={'Go to the web'}>
-                  <span>
+                  <span className='flex items-center gap-2 '>
                     <Link
                       style={{ fontSize: 'small' }}
                       rel='noopener noreferrer'
@@ -181,7 +209,7 @@ export const Projects = ({ project }: any) => {
                 </LightTooltip>
               ) : (
                 <LightTooltip title={'Not available for now'}>
-                  <span>
+                  <span className='flex items-center gap-2 '>
                     <button
                       disabled
                       className='flex items-center gap-2 disabled:opacity-30'

@@ -5,10 +5,10 @@ import { Tweet } from './Tweet'
 export const Experience = () => {
   return (
     <section className='experience-section space-y-4 py-4'>
-      {experiences.map((exp: experienceTypes, i: number) => (
+      {experiences.map((exp: experienceTypes, index) => (
         <>
           <Tweet
-            key={i}
+            key={exp.id + index}
             content={exp.position}
             date={exp.english_date}
             description={exp.english_description}

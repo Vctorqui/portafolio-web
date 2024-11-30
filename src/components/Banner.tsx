@@ -1,17 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { Alert, Avatar, Box, Snackbar, SnackbarOrigin } from '@mui/material'
+import { Alert, Avatar, Box, Snackbar } from '@mui/material'
 import Link from 'next/link'
-import {
-  CalendarMonth,
-  GitHub,
-  LinkedIn,
-  Mail,
-  Place,
-} from '@mui/icons-material'
+import { GitHub, LinkedIn, Mail } from '@mui/icons-material'
 import Image from 'next/image'
 import { LightTooltip } from './LightToolTip'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { useState } from 'react'
+import { LuCodepen } from 'react-icons/lu'
 
 const Banner = () => {
   const [snackbarCopy, setSnackbarCopy] = useState(false)
@@ -41,13 +36,7 @@ const Banner = () => {
       </div>
       <div className='pt-20 pb-4'>
         <h1 className='text-2xl font-bold '>Victor Quiñones</h1>
-        <p>Frontend Developer</p>
-        <Link
-          className='font-semibold'
-          href='https://www.linkedin.com/in/victorqui/'
-        >
-          <p className='text-[#EF5A6F]'>@victorqui</p>
-        </Link>
+        <p className='font-bold text-[#EF5A6F] italic'>Frontend Developer</p>
 
         <div className='flex flex-wrap gap-4 mt-3 text-gray-400 text-sm'>
           <Link
@@ -63,6 +52,13 @@ const Banner = () => {
           >
             <GitHub className='w-4 h-4' />
             GitHub
+          </Link>
+          <Link
+            href={'https://codepen.io/vichorq'}
+            className='flex items-center gap-1 hover:text-[#EF5A6F] transition-colors'
+          >
+            <LuCodepen className='w-4 h-4' />
+            Codepen
           </Link>
           <LightTooltip title={'Copy email'}>
             <span>
