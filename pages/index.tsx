@@ -78,11 +78,13 @@ const Index = ({ projects }: any) => {
             <Feed />
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value='Projects'>
-            {projects.map((project: any, i: any) => {
-              return (
-                <Projects key={i} project={project} changeLang={changeLang} />
-              )
-            })}
+            <section className='project-section space-y-4 py-4'>
+              {projects.map((project: any, i: any) => {
+                return (
+                  <Projects key={i} project={project} changeLang={changeLang} />
+                )
+              })}
+            </section>
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value='Experience'>
             <Experience />

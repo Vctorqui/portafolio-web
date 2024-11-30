@@ -40,7 +40,7 @@ export const Tweet = ({
   status,
 }: TweetProps) => {
   return (
-    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-950 mt-2'>
+    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-900 mt-2 border-x border-y border-gray-800'>
       {isPinned && (
         <Box
           className='text-zinc-600'
