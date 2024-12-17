@@ -40,20 +40,18 @@ export const Tweet = ({
   status,
 }: TweetProps) => {
   return (
-    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-900 mt-2 border-x border-y border-gray-800'>
+    <Card className='py-4 px-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-900 mt-2 border-x border-y border-gray-800 relative'>
       {isPinned && (
         <Box
-          className='text-zinc-600'
+          sx={{ rotate: '30deg' }}
+          className='absolute right-3'
           display={'flex'}
           justifyContent={'flex-start'}
           alignItems={'center'}
           gap={1}
           mb={2}
         >
-          <PushPin fontSize='small' />
-          <Typography fontWeight={'bold'} variant='caption'>
-            Pinned Cheep
-          </Typography>
+          <PushPin sx={{ color: '#EF5A6F' }} fontSize='small' />
         </Box>
       )}
       <div className='flex gap-3'>

@@ -16,8 +16,8 @@ export const Layout = ({
   const isSm = useMediaQuery(theme.breakpoints.down('md'))
   return (
     <>
-      <Header />
-      <Box minHeight={'calc(100vh - 123px)'} mt={isSm ? 7 : 8} sx={sx}>
+      {/* <Header /> */}
+      <Box minHeight={'calc(100vh - 123px)'} sx={sx}>
         {children}
       </Box>
       <Footer />
