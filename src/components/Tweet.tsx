@@ -108,6 +108,9 @@ export const Tweet = ({
             >
               <span className='flex items-center gap-2'>
                 <button
+                  aria-label={
+                    replies ? 'click to see comments' : 'Not available for now'
+                  }
                   disabled={replies ? false : true}
                   className=' disabled:opacity-30'
                 >
@@ -124,7 +127,11 @@ export const Tweet = ({
             </>
             <LightTooltip title={'Not available for now'}>
               <span className='flex items-center gap-2'>
-                <button disabled className=' disabled:opacity-30'>
+                <button
+                  arial-label='click to like the post'
+                  disabled
+                  className=' disabled:opacity-30'
+                >
                   <Heart className='w-4 h-4' />
                 </button>
               </span>
@@ -133,6 +140,7 @@ export const Tweet = ({
               <LightTooltip title={`Go to Victor's LinkedIn`}>
                 <span className='flex items-center gap-2'>
                   <Link
+                    aria-label='Go to Victor LinkedIn profile'
                     style={{ fontSize: 'small' }}
                     rel='noopener noreferrer'
                     href={redirect}
@@ -145,7 +153,11 @@ export const Tweet = ({
             ) : (
               <LightTooltip title={'Not available for now'}>
                 <span className='flex items-center gap-2 '>
-                  <button disabled className=' disabled:opacity-30'>
+                  <button
+                    aria-label='not available for now'
+                    disabled
+                    className=' disabled:opacity-30'
+                  >
                     <OpenInNew fontSize='small' />
                   </button>
                 </span>

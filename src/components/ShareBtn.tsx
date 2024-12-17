@@ -68,6 +68,7 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
               <IconButton
                 className={classTailwind}
                 id='fade-button'
+                aria-label='click to share the posts'
                 aria-controls={menuOpen ? 'fade-menu' : undefined}
                 aria-haspopup='true'
                 aria-expanded={menuOpen ? 'true' : undefined}
@@ -126,6 +127,7 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
           <span>
             <button
               disabled
+              aria-label='not available for now'
               className='flex items-center gap-2 disabled:opacity-30'
             >
               <Repeat fontSize='small' />

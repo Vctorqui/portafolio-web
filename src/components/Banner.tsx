@@ -4,14 +4,17 @@ import Link from 'next/link'
 import { GitHub, LinkedIn, Mail } from '@mui/icons-material'
 import Image from 'next/image'
 import { LightTooltip } from './LightToolTip'
-import CopyToClipboard from 'react-copy-to-clipboard'
 import { useState } from 'react'
 import { LuCodepen } from 'react-icons/lu'
 import { File } from 'lucide-react'
 
 const Banner = () => {
   const [snackbarCopy, setSnackbarCopy] = useState(false)
-  const handleClick = () => {
+
+  const handleShare = (e: any) => {
+    e.preventDefault()
+
+    navigator.clipboard.writeText('victor.quinones.ch@gmail.com')
     setSnackbarCopy(true)
   }
 
@@ -70,15 +73,13 @@ const Banner = () => {
           </Link>
           <LightTooltip title={'Copy email'}>
             <span>
-              <CopyToClipboard text='victor.quinones.ch@gmail.com'>
-                <Box
-                  onClick={handleClick}
-                  className='flex items-center gap-1 hover:text-[#EF5A6F] transition-colors cursor-pointer'
-                >
-                  <Mail className='w-4 h-4' />
-                  victor.quinones.ch@gmail.com
-                </Box>
-              </CopyToClipboard>
+              <Box
+                onClick={handleShare}
+                className='flex items-center gap-1 hover:text-[#EF5A6F] transition-colors cursor-pointer'
+              >
+                <Mail className='w-4 h-4' />
+                victor.quinones.ch@gmail.com
+              </Box>
             </span>
           </LightTooltip>
 

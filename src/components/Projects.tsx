@@ -162,6 +162,7 @@ export const Projects = ({ project }: any) => {
                 <button
                   disabled
                   className='flex items-center gap-2 disabled:opacity-30'
+                  aria-label='commets not available for now'
                 >
                   <MessageCircle className='w-4 h-4' />
                   <span>0</span>
@@ -181,6 +182,11 @@ export const Projects = ({ project }: any) => {
                   className={`flex items-center gap-2 transition-colors ${
                     hasLiked ? 'text-[#EF5A6F]' : 'hover:text-[#EF5A6F]'
                   }`}
+                  aria-label={
+                    hasLiked
+                      ? 'click to dislike post'
+                      : 'click to like the project'
+                  }
                   onClick={handleLike}
                 >
                   <Heart
@@ -196,6 +202,7 @@ export const Projects = ({ project }: any) => {
                   <Link
                     style={{ fontSize: 'small' }}
                     rel='noopener noreferrer'
+                    aria-label='click to go to the project web'
                     href={project.preview_link}
                     className='flex items-center gap-2 hover:text-blue-400 transition-colors'
                   >
@@ -207,6 +214,7 @@ export const Projects = ({ project }: any) => {
               <LightTooltip title={'Not available for now'}>
                 <span className='flex items-center gap-2 '>
                   <button
+                    aria-label='project web not available for now'
                     disabled
                     className='flex items-center gap-2 disabled:opacity-30'
                   >
