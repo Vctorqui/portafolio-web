@@ -28,7 +28,7 @@ export async function getServerSideProps() {
 
 const Index = ({ projects }: any) => {
   const [changeLang, setChangeLang] = useState(false)
-  const [value, setValue] = useState('Home')
+  const [value, setValue] = useState('Projects')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
@@ -48,12 +48,12 @@ const Index = ({ projects }: any) => {
               onChange={handleChange}
               aria-label='Tabs list portfolio options'
             >
-              <Tab
+              {/* <Tab
                 className='flex-1 font-black'
                 label='Home'
                 value='Home'
                 aria-label='Home'
-              />
+              /> */}
               <Tab
                 className='flex-1 font-black'
                 label='Projects'
@@ -68,15 +68,15 @@ const Index = ({ projects }: any) => {
               />
               <Tab
                 className='flex-1 font-black'
-                label='Me'
+                label='About Me'
                 value='Me'
                 aria-label='About me'
               />
             </TabList>
           </Box>
-          <TabPanel sx={{ padding: 0 }} value='Home'>
+          {/* <TabPanel sx={{ padding: 0 }} value='Home'>
             <Feed />
-          </TabPanel>
+          </TabPanel> */}
           <TabPanel sx={{ padding: 0 }} value='Projects'>
             <section className='project-section space-y-4 py-4'>
               {projects.map((project: any, i: any) => {

@@ -15,7 +15,6 @@ export const Experience = () => {
             avatar={''}
             name={exp.company}
             userName={''}
-            isPinned={true}
             redirect={'https://www.linkedin.com/in/victorqui/'}
             contentMg={'¡Mira%20este%20perfil%21%20'}
           />
