@@ -40,5 +40,3 @@ jobs:
           publish-dir: ./out
           production-deploy: true
           deploy-message: 'Automated deployment'
-          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify-site-id: ${{ secrets.SIDE_ID }}
