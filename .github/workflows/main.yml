@@ -35,7 +35,7 @@ jobs:
           }'
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0.4
+        uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: ./out # Cambia esto al directorio generado por tu build
           production-deploy: true
