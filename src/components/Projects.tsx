@@ -35,6 +35,7 @@ export async function getServerSideProps() {
 export const Projects = ({ project }: any) => {
   const [likes, setLikes] = useState(project.likes || 0)
   const [hasLiked, setHasLiked] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const getUserId = () => {
     const storedId = localStorage.getItem('userId')
@@ -68,6 +69,9 @@ export const Projects = ({ project }: any) => {
   }, [project.id])
 
   const handleLike = async () => {
+    if (isUpdating) return
+
+    setIsUpdating(true)
     const docRef = doc(db, 'projects', project.id)
     const userId = getUserId()
 
@@ -82,19 +86,21 @@ export const Projects = ({ project }: any) => {
             likes: data.likes - 1,
             usersWhoLiked: arrayRemove(userId),
           })
-          setLikes(likes - 1)
+          setLikes((prevLikes: number) => Math.max(prevLikes - 1, 0))
           setHasLiked(false)
         } else {
           await updateDoc(docRef, {
             likes: data.likes + 1,
             usersWhoLiked: arrayUnion(userId),
           })
-          setLikes(likes + 1)
+          setLikes((prevLikes: number) => prevLikes + 1)
           setHasLiked(true)
         }
       }
     } catch (error) {
       console.error('Error updating like:', error)
+    } finally {
+      setIsUpdating(false)
     }
   }
 
