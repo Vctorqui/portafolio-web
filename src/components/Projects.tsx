@@ -179,7 +179,7 @@ export const Projects = ({ project }: any) => {
                 content={'¡Mira%20este%20proyecto%21%20'}
               />
             </>
-            <LightTooltip title='Like post'>
+            <LightTooltip title={hasLiked ? 'Dislike post' : 'Like post'}>
               <span className='flex items-center gap-2 '>
                 <button
                   className={`flex items-center gap-2 transition-colors ${
