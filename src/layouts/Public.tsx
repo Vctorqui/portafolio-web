@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react'
-import { Box, useMediaQuery, useTheme } from '@mui/material'
-import { Header } from './public/Header'
+import { Box, useTheme } from '@mui/material'
 import { Footer } from './public/Footer'
 
 export const Layout = ({
@@ -13,10 +12,8 @@ export const Layout = ({
   sx?: any
 }) => {
   const theme = useTheme()
-  const isSm = useMediaQuery(theme.breakpoints.down('md'))
   return (
     <>
-      {/* <Header /> */}
       <Box minHeight={'calc(100vh - 123px)'} sx={sx}>
         {children}
       </Box>

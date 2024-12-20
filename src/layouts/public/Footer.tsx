@@ -26,7 +26,7 @@ const FooterBox = styled(Box)(() => ({
       color: iconColor,
       transition: 'all .3s ease-out',
       '&:hover': {
-        color: theme.palette.backgroundGreen.green,
+        color: theme.palette.backgroundRose.rose,
         transform: 'scale(1.05)',
       },
     },
@@ -34,14 +34,14 @@ const FooterBox = styled(Box)(() => ({
   '.boxBtnUp': {
     cursor: 'pointer',
     ':hover .btnTop': {
-      background: theme.palette.backgroundGreen.green,
+      background: theme.palette.backgroundRose.rose,
       transform: 'scale(1.1)',
     },
     '.btnTop': {
       background: theme.palette.secondary.main,
       transition: 'all .3s ease-out',
       ':hover': {
-        background: theme.palette.backgroundGreen.green,
+        background: theme.palette.backgroundRose.rose,
         transform: 'scale(1.1)',
       },
     },

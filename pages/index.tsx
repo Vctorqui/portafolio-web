@@ -8,11 +8,10 @@ import React, { useState } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '@/src/firebase/config'
 import Banner from '@/src/components/Banner'
-import Feed from '@/src/components/Feed'
 
 export async function getServerSideProps() {
   const projectsCollection = collection(db, 'projects')
-  const q = query(projectsCollection, orderBy('order', 'asc')) // Ordenar por el campo 'order'
+  const q = query(projectsCollection, orderBy('order', 'asc'))
   const projectSnapshot = await getDocs(q)
   const projects = projectSnapshot.docs.map((doc) => ({
     id: doc.id,
@@ -48,12 +47,6 @@ const Index = ({ projects }: any) => {
               onChange={handleChange}
               aria-label='Tabs list portfolio options'
             >
-              {/* <Tab
-                className='flex-1 font-black'
-                label='Home'
-                value='Home'
-                aria-label='Home'
-              /> */}
               <Tab
                 className='flex-1 font-black'
                 label='Projects'
@@ -74,9 +67,7 @@ const Index = ({ projects }: any) => {
               />
             </TabList>
           </Box>
-          {/* <TabPanel sx={{ padding: 0 }} value='Home'>
-            <Feed />
-          </TabPanel> */}
+
           <TabPanel sx={{ padding: 0 }} value='Projects'>
             <section className='project-section space-y-4 py-4'>
               {projects.map((project: any, i: any) => {

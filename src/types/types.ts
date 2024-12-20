@@ -8,19 +8,3 @@ export interface experienceTypes {
   english_description: string
   stacks: any
 }
-
-export interface contactUsTypes {
-  full_name: string
-  email: string
-  subject: string
-  phone: string
-  country: string
-  city: string
-}
-
-export interface infoHeaderTypes {
-  id: number
-  title: string
-  icon: any
-  path: string | undefined
-}

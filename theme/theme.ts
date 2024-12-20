@@ -1,8 +1,8 @@
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
 
 interface micolor {
-  backgroundGreen: {
-    green: string
+  backgroundRose: {
+    rose: string
   }
 }
 
@@ -24,12 +24,9 @@ const colors = {
   text: {
     primary: '#EEEEEE',
     secondary: '#EF5A6F',
-    // secondary: '#ea580c',
-    // secondary: '#F2613F',
   },
-  backgroundGreen: {
-    green: '#EF5A6F',
-    // green: '#F2613F',
+  backgroundRose: {
+    rose: '#EF5A6F',
   },
 }
 
@@ -48,8 +45,8 @@ const theme = responsiveFontSizes(
         primary: colors.text.primary,
         secondary: colors.text.secondary,
       },
-      backgroundGreen: {
-        green: colors.backgroundGreen.green,
+      backgroundRose: {
+        rose: colors.backgroundRose.rose,
       },
     },
     typography: {
@@ -70,15 +67,15 @@ const theme = responsiveFontSizes(
           },
           outlinedPrimary: {
             fontWeight: '700',
-            border: `solid 1px ${colors.backgroundGreen.green}`,
+            border: `solid 1px ${colors.backgroundRose.rose}`,
             borderRadius: 10,
             position: 'relative',
             color: colors.text.primary,
             background: 'transparent',
             transition: 'background .2s ease-out,color .2s ease-out',
             '&:hover': {
-              background: colors.backgroundGreen.green,
-              border: `solid 1px ${colors.backgroundGreen.green}`,
+              background: colors.backgroundRose.rose,
+              border: `solid 1px ${colors.backgroundRose.rose}`,
             },
           },
         },

@@ -1,20 +1,7 @@
-import { Cake, CalendarMonth, Link, Place, Work } from '@mui/icons-material'
-import {
-  contactUsTypes,
-  experienceTypes,
-  infoHeaderTypes,
-} from '../types/types'
+import { Cake, CalendarMonth, Place, Work } from '@mui/icons-material'
+import { experienceTypes } from '../types/types'
 
 export const containerWidth = 'lg'
-
-export const contactUsInit: contactUsTypes = {
-  full_name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  country: '',
-  city: '',
-}
 
 export const experiences: experienceTypes[] = [
   {
@@ -62,69 +49,9 @@ export const experiences: experienceTypes[] = [
   },
 ]
 
-export const navSpanishItems = [
-  { label: 'Inicio', href: '#home' },
-  { label: 'Experiencia', href: '#experience' },
-  { label: 'Proyectos', href: '#projects' },
-  { label: 'Sobre mi', href: '#about-me' },
-  { label: 'Contacto', href: '#contact' },
-]
-
-export const navEnglishItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'About me', href: '#about-me' },
-  { label: 'Contact', href: '#contact' },
-]
-
 export const iconList: any = {
   Work: Work,
   Place: Place,
   Cake: Cake,
   CalendarMonth: CalendarMonth,
 }
-
-export const infoHeader: infoHeaderTypes[] = [
-  {
-    id: 1,
-    title: 'Falcón, Ven',
-    icon: 'Place',
-    path: '',
-  },
-  {
-    id: 2,
-    title: 'Avaliable',
-    icon: 'Work',
-    path: undefined,
-  },
-  {
-    id: 3,
-    title: 'December 18th',
-    icon: 'Cake',
-    path: undefined,
-  },
-  {
-    id: 4,
-    title: 'Joined October 2024',
-    icon: 'CalendarMonth',
-    path: undefined,
-  },
-]
-
-export const feed = [
-  {
-    id: 1,
-    isPinned: true,
-    content: 'Hello World!',
-    description:
-      'Welcome to my portfolio! This section is about the resources I have created or have been working on to help the community. If you want to know more about me and my projects. Click on another option tab👨🏻‍💻',
-    name: 'Victor Q',
-    userName: '@victorqui',
-    avatar: '/images/profile.webp',
-    redirect: '',
-    contenMg: '',
-    status: `💪🏻 fellin' happy`,
-  },
-  {},
-]

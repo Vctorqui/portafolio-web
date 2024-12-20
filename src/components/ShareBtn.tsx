@@ -51,7 +51,6 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
       case 'copy':
         navigator.clipboard.writeText(insert)
         handleClose()
-        // setShareDialog(false)
         setSnackbarCopy(true)
         break
 

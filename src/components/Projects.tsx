@@ -57,7 +57,7 @@ export const Projects = ({ project }: any) => {
           const data = docSnap.data()
           setLikes(data.likes || 0)
           const userLikes = data.usersWhoLiked || []
-          const userId = getUserId() // Obtén el ID del usuario de alguna manera
+          const userId = getUserId()
           setHasLiked(userLikes.includes(userId))
         }
       } catch (error) {
@@ -125,7 +125,6 @@ export const Projects = ({ project }: any) => {
             <span className='font-semibold'>Victor Q</span>
             <span className='text-muted-foreground'>@victorqui</span>
             <span className='text-muted-foreground'>·</span>
-            {/* <span className='text-muted-foreground'>{date}</span> */}
           </div>
           <Box
             display={'flex'}
