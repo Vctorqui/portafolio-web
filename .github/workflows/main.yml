@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set environment variables on Netlify
         env:
@@ -39,6 +39,6 @@ jobs:
         with:
           publish-dir: ./out # Cambia esto al directorio generado por tu build
           production-deploy: true
-          deploy-message: "Automated deployment"
+          deploy-message: 'Automated deployment'
           netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify-site-id: ${{ secrets.SIDE_ID }}
