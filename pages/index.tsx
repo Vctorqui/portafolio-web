@@ -1,6 +1,5 @@
 import { AboutMe } from '@/src/components/AboutMe'
 import { Experience } from '@/src/components/Experience'
-import { Projects } from '@/src/components/Projects'
 import { Layout } from '@/src/layouts/Public'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Tab } from '@mui/material'
@@ -8,6 +7,7 @@ import React, { useState } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '@/src/firebase/config'
 import Banner from '@/src/components/Banner'
+import { Projects } from '@/src/components/Projects'
 
 export async function getServerSideProps() {
   const projectsCollection = collection(db, 'projects')
