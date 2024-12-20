@@ -11,8 +11,8 @@ export const AboutMe = () => {
         name={'Victor Q'}
         userName={'@victorqui'}
         avatar={'/images/profile-perfil.webp'}
-        redirect={''}
-        contentMg={''}
+        redirect={'https://www.linkedin.com/in/victorqui/'}
+        contentMg={'¡Mira%20este%20perfil%21%20'}
       />
       <Tweet
         isPinned={true}
@@ -24,8 +24,8 @@ export const AboutMe = () => {
         name={'Victor Q'}
         userName={'@victorqui'}
         avatar={'/images/profile-perfil.webp'}
-        redirect={''}
-        contentMg={''}
+        redirect={'https://www.linkedin.com/in/victorqui/'}
+        contentMg={'¡Mira%20este%20perfil%21%20'}
       />
       <Tweet
         isPinned={true}
@@ -37,8 +37,8 @@ export const AboutMe = () => {
         name={'Victor'}
         userName={'@victorqui'}
         avatar={'/images/profile-perfil.webp'}
-        redirect={''}
-        contentMg={''}
+        redirect={'https://www.linkedin.com/in/victorqui/'}
+        contentMg={'¡Mira%20este%20perfil%21%20'}
       />
     </section>
   )

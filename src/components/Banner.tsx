@@ -99,7 +99,11 @@ const Banner = () => {
         </div>
         <p className='mt-4'>
           Specialized in creating efficient, intuitive, and scalable web
-          interfaces.
+          interfaces. Throughout my journey,{' '}
+          <span className='text-[#EF5A6F] italic'>
+            I&apos;ve discovered how fundamental technology is in our daily
+            lives and its incredible power to transform them.
+          </span>
         </p>
       </div>
     </div>

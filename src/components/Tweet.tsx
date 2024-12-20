@@ -79,7 +79,7 @@ export const Tweet = ({
             justifyContent={'flex-start'}
             alignItems={'center'}
           >
-            <Box className='bg-slate-500 rounded-full px-2  flex justify-center'>
+            <Box className='bg-slate-700 rounded-full px-2  flex justify-center'>
               <Typography variant='body2' fontWeight={700}>
                 {status}
               </Typography>
