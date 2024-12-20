@@ -19,6 +19,21 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name='keywords' content='Frontend Developer, Web Developer' />
           <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
           <meta name='author' content='Victor Quiñones' />
+          <meta property='og:title' content='VictorDev Portfolio' />
+          <meta
+            property='og:description'
+            content='Frontend Developer in Venezuela. React, Next.js, TypeScript, Material UI, TailwindCSS, JavaScript, CSS y HTML5.'
+          />
+          <meta
+            property='og:image'
+            content='https://ibb.co/xDRbtgm'
+          />
+          <meta
+            property='og:url'
+            content='https://victorqui-portfolio.netlify.app/'
+          />
+          <meta property='og:type' content='website' />
+          <meta property='og:site_name' content='VictorDev Portfolio' />
         </Head>
         <Component {...pageProps} />
       </ThemeProvider>
