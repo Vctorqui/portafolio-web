@@ -36,7 +36,7 @@ const Index = ({ projects }: any) => {
   return (
     <Layout changeLang={changeLang}>
       <Banner />
-      <main className='max-w-2xl mx-auto px-4'>
+      <main className='max-w-2xl mx-auto'>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList
