@@ -70,7 +70,7 @@ export const Footer = () => {
             fontWeight={500}
             className='text-lg'
           >
-            Have a project in mind? Let's talk!
+            Have a project in mind? Let&apos;s talk!
           </Typography>
           <Typography
             textAlign={'center'}
@@ -78,7 +78,7 @@ export const Footer = () => {
             variant='body2'
             className='text-sm'
           >
-            I'm always open to new opportunities and collaborations
+            I&apos;m always open to new opportunities and collaborations
           </Typography>
           <Box className='socialIcons'>
             <LightTooltip title='Visit my GitHub'>
