@@ -16,6 +16,7 @@ import { Heart, MessageCircle } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { LightTooltip } from './LightToolTip'
+import { motion } from 'framer-motion'
 
 export async function getServerSideProps() {
   const projectsCollection = collection(db, 'projects')
@@ -105,130 +106,128 @@ export const Projects = ({ project }: any) => {
   }
 
   return (
-    <Card className='p-4 mt-2 hover:bg-slate-800 transition-colors cursor-pointer bg-slate-900 border-x border-y  border-gray-800 relative'>
-      {project.isPinned && (
-        <Box
-          sx={{ rotate: '30deg' }}
-          className='absolute right-3'
-          display={'flex'}
-          justifyContent={'flex-start'}
-          alignItems={'center'}
-          gap={1}
-          mb={2}
-        >
-          <PushPin sx={{ color: '#EF5A6F' }} fontSize='small' />
-        </Box>
-      )}
-      <div className='flex gap-3'>
-        <Avatar
-          alt='Victor Quiñones Profile Picture'
-          className='rounded-full object-cover'
-          src={'/images/profile-perfil.webp'}
-          sx={{ width: 48, height: 48 }}
-        />
-        <div className='flex-1'>
-          <div className='flex items-center gap-2'>
-            <span className='font-semibold'>Victor Q</span>
-            <span className='text-muted-foreground'>@victorqui</span>
-            <span className='text-muted-foreground'>·</span>
-          </div>
-          <Box
-            display={'flex'}
-            justifyContent={'flex-start'}
-            alignItems={'center'}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <Card className='py-4 px-4 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 relative'>
+        {project.isPinned && (
+          <motion.div
+            initial={{ opacity: 0, rotate: 0 }}
+            animate={{ opacity: 1, rotate: 30 }}
+            transition={{ duration: 0.5 }}
+            className='absolute right-3'
           >
-            <Box className='bg-slate-700 rounded-full px-2  flex justify-center'>
-              <Typography variant='body2' fontWeight={700}>
-                👨🏻‍💻{project.status}
-              </Typography>
+            <Box
+              display={'flex'}
+              justifyContent={'flex-start'}
+              alignItems={'center'}
+              gap={1}
+              mb={2}
+            >
+              <PushPin sx={{ color: '#EF5A6F' }} fontSize='small' />
             </Box>
-          </Box>
-          <p className='mt-2 font-bold whitespace-pre-line  text-[#EF5A6F]'>
-            {project.title}
-          </p>
-          <p className='mt-2 text-left'>{project.english_description}</p>
-          <p className='mt-2 font-bold'>Stack: {project.stack}</p>
-          {Image && (
-            <div className='mt-3 rounded-lg overflow-hidden'>
-              <Image
-                src={project.image}
-                alt={`Picture of ${project.title} project`}
-                width={500}
-                height={280}
-                className='w-full object-cover'
-              />
+          </motion.div>
+        )}
+        <div className='flex gap-3'>
+          <Avatar
+            alt='Victor Quiñones Profile Picture'
+            className='rounded-full object-cover border-2 border-white/10 hover:border-[#EF5A6F] transition-colors duration-300'
+            src={'/images/perfil_profile.webp'}
+            sx={{ width: 48, height: 48 }}
+          />
+          <div className='flex-1'>
+            <div className='flex items-center gap-2'>
+              <span className='font-semibold text-white'>Victor Q</span>
+              <span className='text-gray-400'>@victorqui</span>
             </div>
-          )}
-          <div className='flex justify-between mt-3 text-muted-foreground'>
-            <LightTooltip title='Not available for now'>
-              <span className='flex items-center gap-2 '>
-                <button
-                  disabled
-                  className='flex items-center gap-2 disabled:opacity-30'
-                  aria-label='commets not available for now'
-                >
-                  <MessageCircle className='w-4 h-4' />
-                  <span>0</span>
-                </button>
-              </span>
-            </LightTooltip>
-            <>
-              <ShareBtn
-                insert={project.preview_link}
-                classTailwind={'flex items-center gap-2 '}
-                content={'¡Mira%20este%20proyecto%21%20'}
-              />
-            </>
-            <LightTooltip title={hasLiked ? 'Dislike post' : 'Like post'}>
-              <span className='flex items-center gap-2 '>
-                <button
-                  className={`flex items-center gap-2 transition-colors ${
-                    hasLiked ? 'text-[#EF5A6F]' : 'hover:text-[#EF5A6F]'
-                  }`}
-                  aria-label={
-                    hasLiked
-                      ? 'click to dislike post'
-                      : 'click to like the project'
-                  }
-                  onClick={handleLike}
-                >
-                  <Heart
-                    className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`}
-                  />
-                  <span>{likes}</span>
-                </button>
-              </span>
-            </LightTooltip>
-            {project.preview_link ? (
-              <LightTooltip title={'Click to see the project'}>
-                <span className='flex items-center gap-2 '>
-                  <Link
-                    style={{ fontSize: 'small' }}
-                    rel='noopener noreferrer'
-                    aria-label='click to go to the project web'
-                    href={project.preview_link}
-                    className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-                  >
-                    <OpenInNew fontSize='small' />
-                  </Link>
-                </span>
-              </LightTooltip>
-            ) : (
-              <LightTooltip title={'Not available for now'}>
-                <span className='flex items-center gap-2 '>
+            <Box
+              display={'flex'}
+              justifyContent={'flex-start'}
+              alignItems={'center'}
+              className='mt-1'
+            >
+              <Box className='bg-slate-700/50 rounded-full px-3 py-1 flex justify-center'>
+                <Typography variant='body2' fontWeight={700} className='text-[#EF5A6F]'>
+                  👨🏻‍💻 {project.status}
+                </Typography>
+              </Box>
+            </Box>
+            <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-lg'>
+              {project.title}
+            </p>
+            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed'>
+              {project.english_description}
+            </p>
+            <p className='mt-3 font-semibold text-gray-400'>
+              Stack: <span className='text-white'>{project.stack}</span>
+            </p>
+            {project.image && (
+              <div className='mt-4 rounded-xl overflow-hidden'>
+                <Image
+                  src={project.image}
+                  alt={`Picture of ${project.title} project`}
+                  width={500}
+                  height={280}
+                  className='w-full object-cover hover:scale-105 transition-transform duration-500'
+                />
+              </div>
+            )}
+            <div className='flex items-center gap-6 mt-4 text-muted-foreground'>
+              <LightTooltip title='Comments coming soon'>
+                <span className='flex items-center gap-1'>
                   <button
-                    aria-label='project web not available for now'
                     disabled
-                    className='flex items-center gap-2 disabled:opacity-30'
+                    aria-label='comments not available for now'
+                    className='hover:text-[#EF5A6F] transition-colors duration-300 disabled:opacity-30'
                   >
-                    <OpenInNew fontSize='small' />
+                    <MessageCircle className='w-4 h-4' />
                   </button>
                 </span>
               </LightTooltip>
-            )}
+
+              {project.preview_link && (
+                <div className='flex items-center gap-4'>
+                  <ShareBtn
+                    insert={project.preview_link}
+                    classTailwind={'flex items-center gap-1 hover:text-[#EF5A6F] transition-colors duration-300'}
+                    content={'Check%20out%20this%20project%21%20'}
+                  />
+                  <LightTooltip title='View project'>
+                    <span className='flex items-center gap-1'>
+                      <Link
+                        aria-label='Go to project website'
+                        style={{ fontSize: 'small' }}
+                        rel='noopener noreferrer'
+                        href={project.preview_link}
+                        className='hover:text-[#EF5A6F] transition-colors duration-300'
+                      >
+                        <OpenInNew fontSize='small' />
+                      </Link>
+                    </span>
+                  </LightTooltip>
+                </div>
+              )}
+
+              <LightTooltip title={hasLiked ? 'Unlike project' : 'Like project'}>
+                <span className='flex items-center gap-1'>
+                  <button
+                    className={`flex items-center gap-1 transition-colors ${
+                      hasLiked ? 'text-[#EF5A6F]' : 'hover:text-[#EF5A6F]'
+                    }`}
+                    aria-label={hasLiked ? 'Click to unlike project' : 'Click to like project'}
+                    onClick={handleLike}
+                  >
+                    <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
+                    <span className='text-sm'>{likes}</span>
+                  </button>
+                </span>
+              </LightTooltip>
+            </div>
           </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </motion.div>
   )
 }
