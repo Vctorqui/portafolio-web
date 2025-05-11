@@ -100,8 +100,8 @@ export const Tweet = ({
             <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-lg'>
               {content}
             </p>
-            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed'>
-              {description}
+            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
+              <span dangerouslySetInnerHTML={{ __html: description }} />
             </p>
             {image && (
               <div className='mt-4 rounded-xl overflow-hidden'>

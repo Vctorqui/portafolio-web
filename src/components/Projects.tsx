@@ -106,13 +106,8 @@ export const Projects = ({ project }: any) => {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full"
-    >
-      <Card className='py-4 px-4 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 relative w-full max-w-full'>
+
+      <Card className='py-3 px-4 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 relative w-full max-w-full'>
         {project.isPinned && (
           <motion.div
             initial={{ opacity: 0, rotate: 0 }}
@@ -125,7 +120,7 @@ export const Projects = ({ project }: any) => {
               justifyContent={'flex-start'}
               alignItems={'center'}
               gap={1}
-              mb={2}
+              mb={1}
             >
               <PushPin sx={{ color: '#EF5A6F' }} fontSize='small' />
             </Box>
@@ -136,7 +131,7 @@ export const Projects = ({ project }: any) => {
             alt='Victor Quiñones Profile Picture'
             className='rounded-full object-cover border-2 border-white/10 hover:border-[#EF5A6F] transition-colors duration-300 flex-shrink-0'
             src={'/images/perfil_profile.webp'}
-            sx={{ width: 48, height: 48 }}
+            sx={{ width: 40, height: 40 }}
           />
           <div className='flex-1 min-w-0'>
             <div className='flex items-center gap-2'>
@@ -147,25 +142,25 @@ export const Projects = ({ project }: any) => {
               display={'flex'}
               justifyContent={'flex-start'}
               alignItems={'center'}
-              className='mt-1'
+              className='mt-0.5'
             >
-              <Box className='bg-slate-700/50 rounded-full px-3 py-1 flex justify-center'>
-                <Typography variant='body2' fontWeight={700} className='text-[#EF5A6F]'>
+              <Box className='bg-slate-700/50 rounded-full px-2 py-0.5 flex justify-center'>
+                <Typography variant='body2' fontWeight={700} className='text-[#EF5A6F] text-sm'>
                   👨🏻‍💻 {project.status}
                 </Typography>
               </Box>
             </Box>
-            <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-lg break-words'>
+            <p className='mt-2 font-bold whitespace-pre-line text-[#EF5A6F] text-base break-words'>
               {project.title}
             </p>
-            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
+            {/* <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
               {project.english_description}
-            </p>
-            <p className='mt-3 font-semibold text-gray-400 break-words'>
+            </p> */}
+            <p className='mt-2 font-semibold text-gray-400 break-words text-sm'>
               Stack: <span className='text-white'>{project.stack}</span>
             </p>
             {project.image && (
-              <div className='mt-4 rounded-xl overflow-hidden w-full'>
+              <div className='mt-3 rounded-xl overflow-hidden w-full'>
                 <Image
                   src={project.image}
                   alt={`Picture of ${project.title} project`}
@@ -175,7 +170,7 @@ export const Projects = ({ project }: any) => {
                 />
               </div>
             )}
-            <div className='flex items-center gap-6 mt-4 text-muted-foreground w-full'>
+            <div className='flex items-center gap-6 mt-3 text-muted-foreground w-full'>
               <LightTooltip title='Comments coming soon'>
                 <span className='flex items-center gap-1'>
                   <button
@@ -259,6 +254,5 @@ export const Projects = ({ project }: any) => {
           </div>
         </div>
       </Card>
-    </motion.div>
   )
 }
