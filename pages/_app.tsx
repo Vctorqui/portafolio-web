@@ -10,8 +10,8 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Head>
-          <title>VictorDev Porfolio</title>
-          <meta name='title' content='VictorDev Portfolio' />
+          <title>VicDev</title>
+          <meta name='title' content='VicDev Portfolio' />
           <meta
             name='description'
             content='Frontend Developer in Venezuela. React, Next.js, TypeScript, Material UI, TailwindCSS, JavaScript, CSS y HTML5.'
@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name='keywords' content='Frontend Developer, Web Developer' />
           <meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
           <meta name='author' content='Victor Quiñones' />
-          <meta property='og:title' content='VictorDev Portfolio' />
+          <meta property='og:title' content='VicDev Portfolio' />
           <meta
             property='og:description'
             content='Frontend Developer in Venezuela. React, Next.js, TypeScript, Material UI, TailwindCSS, JavaScript, CSS y HTML5.'
@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
             content='https://victorqui-portfolio.netlify.app/'
           />
           <meta property='og:type' content='website' />
-          <meta property='og:site_name' content='VictorDev Portfolio' />
+          <meta property='og:site_name' content='VicDev Portfolio' />
         </Head>
         <Component {...pageProps} />
       </ThemeProvider>

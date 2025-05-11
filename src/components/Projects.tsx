@@ -211,7 +211,12 @@ export const Projects = ({ project }: any) => {
               )}
 
               <LightTooltip title={hasLiked ? 'Unlike project' : 'Like project'}>
-                <span className='flex items-center gap-1'>
+                <motion.span 
+                  className='flex items-center gap-1'
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
                   <button
                     className={`flex items-center gap-1 transition-colors ${
                       hasLiked ? 'text-[#EF5A6F]' : 'hover:text-[#EF5A6F]'
@@ -219,10 +224,35 @@ export const Projects = ({ project }: any) => {
                     aria-label={hasLiked ? 'Click to unlike project' : 'Click to like project'}
                     onClick={handleLike}
                   >
-                    <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
-                    <span className='text-sm'>{likes}</span>
+                    <motion.div
+                      animate={{
+                        scale: hasLiked ? [1, 1.2, 1] : 1,
+                        rotate: hasLiked ? [0, -10, 10, -10, 0] : 0,
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        times: [0, 0.2, 0.4, 0.6, 1],
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <Heart className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
+                    </motion.div>
+                    <motion.span 
+                      className='text-sm'
+                      animate={{
+                        scale: hasLiked ? [1, 1.2, 1] : 1,
+                        y: hasLiked ? [0, -2, 0] : 0,
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        times: [0, 0.2, 1],
+                        ease: "easeInOut"
+                      }}
+                    >
+                      {likes}
+                    </motion.span>
                   </button>
-                </span>
+                </motion.span>
               </LightTooltip>
             </div>
           </div>
