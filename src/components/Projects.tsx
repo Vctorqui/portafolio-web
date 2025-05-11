@@ -110,8 +110,9 @@ export const Projects = ({ project }: any) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="w-full"
     >
-      <Card className='py-4 px-4 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 relative'>
+      <Card className='py-4 px-4 hover:bg-slate-800/50 transition-all duration-300 cursor-pointer bg-white/5 backdrop-blur-sm rounded-xl shadow-lg border border-white/10 relative w-full max-w-full'>
         {project.isPinned && (
           <motion.div
             initial={{ opacity: 0, rotate: 0 }}
@@ -130,14 +131,14 @@ export const Projects = ({ project }: any) => {
             </Box>
           </motion.div>
         )}
-        <div className='flex gap-3'>
+        <div className='flex gap-3 w-full'>
           <Avatar
             alt='Victor Quiñones Profile Picture'
-            className='rounded-full object-cover border-2 border-white/10 hover:border-[#EF5A6F] transition-colors duration-300'
+            className='rounded-full object-cover border-2 border-white/10 hover:border-[#EF5A6F] transition-colors duration-300 flex-shrink-0'
             src={'/images/perfil_profile.webp'}
             sx={{ width: 48, height: 48 }}
           />
-          <div className='flex-1'>
+          <div className='flex-1 min-w-0'>
             <div className='flex items-center gap-2'>
               <span className='font-semibold text-white'>Victor Q</span>
               <span className='text-gray-400'>@victorqui</span>
@@ -154,17 +155,17 @@ export const Projects = ({ project }: any) => {
                 </Typography>
               </Box>
             </Box>
-            <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-lg'>
+            <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-lg break-words'>
               {project.title}
             </p>
-            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed'>
+            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
               {project.english_description}
             </p>
-            <p className='mt-3 font-semibold text-gray-400'>
+            <p className='mt-3 font-semibold text-gray-400 break-words'>
               Stack: <span className='text-white'>{project.stack}</span>
             </p>
             {project.image && (
-              <div className='mt-4 rounded-xl overflow-hidden'>
+              <div className='mt-4 rounded-xl overflow-hidden w-full'>
                 <Image
                   src={project.image}
                   alt={`Picture of ${project.title} project`}
@@ -174,7 +175,7 @@ export const Projects = ({ project }: any) => {
                 />
               </div>
             )}
-            <div className='flex items-center gap-6 mt-4 text-muted-foreground'>
+            <div className='flex items-center gap-6 mt-4 text-muted-foreground w-full'>
               <LightTooltip title='Comments coming soon'>
                 <span className='flex items-center gap-1'>
                   <button
