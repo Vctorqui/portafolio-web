@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp, getApps } from 'firebase/app'
 import {
   getFirestore,
   doc,
@@ -31,7 +31,8 @@ const firebaseConfig = {
   measurementId: FIREBASE_MEASUREMENT,
 }
 
-const app = initializeApp(firebaseConfig)
+// Verificar si ya existe una app antes de inicializar
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0]
 const db = getFirestore(app)
 
 export {

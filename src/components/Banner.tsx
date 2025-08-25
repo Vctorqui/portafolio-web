@@ -12,23 +12,27 @@ import { motion } from 'framer-motion'
 const socialLinks = [
   {
     icon: <File className='w-4 h-4' />,
-    href: './Victor_Quinones_Frontend_Resume.pdf',
+    href: './Frontend_Victor_Quinones_Resume.pdf',
     label: 'Resume',
+    tooltip: 'Download my resume',
   },
   {
     icon: <LinkedIn className='w-4 h-4' />,
     href: 'https://www.linkedin.com/in/victorqui/',
     label: 'LinkedIn',
+    tooltip: 'Go to my LinkedIn profile',
   },
   {
     icon: <GitHub className='w-4 h-4' />,
     href: 'https://github.com/Vctorqui',
     label: 'GitHub',
+    tooltip: 'Go to my GitHub profile',
   },
   {
     icon: <LuCodepen className='w-4 h-4' />,
     href: 'https://codepen.io/vichorq',
     label: 'Codepen',
+    tooltip: 'Go to my Codepen profile',
   },
 ]
 
@@ -75,7 +79,7 @@ const Banner = () => {
         </motion.div>
       </div>
       <div className='pt-20 pb-6 px-4'>
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -83,7 +87,7 @@ const Banner = () => {
         >
           Victor Quiñones
         </motion.h1>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
@@ -100,13 +104,17 @@ const Banner = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
             >
-              <Link
-                href={link.href}
-                className='flex items-center gap-1 hover:text-[#EF5A6F] transition-all duration-300 hover:scale-105'
-              >
-                {link.icon}
-                {link.label}
-              </Link>
+              <LightTooltip title={link.tooltip}>
+                <Link
+                  href={link.href}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='flex items-center gap-1 hover:text-[#EF5A6F] transition-all duration-300 hover:scale-105'
+                >
+                  {link.icon}
+                  {link.label}
+                </Link>
+              </LightTooltip>
             </motion.div>
           ))}
           <motion.div
@@ -128,11 +136,11 @@ const Banner = () => {
           </motion.div>
         </div>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1 }}
-          className='mt-6 text-gray-600 leading-relaxed'
+          className='mt-6 text-gray-400 leading-relaxed'
         >
           Specialized in creating efficient, intuitive, and scalable web
           interfaces. Throughout my journey,{' '}

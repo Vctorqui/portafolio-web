@@ -150,13 +150,13 @@ export const Projects = ({ project }: any) => {
                 </Typography>
               </Box>
             </Box>
-            <p className='mt-2 font-bold whitespace-pre-line text-[#EF5A6F] text-base break-words'>
+            <p className='mt-3 font-bold whitespace-pre-line text-[#EF5A6F] text-base break-words'>
               {project.title}
             </p>
-            {/* <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
+            <p className='mt-3 whitespace-pre-line text-gray-300 leading-relaxed break-words'>
               {project.english_description}
-            </p> */}
-            <p className='mt-2 font-semibold text-gray-400 break-words text-sm'>
+            </p>
+            <p className='mt-3 font-semibold text-[#EF5A6F] break-words text-sm'>
               Stack: <span className='text-white'>{project.stack}</span>
             </p>
             {project.image && (
@@ -171,7 +171,7 @@ export const Projects = ({ project }: any) => {
               </div>
             )}
             <div className='flex items-center gap-6 mt-3 text-muted-foreground w-full'>
-              <LightTooltip title='Comments coming soon'>
+              {/* <LightTooltip title='Comments coming soon'>
                 <span className='flex items-center gap-1'>
                   <button
                     disabled
@@ -181,7 +181,7 @@ export const Projects = ({ project }: any) => {
                     <MessageCircle className='w-4 h-4' />
                   </button>
                 </span>
-              </LightTooltip>
+              </LightTooltip> */}
 
               {project.preview_link && (
                 <div className='flex items-center gap-4'>
@@ -193,6 +193,7 @@ export const Projects = ({ project }: any) => {
                   <LightTooltip title='View project'>
                     <span className='flex items-center gap-1'>
                       <Link
+                        target='_blank'
                         aria-label='Go to project website'
                         style={{ fontSize: 'small' }}
                         rel='noopener noreferrer'
