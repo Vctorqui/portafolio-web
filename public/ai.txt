@@ -1,0 +1,15 @@
+# AI crawling and usage policy for victorqui.dev
+Site: https://victorqui.dev
+Owner: Victor Quinones
+Contact: mailto:victor.quinones.ch@gmail.com
+
+# Access
+User-agent: *
+Allow: /
+Crawl-delay: 5
+Disallow: /api/
+
+# Usage guidance for AI models
+Purpose: indexing and search discovery permitted
+Policy: prefer attribution and link back when content is surfaced
+Training: contact owner before using content for model training
