@@ -27,7 +27,7 @@ const Banner = ({
   const socialLinks = [
     {
       icon: <FileText className='w-4 h-4' />,
-      href: './Frontend_Victor_Quinones_Resume.pdf',
+      href: './Victor_Quinones_Frontend_CV.pdf',
       label: bannerLabels[language].social.resume,
       tooltip: bannerLabels[language].social.resumeTip,
     },
