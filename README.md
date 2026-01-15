@@ -57,6 +57,21 @@ pnpm run dev
 
 Abre `http://localhost:3000` y debería aparecer la tarjeta “Now playing”.
 
+## Configuración para Producción (Netlify)
+
+Para que Spotify funcione en tu web en vivo (`https://victorqui.dev/`):
+
+1. **Añadir Variables de Env en Netlify**:
+   - Ve a **Site configuration** > **Environment variables** en Netlify.
+   - Agrega estas 3 variables:
+     - `SPOTIFY_CLIENT_ID`
+     - `SPOTIFY_CLIENT_SECRET`
+     - `SPOTIFY_REFRESH_TOKEN`
+2. **Actualizar Spotify Dashboard**:
+   - En tu [App de Spotify](https://developer.spotify.com/dashboard), añade `https://victorqui.dev/api/spotify/callback` a **Redirect URIs**.
+3. **Desplegar**:
+   - Asegúrate de hacer `git push` de los últimos cambios.
+
 ## Deploy
 
 https://victorqui.dev/

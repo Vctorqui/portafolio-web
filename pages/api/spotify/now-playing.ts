@@ -9,7 +9,10 @@ export default async function handler(
     const nowPlaying = await getNowPlaying()
 
     // Cache lightly at CDN (Vercel) but always fresh from Spotify
-    res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=60')
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=30, stale-while-revalidate=60'
+    )
 
     if (!nowPlaying.isPlaying) {
       return res.status(200).json({ isPlaying: false })
@@ -17,7 +20,9 @@ export default async function handler(
 
     return res.status(200).json(nowPlaying)
   } catch (error) {
-    // Avoid leaking secrets/details
-    return res.status(200).json({ isPlaying: false })
+    return res.status(200).json({
+      isPlaying: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    })
   }
 }
