@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '@mui/material/Container'
 import { Box, Divider, IconButton, Typography, styled } from '@mui/material'
 import { GitHub, ArrowUpward, LinkedIn } from '@mui/icons-material'
 import Link from 'next/link'
 import { containerWidth } from '@/src/utils/const'
-import { LightTooltip } from '@/src/components/LightToolTip'
+import { TooltipStyled } from '@/src/components/ui/TooltipStyled'
 import { motion } from 'framer-motion'
 import theme from '@/theme/theme'
 
@@ -58,7 +58,20 @@ const FooterBox = styled(Box)(() => ({
   },
 }))
 
+const FooterSectionLg = {
+  es: {
+    contact: '¿Tienes un proyecto en mente? ¡Hablemos!',
+    subtitle: 'Siempre estoy abierto a nuevas oportunidades y colaboraciones',
+  },
+  en: {
+    contact: "Have a project in mind? Let's talk!",
+    subtitle: "I'm always open to new opportunities and collaborations",
+  },
+}
+
 export const Footer = () => {
+  type Language = 'es' | 'en'
+  const [language, setLanguage] = useState<Language>('es')
   return (
     <FooterBox className='bg-slate-950/50 backdrop-blur-sm border-t border-white/10'>
       <Container maxWidth={containerWidth}>
@@ -70,7 +83,7 @@ export const Footer = () => {
             fontWeight={500}
             className='text-lg'
           >
-            Have a project in mind? Let&apos;s talk!
+            {FooterSectionLg[language].contact}
           </Typography>
           <Typography
             textAlign={'center'}
@@ -78,41 +91,43 @@ export const Footer = () => {
             variant='body2'
             className='text-sm'
           >
-            I&apos;m always open to new opportunities and collaborations
+            {FooterSectionLg[language].subtitle}
           </Typography>
           <Box className='socialIcons'>
-            <LightTooltip title='Visit my GitHub'>
+            <TooltipStyled title='Visit my GitHub'>
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
                 <Link
                   href={'https://github.com/Vctorqui'}
                   aria-label='Visit my GitHub profile'
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  title='Follow me on GitHub'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   <GitHub className='iconFooter' fontSize='medium' />
                 </Link>
               </motion.div>
-            </LightTooltip>
-            <LightTooltip title='Connect on LinkedIn'>
+            </TooltipStyled>
+            <TooltipStyled title='Connect on LinkedIn'>
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
                 <Link
                   href={'https://www.linkedin.com/in/victorqui'}
                   aria-label='Visit my LinkedIn profile'
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  title='Connect with me on LinkedIn'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   <LinkedIn className='iconFooter' fontSize='medium' />
                 </Link>
               </motion.div>
-            </LightTooltip>
+            </TooltipStyled>
           </Box>
         </Box>
         <Box
@@ -124,17 +139,17 @@ export const Footer = () => {
             })
           }}
         >
-          <Typography 
-            variant='body2' 
+          <Typography
+            variant='body2'
             color='#94a3b8'
             className='text-sm hover:text-[#EF5A6F] transition-colors'
           >
             Back to top
           </Typography>
-          <IconButton 
-            className='btnTop' 
+          <IconButton
+            className='btnTop'
             aria-label='Back to top of the page'
-            size="small"
+            size='small'
           >
             <ArrowUpward fontSize='small' />
           </IconButton>

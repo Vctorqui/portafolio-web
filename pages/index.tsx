@@ -8,6 +8,9 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '@/src/firebase/config'
 import Banner from '@/src/components/Banner'
 import { Projects } from '@/src/components/Projects'
+import { SpotifyNowPlaying } from '@/src/components/SpotifyNowPlaying'
+
+import { Language } from '@/src/types'
 
 export async function getServerSideProps() {
   const projectsCollection = collection(db, 'projects')
@@ -26,7 +29,7 @@ export async function getServerSideProps() {
 }
 
 const Index = ({ projects }: any) => {
-  const [changeLang, setChangeLang] = useState(false)
+  const [language, setLanguage] = useState<Language>('es')
   const [value, setValue] = useState('Projects')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -34,54 +37,24 @@ const Index = ({ projects }: any) => {
   }
 
   return (
-    <Layout changeLang={changeLang}>
-      <Banner />
-      <main className='max-w-2xl mx-auto'>
+    <Layout language={language} onLanguageChange={setLanguage}>
+      <Banner language={language} activeTab={value} onTabChange={setValue} />
+      <main className='max-w-3xl mx-auto'>
         <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList
-              className='w-full bg-slate-950 border-b border-none justify-center '
-              centered
-              textColor='secondary'
-              indicatorColor='secondary'
-              onChange={handleChange}
-              aria-label='Tabs list portfolio options'
-            >
-              <Tab
-                className='flex-1 font-black'
-                label='Projects'
-                value='Projects'
-                aria-label='Projects'
-              />
-              <Tab
-                className='flex-1 font-black'
-                label='Experience'
-                value='Experience'
-                aria-label='Experience'
-              />
-              <Tab
-                className='flex-1 font-black'
-                label='About Me'
-                value='Me'
-                aria-label='About me'
-              />
-            </TabList>
-          </Box>
-
           <TabPanel sx={{ padding: 0 }} value='Projects'>
             <section className='project-section space-y-4 py-4'>
               {projects.map((project: any, i: any) => {
                 return (
-                  <Projects key={i} project={project} changeLang={changeLang} />
+                  <Projects key={i} project={project} language={language} />
                 )
               })}
             </section>
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value='Experience'>
-            <Experience />
+            <Experience language={language} />
           </TabPanel>
           <TabPanel sx={{ padding: 0 }} value='Me'>
-            <AboutMe />
+            <AboutMe language={language} />
           </TabPanel>
         </TabContext>
       </main>

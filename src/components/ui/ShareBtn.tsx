@@ -7,18 +7,30 @@ import {
   MenuItem,
   Snackbar,
 } from '@mui/material'
-import { WhatsApp, Link, Repeat, LinkedIn } from '@mui/icons-material'
+import {
+  WhatsApp,
+  Link,
+  Repeat,
+  LinkedIn,
+  ShareOutlined,
+} from '@mui/icons-material'
 import { useState } from 'react'
-import { LightTooltip } from './LightToolTip'
+import { TooltipStyled } from './TooltipStyled'
 import { motion } from 'framer-motion'
 
 interface ShareBtnProps {
   insert: string
   classTailwind: any
   content: string
+  isLimited?: boolean
 }
 
-export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
+export const ShareBtn = ({
+  content,
+  insert,
+  classTailwind,
+  isLimited = false,
+}: ShareBtnProps) => {
   const [snackbarCopy, setSnackbarCopy] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const menuOpen = Boolean(anchorEl)
@@ -59,11 +71,11 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
     <>
       {insert ? (
         <div>
-          <LightTooltip title='Share'>
+          <TooltipStyled title='Share'>
             <motion.span
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               <IconButton
                 className={classTailwind}
@@ -74,13 +86,13 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
                 aria-expanded={menuOpen ? 'true' : undefined}
                 onClick={handleClick}
               >
-                <Repeat
+                <ShareOutlined
                   fontSize='small'
-                  className='text-gray-400 hover:text-[#EF5A6F] transition-colors'
+                  className='text-gray-400 hover:text-cyan-400 transition-colors'
                 />
               </IconButton>
             </motion.span>
-          </LightTooltip>
+          </TooltipStyled>
           <Menu
             id='fade-menu'
             MenuListProps={{
@@ -92,14 +104,33 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
             TransitionComponent={Fade}
             PaperProps={{
               sx: {
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                backgroundColor: 'rgba(8, 8, 8, 0.95)',
                 backdropFilter: 'blur(8px)',
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '12px',
                 mt: 1,
-              }
+              },
             }}
           >
+            {!isLimited && (
+              <MenuItem
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: 'rgba(34, 211, 238, 0.1)',
+                  },
+                  padding: '8px 16px',
+                }}
+                id='linkedin'
+                onClick={handleShare}
+              >
+                <LinkedIn fontSize='small' sx={{ color: '#22d3ee' }} />
+                <ListItemText primary='LinkedIn' sx={{ color: 'white' }} />
+              </MenuItem>
+            )}
             <MenuItem
               sx={{
                 display: 'flex',
@@ -107,44 +138,15 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
                 gap: '8px',
                 color: 'white',
                 '&:hover': {
-                  backgroundColor: 'rgba(239, 90, 111, 0.1)',
-                },
-                padding: '8px 16px',
-              }}
-              id='linkedin'
-              onClick={handleShare}
-            >
-              <LinkedIn
-                fontSize='small'
-                sx={{ color: '#EF5A6F' }}
-              />
-              <ListItemText
-                primary='LinkedIn'
-                sx={{ color: 'white' }}
-              />
-            </MenuItem>
-            <MenuItem
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'white',
-                '&:hover': {
-                  backgroundColor: 'rgba(239, 90, 111, 0.1)',
+                  backgroundColor: 'rgba(34, 211, 238, 0.1)',
                 },
                 padding: '8px 16px',
               }}
               id='whatsapp'
               onClick={handleShare}
             >
-              <WhatsApp
-                fontSize='small'
-                sx={{ color: '#EF5A6F' }}
-              />
-              <ListItemText
-                primary='WhatsApp'
-                sx={{ color: 'white' }}
-              />
+              <WhatsApp fontSize='small' sx={{ color: '#22d3ee' }} />
+              <ListItemText primary='WhatsApp' sx={{ color: 'white' }} />
             </MenuItem>
             <MenuItem
               sx={{
@@ -153,21 +155,15 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
                 gap: '8px',
                 color: 'white',
                 '&:hover': {
-                  backgroundColor: 'rgba(239, 90, 111, 0.1)',
+                  backgroundColor: 'rgba(34, 211, 238, 0.1)',
                 },
                 padding: '8px 16px',
               }}
               id='copy'
               onClick={handleShare}
             >
-              <Link
-                fontSize='small'
-                sx={{ color: '#EF5A6F' }}
-              />
-              <ListItemText
-                primary='Copy Link'
-                sx={{ color: 'white' }}
-              />
+              <Link fontSize='small' sx={{ color: '#22d3ee' }} />
+              <ListItemText primary='Copy Link' sx={{ color: 'white' }} />
             </MenuItem>
           </Menu>
         </div>
@@ -182,10 +178,12 @@ export const ShareBtn = ({ content, insert, classTailwind }: ShareBtnProps) => {
           severity='success'
           variant='filled'
           sx={{
-            backgroundColor: '#EF5A6F',
+            backgroundColor: '#22d3ee',
+            color: '#080808',
             '& .MuiAlert-icon': {
-              color: 'white'
-            }
+              color: '#080808',
+            },
+            fontWeight: 'bold',
           }}
         >
           Link copied successfully

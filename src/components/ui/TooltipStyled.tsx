@@ -1,7 +1,7 @@
 import { styled } from '@mui/material'
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip'
 
-export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
+export const TooltipStyled = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.tooltip}`]: {
@@ -12,7 +12,8 @@ export const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
     fontSize: 12,
     padding: '8px 12px',
     borderRadius: '8px',
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+    boxShadow:
+      '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
   [`& .${tooltipClasses.arrow}`]: {
     color: 'rgba(255, 255, 255, 0.05)',

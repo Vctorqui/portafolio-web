@@ -4,7 +4,7 @@ interface IconProps {
   width?: any
   height?: any
   additionalClassName?: any
-  color: any
+  color?: any
 }
 
 export const LinkedinIcon = ({
@@ -59,5 +59,20 @@ export const SoundIcon = ({
     className={additionalClassName}
   >
     <path d='M12 3a9 9 0 0 0-9 9v7c0 1.1.9 2 2 2h4v-8H5v-1c0-3.87 3.13-7 7-7s7 3.13 7 7v1h-4v8h4c1.1 0 2-.9 2-2v-7a9 9 0 0 0-9-9' />
+  </svg>
+)
+
+export const SpotifyIcon = ({
+  width,
+  height,
+  additionalClassName,
+}: IconProps) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width={width}
+    height={height}
+    className={additionalClassName}
+  >
+    <path d='M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.492 17.293a.75.75 0 01-1.031.25 15.11 15.11 0 00-6.738-1.802c-1.353 0-2.671.21-3.916.621a.75.75 0 01-.469-1.427 16.61 16.61 0 014.385-.694c2.508 0 4.885.666 6.519 1.551a.75.75 0 01.25 1.031zm1.464-3.259a.938.938 0 01-1.288.312 18.89 18.89 0 00-8.423-2.253c-1.745 0-3.418.257-4.97.747a.938.938 0 11-.58-1.782 20.76 20.76 0 015.55-.84c3.134 0 6.107.833 8.4 1.939a.938.938 0 01.311 1.289V14.034zM19.08 10.65a1.125 1.125 0 01-1.545.375c-2.825-1.678-7.14-2.126-9.682-1.354a1.125 1.125 0 01-.66-2.153c3.08-.936 7.848-.432 11.1 1.5a1.125 1.125 0 01.387 1.632z' />
   </svg>
 )
