@@ -67,13 +67,16 @@ const Banner = ({
     >
       <div className='h-48 relative overflow-hidden'>
         <div className='w-full h-full'>
-          <Image
-            width={800}
-            height={400}
-            alt='banner background'
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload='metadata'
             className='w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 opacity-40'
-            src='/images/banner-gif.gif'
-          />
+          >
+            <source src='/images/banner.mp4' type='video/mp4' />
+          </video>
           <div className='absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent' />
         </div>
         <div className='absolute top-4 right-4'>

@@ -12,7 +12,7 @@ import { SpotifyNowPlaying } from '@/src/components/SpotifyNowPlaying'
 
 import { Language } from '@/src/types'
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const projectsCollection = collection(db, 'projects')
   const q = query(projectsCollection, orderBy('order', 'asc'))
   const projectSnapshot = await getDocs(q)
@@ -25,6 +25,8 @@ export async function getServerSideProps() {
     props: {
       projects,
     },
+    // ISR: Regenerate page every 5 minutes if there's a request
+    revalidate: 300,
   }
 }
 
