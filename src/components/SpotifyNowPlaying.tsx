@@ -48,8 +48,7 @@ export function SpotifyNowPlaying({ language }: { language: Language }) {
     artist: 'Jon Bellion',
     album: 'Glory Sound Prep',
     songUrl: 'https://open.spotify.com/track/69vToOV9p9Y6I7O58Yoy9C',
-    albumImageUrl:
-      'https://cdn-images.dzcdn.net/images/cover/d9ded5e477aafb7f680d5a0bcdc010ea/0x1900-000000-80-0-0.jpg',
+    albumImageUrl: '/images/jon-bellion-album.webp',
   }
 
   const currentData = data?.isPlaying ? data : fallbackData
