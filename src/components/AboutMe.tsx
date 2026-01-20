@@ -1,4 +1,4 @@
-import { Tweet } from './ui/Tweet'
+import { Tweet } from './shared/Tweet'
 
 import { Language } from '../types'
 import { aboutMeLabels } from '../constants'

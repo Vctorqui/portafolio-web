@@ -7,7 +7,7 @@ import {
   arrayRemove,
 } from '@/src/firebase/config'
 import { useEffect, useState, useCallback } from 'react'
-import { Tweet } from './ui/Tweet'
+import { Tweet } from './shared/Tweet'
 
 type Language = 'es' | 'en'
 

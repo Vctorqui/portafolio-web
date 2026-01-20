@@ -1,6 +1,6 @@
 import { Language, Experience as ExperienceType } from '../types'
 import { experiences } from '../constants'
-import { Tweet } from './ui/Tweet'
+import { Tweet } from './shared/Tweet'
 
 export const Experience = ({ language }: { language: Language }) => {
   const shareMsg =

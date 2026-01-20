@@ -4,7 +4,7 @@ import { Box, Divider, IconButton, Typography, styled } from '@mui/material'
 import { GitHub, ArrowUpward, LinkedIn } from '@mui/icons-material'
 import Link from 'next/link'
 import { containerWidth } from '@/src/utils/const'
-import { TooltipStyled } from '@/src/components/ui/TooltipStyled'
+import { TooltipStyled } from '@/src/components/shared/TooltipStyled'
 import { motion } from 'framer-motion'
 import theme from '@/theme/theme'
 

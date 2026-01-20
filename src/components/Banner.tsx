@@ -11,7 +11,7 @@ import { SpotifyNowPlaying } from './SpotifyNowPlaying'
 import { TimeZone } from './TimeZone'
 import { Language } from '../types'
 import { bannerLabels, techStack } from '../constants'
-import { TooltipStyled } from './ui/TooltipStyled'
+import { TooltipStyled } from './shared/TooltipStyled'
 
 const Banner = ({
   language,

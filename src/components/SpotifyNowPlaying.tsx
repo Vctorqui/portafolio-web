@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import { TooltipStyled } from './ui/TooltipStyled'
+import { TooltipStyled } from './shared/TooltipStyled'
 
 function SoundWaves({ isPlaying }: { isPlaying: boolean }) {
   const animationClass = isPlaying
@@ -32,7 +32,7 @@ function SoundWaves({ isPlaying }: { isPlaying: boolean }) {
 
 export function SpotifyNowPlaying({ language }: { language: Language }) {
   const { data, isLoading, refetch } = useFetch<NowPlayingResponse>(
-    '/api/spotify/now-playing'
+    '/api/spotify/now-playing',
   )
 
   useEffect(() => {
