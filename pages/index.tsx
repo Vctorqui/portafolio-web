@@ -1,16 +1,41 @@
-import { AboutMe } from '@/src/components/AboutMe'
-import { Experience } from '@/src/components/Experience'
 import { Layout } from '@/src/layouts/Public'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { Box, Tab } from '@mui/material'
 import React, { useState } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '@/src/firebase/config'
 import Banner from '@/src/components/Banner'
 import { Projects } from '@/src/components/Projects'
-import { SpotifyNowPlaying } from '@/src/components/SpotifyNowPlaying'
+import dynamic from 'next/dynamic'
 
 import { Language } from '@/src/types'
+
+const Experience = dynamic(
+  () =>
+    import('@/src/components/Experience').then((mod) => ({
+      default: mod.Experience,
+    })),
+  {
+    loading: () => (
+      <div className='flex justify-center items-center py-20'>
+        <div className='text-white/40'>Loading...</div>
+      </div>
+    ),
+  },
+)
+
+const AboutMe = dynamic(
+  () =>
+    import('@/src/components/AboutMe').then((mod) => ({
+      default: mod.AboutMe,
+    })),
+  {
+    loading: () => (
+      <div className='flex justify-center items-center py-20'>
+        <div className='text-white/40'>Loading...</div>
+      </div>
+    ),
+  },
+)
 
 export async function getStaticProps() {
   const projectsCollection = collection(db, 'projects')
@@ -25,7 +50,6 @@ export async function getStaticProps() {
     props: {
       projects,
     },
-    // ISR: Regenerate page every 5 minutes if there's a request
     revalidate: 300,
   }
 }
@@ -33,10 +57,6 @@ export async function getStaticProps() {
 const Index = ({ projects }: any) => {
   const [language, setLanguage] = useState<Language>('es')
   const [value, setValue] = useState('Projects')
-
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
 
   return (
     <Layout language={language} onLanguageChange={setLanguage}>

@@ -3,8 +3,10 @@
 import { useEffect, useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sun, CloudSun, Moon, LucideIcon } from 'lucide-react'
+import { Language } from '../types'
+import { bannerLabels } from '../constants'
 
-export function TimeZone() {
+export function TimeZone({ language }: { language: Language }) {
   const [myTime, setMyTime] = useState<string>('')
   const [myDay, setMyDay] = useState<string>('')
   const [hour, setHour] = useState<number>(0)
@@ -13,26 +15,32 @@ export function TimeZone() {
     const updateTime = () => {
       const now = new Date()
       // Venezuela timezone
-      const myFormatter = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Caracas',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      })
-      const myDayFormatter = new Intl.DateTimeFormat('en-US', {
-        timeZone: 'America/Caracas',
-        weekday: 'long',
-        month: 'short',
-        day: 'numeric',
-      })
+      const myFormatter = new Intl.DateTimeFormat(
+        language === 'es' ? 'es-VE' : 'en-US',
+        {
+          timeZone: 'America/Caracas',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        },
+      )
+      const myDayFormatter = new Intl.DateTimeFormat(
+        language === 'es' ? 'es-VE' : 'en-US',
+        {
+          timeZone: 'America/Caracas',
+          weekday: 'long',
+          month: 'short',
+          day: 'numeric',
+        },
+      )
 
       const caracasHour = parseInt(
         new Intl.DateTimeFormat('en-US', {
           timeZone: 'America/Caracas',
           hour: 'numeric',
           hour12: false,
-        }).format(now)
+        }).format(now),
       )
 
       setMyTime(myFormatter.format(now))
@@ -43,7 +51,7 @@ export function TimeZone() {
     updateTime()
     const interval = setInterval(updateTime, 1000)
     return () => clearInterval(interval)
-  }, [])
+  }, [language])
 
   const timeTheme = useMemo(() => {
     if (hour >= 6 && hour < 12) {
@@ -102,8 +110,8 @@ export function TimeZone() {
                 hour >= 6 && hour < 12
                   ? 'morning'
                   : hour >= 12 && hour < 18
-                  ? 'afternoon'
-                  : 'night'
+                    ? 'afternoon'
+                    : 'night'
               }
               initial={{ y: 20, opacity: 0, rotate: -45 }}
               animate={{ y: 0, opacity: 1, rotate: 0 }}
@@ -120,7 +128,7 @@ export function TimeZone() {
       </div>
       <div className='flex flex-col'>
         <div className='text-[9px] font-bold text-white/40 tracking-tighter uppercase'>
-          Mi tiempo
+          {bannerLabels[language].myTimeLabel}
         </div>
         <div className='text-sm font-black text-white tracking-widest font-mono uppercase'>
           {myTime}

@@ -218,6 +218,8 @@ export const Tweet = ({
                   src={image}
                   alt={content}
                   fill
+                  priority={isPinned}
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                   className='object-contain group-hover/image:scale-110 transition-transform duration-700'
                 />
 

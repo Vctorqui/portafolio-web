@@ -20,6 +20,7 @@ export const bannerLabels: Record<string, BannerLabels> = {
       about: 'ABOUT ME',
     },
     copySuccess: 'Email copied successfully',
+    myTimeLabel: 'My time',
   },
   es: {
     role: 'Desarrollador Frontend',
@@ -40,6 +41,7 @@ export const bannerLabels: Record<string, BannerLabels> = {
       about: 'SOBRE MÍ',
     },
     copySuccess: 'Email copiado correctamente',
+    myTimeLabel: 'Mi tiempo',
   },
 }
 

@@ -1,0 +1,16 @@
+# Browsers that we support
+# This targets modern browsers and reduces the need for polyfills
+
+# Modern browsers (last 2 versions)
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Exclude dead browsers and very old versions
+not dead
+not IE 11
+not op_mini all
+
+# Minimum market share
+> 0.5%

@@ -30,6 +30,7 @@ export interface BannerLabels {
     about: string
   }
   copySuccess: string
+  myTimeLabel: string
 }
 
 export interface AboutMeLabels {

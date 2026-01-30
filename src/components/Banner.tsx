@@ -7,11 +7,22 @@ import { useState } from 'react'
 import { LuCodepen } from 'react-icons/lu'
 import { File, FileText, Sun } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { SpotifyNowPlaying } from './SpotifyNowPlaying'
+import dynamic from 'next/dynamic'
 import { TimeZone } from './TimeZone'
 import { Language } from '../types'
 import { bannerLabels, techStack } from '../constants'
 import { TooltipStyled } from './shared/TooltipStyled'
+
+const SpotifyNowPlaying = dynamic(
+  () =>
+    import('./SpotifyNowPlaying').then((mod) => ({
+      default: mod.SpotifyNowPlaying,
+    })),
+  {
+    ssr: false,
+    loading: () => <div className='w-8 h-8' />,
+  },
+)
 
 const Banner = ({
   language,
@@ -25,12 +36,6 @@ const Banner = ({
   const [snackbarCopy, setSnackbarCopy] = useState(false)
 
   const socialLinks = [
-    {
-      icon: <FileText className='w-4 h-4' />,
-      href: './Victor_Quinones_Frontend_CV.pdf',
-      label: bannerLabels[language].social.resume,
-      tooltip: bannerLabels[language].social.resumeTip,
-    },
     {
       icon: <LinkedIn className='w-4 h-4' />,
       href: 'https://www.linkedin.com/in/victorqui/',
@@ -72,7 +77,9 @@ const Banner = ({
             loop
             muted
             playsInline
-            preload='metadata'
+            preload='auto'
+            // @ts-ignore - fetchPriority is valid but not in React types yet
+            fetchPriority='high'
             className='w-full h-full object-cover transform hover:scale-110 transition-transform duration-700 opacity-40'
           >
             <source src='/images/banner.mp4' type='video/mp4' />
@@ -80,7 +87,7 @@ const Banner = ({
           <div className='absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent' />
         </div>
         <div className='absolute top-4 right-4'>
-          <TimeZone />
+          <TimeZone language={language} />
         </div>
       </div>
 
@@ -137,6 +144,23 @@ const Banner = ({
           </div>
 
           <div className='flex flex-wrap gap-x-4 gap-y-2 mb-6 text-white/40 text-[10px] font-bold uppercase tracking-wider'>
+            <TooltipStyled title={bannerLabels[language].social.resumeTip}>
+              <Link
+                href={
+                  language === 'es'
+                    ? '/Victor_Quinones_Frontend_CV.pdf'
+                    : '/Victor_Quinones_Frontend_Resume.pdf'
+                }
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex items-center gap-2 hover:text-cyan-400 transition-all duration-300 group'
+              >
+                <span className='group-hover:scale-110 transition-transform'>
+                  <FileText className='w-4 h-4' />
+                </span>
+                <span>{bannerLabels[language].social.resume}</span>
+              </Link>
+            </TooltipStyled>
             {socialLinks.map((link) => (
               <TooltipStyled key={link.label} title={link.tooltip}>
                 <Link
