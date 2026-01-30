@@ -52,9 +52,9 @@ export const experiences: Experience[] = [
     english_date: 'February 2023 - Present',
     spanish_date: 'Febrero 2023 - Actualmente',
     spanish_description:
-      'Arquitecto de soluciones web de alto impacto utilizando <span class="font-bold text-[#EF5A6F]">React.js</span> y <span class="font-bold text-[#EF5A6F]">Next.js</span>. Enfoque en la creación de interfaces premium con alto rendimiento y <span class="font-bold text-[#EF5A6F]">SEO</span> avanzado. Implementación de soluciones robustas integrando servicios modernos como <span class="font-bold text-[#EF5A6F]">Firebase</span> y <span class="font-bold text-[#EF5A6F]">MongoDB</span>.',
+      'Desarrollo soluciones web de alto impacto utilizando <span class="font-bold text-[#EF5A6F]">React.js</span> y <span class="font-bold text-[#EF5A6F]">Next.js</span>. Enfoque en la creación de interfaces premium con alto rendimiento y <span class="font-bold text-[#EF5A6F]">SEO</span> avanzado. Implementación de soluciones robustas integrando servicios modernos como <span class="font-bold text-[#EF5A6F]">Firebase</span> y <span class="font-bold text-[#EF5A6F]">MongoDB</span>.',
     english_description:
-      'Architecting high-impact web solutions using <span class="font-bold text-[#EF5A6F]">React.js</span> and <span class="font-bold text-[#EF5A6F]">Next.js</span>. Focused on delivering premium interfaces with peak performance and advanced <span class="font-bold text-[#EF5A6F]">SEO</span>. Implementing robust solutions by integrating modern services like <span class="font-bold text-[#EF5A6F]">Firebase</span> and <span class="font-bold text-[#EF5A6F]">MongoDB</span>.',
+      'Developed high-impact web solutions using <span class="font-bold text-[#EF5A6F]">React.js</span> and <span class="font-bold text-[#EF5A6F]">Next.js</span>. Focused on delivering premium interfaces with peak performance and advanced <span class="font-bold text-[#EF5A6F]">SEO</span>. Implementing robust solutions by integrating modern services like <span class="font-bold text-[#EF5A6F]">Firebase</span> and <span class="font-bold text-[#EF5A6F]">MongoDB</span>.',
     stacks: [
       'Next.js',
       'React',

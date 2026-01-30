@@ -49,7 +49,7 @@ export const Layout = ({
         {children}
       </Box>
       <Chat language={language} />
-      <Footer />
+      <Footer language={language} />
     </>
   )
 }

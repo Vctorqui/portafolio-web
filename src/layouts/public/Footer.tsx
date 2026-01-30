@@ -7,6 +7,7 @@ import { containerWidth } from '@/src/utils/const'
 import { TooltipStyled } from '@/src/components/shared/TooltipStyled'
 import { motion } from 'framer-motion'
 import theme from '@/theme/theme'
+import { Language } from '@/src/types'
 
 const FooterBox = styled(Box)(() => ({
   padding: '2rem 0',
@@ -69,9 +70,7 @@ const FooterSectionLg = {
   },
 }
 
-export const Footer = () => {
-  type Language = 'es' | 'en'
-  const [language, setLanguage] = useState<Language>('es')
+export const Footer = ({ language }: { language: Language }) => {
   return (
     <FooterBox className='bg-slate-950/50 backdrop-blur-sm border-t border-white/10'>
       <Container maxWidth={containerWidth}>
@@ -130,6 +129,7 @@ export const Footer = () => {
             </TooltipStyled>
           </Box>
         </Box>
+        {/* 
         <Box
           className='boxBtnUp'
           onClick={() => {
@@ -154,6 +154,7 @@ export const Footer = () => {
             <ArrowUpward fontSize='small' />
           </IconButton>
         </Box>
+*/}
       </Container>
     </FooterBox>
   )
