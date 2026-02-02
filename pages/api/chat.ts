@@ -64,7 +64,7 @@ Guidelines:
   })
 
   const result = streamText({
-    model: googleAI('gemini-2.5-flash'),
+    model: googleAI('gemini-2.5-flash-lite'),
     messages,
     system: systemPrompt,
   })
