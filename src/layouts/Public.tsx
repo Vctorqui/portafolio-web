@@ -48,7 +48,7 @@ export const Layout = ({
       <Box minHeight={'calc(100vh - 123px)'} sx={sx}>
         {children}
       </Box>
-      <Chat language={language} />
+      {/* <Chat language={language} /> */}
       <Footer language={language} />
     </>
   )
