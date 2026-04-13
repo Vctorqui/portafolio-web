@@ -116,7 +116,7 @@ const Banner = ({
         </motion.div>
 
         <div className='pt-20 pb-8'>
-          <div className='flex align-center justify-between'>
+          <div className='flex flex-col md:flex-row align-center justify-between'>
             <div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
