@@ -11,6 +11,12 @@ export interface Experience {
   stacks: string[]
 }
 
+export interface StatusCard {
+  label: string
+  value: string
+  sub: string
+}
+
 export interface BannerLabels {
   role: string
   bio_start: string
@@ -24,6 +30,7 @@ export interface BannerLabels {
     emailTip: string
   }
   techStackLabel: string
+  statusCards: StatusCard[]
   tabs: {
     projects: string
     experience: string

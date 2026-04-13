@@ -14,6 +14,23 @@ export const bannerLabels: Record<string, BannerLabels> = {
       emailTip: 'Copy email',
     },
     techStackLabel: 'TECH STACK',
+    statusCards: [
+      {
+        label: 'CURRENT_PROJECT',
+        value: 'Share IT',
+        sub: 'Community platform',
+      },
+      {
+        label: 'CURRENT_JOB',
+        value: 'Frontend Software Developer',
+        sub: 'Acid Labs | Santiago, Chile (Remote)',
+      },
+      {
+        label: 'CURRENT_VIDEO_GAME',
+        value: 'Marvel Spider-Man 2',
+        sub: 'PS5',
+      },
+    ],
     tabs: {
       projects: 'PROJECTS',
       experience: 'EXPERIENCE',
@@ -35,6 +52,23 @@ export const bannerLabels: Record<string, BannerLabels> = {
       emailTip: 'Copiar email',
     },
     techStackLabel: 'TECH STACK',
+    statusCards: [
+      {
+        label: 'PROYECTO_ACTUAL',
+        value: 'Share IT',
+        sub: 'Plataforma comunitaria',
+      },
+      {
+        label: 'TRABAJO_ACTUAL',
+        value: 'Frontend Software Developer',
+        sub: 'Acid Labs · Santiago, Chile (Remoto)',
+      },
+      {
+        label: 'JUEGO_ACTUAL',
+        value: 'Marvel Spider-Man 2',
+        sub: 'PS5',
+      },
+    ],
     tabs: {
       projects: 'PROYECTOS',
       experience: 'EXPERIENCIA',
