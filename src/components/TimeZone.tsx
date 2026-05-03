@@ -16,9 +16,9 @@ export function TimeZone({ language }: { language: Language }) {
       const now = new Date()
       // Venezuela timezone
       const myFormatter = new Intl.DateTimeFormat(
-        language === 'es' ? 'es-VE' : 'en-US',
+        language === 'es' ? 'es-CL' : 'en-US',
         {
-          timeZone: 'America/Caracas',
+          timeZone: 'America/Santiago',
           hour: '2-digit',
           minute: '2-digit',
           second: '2-digit',
@@ -26,9 +26,9 @@ export function TimeZone({ language }: { language: Language }) {
         },
       )
       const myDayFormatter = new Intl.DateTimeFormat(
-        language === 'es' ? 'es-VE' : 'en-US',
+        language === 'es' ? 'es-CL' : 'en-US',
         {
-          timeZone: 'America/Caracas',
+          timeZone: 'America/Santiago',
           weekday: 'long',
           month: 'short',
           day: 'numeric',
@@ -37,7 +37,7 @@ export function TimeZone({ language }: { language: Language }) {
 
       const caracasHour = parseInt(
         new Intl.DateTimeFormat('en-US', {
-          timeZone: 'America/Caracas',
+          timeZone: 'America/Santiago',
           hour: 'numeric',
           hour12: false,
         }).format(now),
