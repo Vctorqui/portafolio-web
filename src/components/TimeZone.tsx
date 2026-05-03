@@ -134,7 +134,7 @@ export function TimeZone({ language }: { language: Language }) {
           {myTime}
         </div>
         <div className='text-[8px] font-bold text-white/40 tracking-tighter uppercase'>
-          {myDay} • VET (UTC-4)
+          {myDay} • CL (UTC-4)
         </div>
       </div>
     </motion.div>
