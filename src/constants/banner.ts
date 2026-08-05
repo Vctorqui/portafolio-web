@@ -11,7 +11,7 @@ export const bannerLabels: Record<string, BannerLabels> = {
       linkedinTip: 'Go to my LinkedIn profile',
       githubTip: 'Go to my GitHub profile',
       codepenTip: 'Go to my Codepen profile',
-      emailTip: 'Copy email',
+      emailTip: 'Send email',
     },
     techStackLabel: 'TECH STACK',
     statusCards: [
@@ -22,8 +22,8 @@ export const bannerLabels: Record<string, BannerLabels> = {
       },
       {
         label: 'CURRENT_JOB',
-        value: 'Frontend Software Developer',
-        sub: 'Acid Labs | Santiago, Chile (Remote)',
+        value: 'Frontend Developer',
+        sub: 'Acid Labs / Cencosud · Santiago, Chile',
       },
       {
         label: 'CURRENT_VIDEO_GAME',
@@ -49,7 +49,7 @@ export const bannerLabels: Record<string, BannerLabels> = {
       linkedinTip: 'Ver mi perfil de LinkedIn',
       githubTip: 'Ver mi perfil de GitHub',
       codepenTip: 'Ver mi perfil de Codepen',
-      emailTip: 'Copiar email',
+      emailTip: 'Enviar email',
     },
     techStackLabel: 'TECH STACK',
     statusCards: [
@@ -60,8 +60,8 @@ export const bannerLabels: Record<string, BannerLabels> = {
       },
       {
         label: 'TRABAJO_ACTUAL',
-        value: 'Frontend Software Developer',
-        sub: 'Acid Labs · Santiago, Chile (Remoto)',
+        value: 'Frontend Developer',
+        sub: 'Acid Labs / Cencosud · Santiago, Chile',
       },
       {
         label: 'JUEGO_ACTUAL',

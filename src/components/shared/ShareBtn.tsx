@@ -10,7 +10,6 @@ import {
 import {
   WhatsApp,
   Link,
-  Repeat,
   LinkedIn,
   ShareOutlined,
 } from '@mui/icons-material'
@@ -20,9 +19,41 @@ import { motion } from 'framer-motion'
 
 interface ShareBtnProps {
   insert: string
-  classTailwind: any
+  classTailwind: string
   content: string
   isLimited?: boolean
+}
+
+const menuPaperSx = {
+  backgroundColor: 'var(--color-paper)',
+  border: '1px solid var(--color-rule)',
+  borderRadius: 0,
+  boxShadow: 'none',
+  mt: 0.5,
+  py: 0,
+}
+
+const menuItemSx = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  color: 'var(--color-ink)',
+  fontFamily: 'var(--font-mono)',
+  fontSize: '0.8125rem',
+  padding: '10px 14px',
+  minHeight: 0,
+  '&:hover': {
+    backgroundColor: 'var(--color-paper-2)',
+  },
+  '& .MuiListItemText-primary': {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '0.8125rem',
+    color: 'var(--color-ink)',
+  },
+  '& .MuiSvgIcon-root': {
+    color: 'var(--color-ink-2)',
+    fontSize: '1.05rem',
+  },
 }
 
 export const ShareBtn = ({
@@ -34,156 +65,123 @@ export const ShareBtn = ({
   const [snackbarCopy, setSnackbarCopy] = useState(false)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const menuOpen = Boolean(anchorEl)
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
+
   const handleClose = () => {
     setAnchorEl(null)
   }
 
-  const handleShare = (e: any) => {
+  const handleShare = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
-    let link
     const encodedAhref = encodeURIComponent(insert)
     const encodedContent = encodeURIComponent(content)
+
     switch (e.currentTarget.id) {
       case 'linkedin':
-        link = `https://www.linkedin.com/sharing/share-offsite/?url=${insert}`
-        open(link)
+        open(`https://www.linkedin.com/sharing/share-offsite/?url=${insert}`)
         break
-
       case 'whatsapp':
-        link = `https://wa.me/?text=${encodedContent}${encodedAhref}`
-        open(link)
+        open(`https://wa.me/?text=${encodedContent}${encodedAhref}`)
         break
-
       case 'copy':
         navigator.clipboard.writeText(insert)
         handleClose()
         setSnackbarCopy(true)
         break
-
       default:
         break
     }
   }
+
+  if (!insert) return null
+
   return (
     <>
-      {insert ? (
-        <div>
-          <TooltipStyled title='Share'>
-            <motion.span
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 17 }}
-            >
-              <IconButton
-                className={classTailwind}
-                id='fade-button'
-                aria-label='click to share the posts'
-                aria-controls={menuOpen ? 'fade-menu' : undefined}
-                aria-haspopup='true'
-                aria-expanded={menuOpen ? 'true' : undefined}
-                onClick={handleClick}
-              >
-                <ShareOutlined
-                  fontSize='small'
-                  className='text-gray-400 hover:text-cyan-400 transition-colors'
-                />
-              </IconButton>
-            </motion.span>
-          </TooltipStyled>
-          <Menu
-            id='fade-menu'
-            MenuListProps={{
-              'aria-labelledby': 'fade-button',
-            }}
-            anchorEl={anchorEl}
-            open={menuOpen}
-            onClose={handleClose}
-            TransitionComponent={Fade}
-            PaperProps={{
-              sx: {
-                backgroundColor: 'rgba(8, 8, 8, 0.95)',
-                backdropFilter: 'blur(8px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '12px',
-                mt: 1,
-              },
-            }}
+      <div>
+        <TooltipStyled title='Share' enterDelay={200}>
+          <motion.span
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+            className='inline-flex'
           >
-            {!isLimited && (
-              <MenuItem
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: 'white',
-                  '&:hover': {
-                    backgroundColor: 'rgba(34, 211, 238, 0.1)',
-                  },
-                  padding: '8px 16px',
-                }}
-                id='linkedin'
-                onClick={handleShare}
-              >
-                <LinkedIn fontSize='small' sx={{ color: '#22d3ee' }} />
-                <ListItemText primary='LinkedIn' sx={{ color: 'white' }} />
-              </MenuItem>
-            )}
-            <MenuItem
+            <IconButton
+              className={classTailwind}
+              id='fade-button'
+              aria-label='Share this project'
+              aria-controls={menuOpen ? 'fade-menu' : undefined}
+              aria-haspopup='true'
+              aria-expanded={menuOpen ? 'true' : undefined}
+              onClick={handleClick}
+              size='small'
               sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'white',
+                color: 'inherit',
+                padding: '4px',
+                borderRadius: 0,
                 '&:hover': {
-                  backgroundColor: 'rgba(34, 211, 238, 0.1)',
+                  backgroundColor: 'transparent',
+                  color: 'var(--color-accent)',
                 },
-                padding: '8px 16px',
               }}
-              id='whatsapp'
-              onClick={handleShare}
             >
-              <WhatsApp fontSize='small' sx={{ color: '#22d3ee' }} />
-              <ListItemText primary='WhatsApp' sx={{ color: 'white' }} />
+              <ShareOutlined fontSize='small' />
+            </IconButton>
+          </motion.span>
+        </TooltipStyled>
+        <Menu
+          id='fade-menu'
+          MenuListProps={{
+            'aria-labelledby': 'fade-button',
+            sx: { py: 0 },
+          }}
+          anchorEl={anchorEl}
+          open={menuOpen}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+          disableScrollLock
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+          PaperProps={{ sx: menuPaperSx }}
+        >
+          {!isLimited && (
+            <MenuItem id='linkedin' onClick={handleShare} sx={menuItemSx}>
+              <LinkedIn fontSize='small' />
+              <ListItemText primary='LinkedIn' />
             </MenuItem>
-            <MenuItem
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                color: 'white',
-                '&:hover': {
-                  backgroundColor: 'rgba(34, 211, 238, 0.1)',
-                },
-                padding: '8px 16px',
-              }}
-              id='copy'
-              onClick={handleShare}
-            >
-              <Link fontSize='small' sx={{ color: '#22d3ee' }} />
-              <ListItemText primary='Copy Link' sx={{ color: 'white' }} />
-            </MenuItem>
-          </Menu>
-        </div>
-      ) : null}
+          )}
+          <MenuItem id='whatsapp' onClick={handleShare} sx={menuItemSx}>
+            <WhatsApp fontSize='small' />
+            <ListItemText primary='WhatsApp' />
+          </MenuItem>
+          <MenuItem id='copy' onClick={handleShare} sx={menuItemSx}>
+            <Link fontSize='small' />
+            <ListItemText primary='Copy Link' />
+          </MenuItem>
+        </Menu>
+      </div>
       <Snackbar
         open={snackbarCopy}
         autoHideDuration={3000}
         onClose={() => setSnackbarCopy(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
         <Alert
           onClose={() => setSnackbarCopy(false)}
           severity='success'
-          variant='filled'
+          variant='outlined'
           sx={{
-            backgroundColor: '#22d3ee',
-            color: '#080808',
+            backgroundColor: 'var(--color-paper)',
+            borderColor: 'var(--color-rule)',
+            borderRadius: 0,
+            color: 'var(--color-ink)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.8125rem',
             '& .MuiAlert-icon': {
-              color: '#080808',
+              color: 'var(--color-accent)',
             },
-            fontWeight: 'bold',
           }}
         >
           Link copied successfully

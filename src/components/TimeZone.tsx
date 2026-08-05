@@ -1,10 +1,10 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Sun, CloudSun, Moon, LucideIcon } from 'lucide-react'
 import { Language } from '../types'
-import { bannerLabels } from '../constants'
+import { bannerLabels } from '../constants/banner'
 
 export function TimeZone({ language }: { language: Language }) {
   const [myTime, setMyTime] = useState<string>('')
@@ -95,17 +95,17 @@ export function TimeZone({ language }: { language: Language }) {
   const { Icon, color, bg, border, glow, pulse, hover, hoverBorder } = timeTheme
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
-      className={`flex items-center gap-3 bg-[#080808]/40 backdrop-blur-xl border border-white/5 rounded-2xl px-4 py-2 transition-all duration-500 group ${hoverBorder}`}
+      className={`flex items-center gap-3 bg-[#080808]/40 backdrop-blur-xl border border-white/5 rounded-2xl px-4 py-2 transition-colors duration-500 group ${hoverBorder}`}
     >
       <div className='relative shrink-0'>
         <div
           className={`w-8 h-8 rounded-xl ${bg} flex items-center justify-center border ${border} ${hover} transition-colors overflow-hidden`}
         >
           <AnimatePresence mode='wait'>
-            <motion.div
+            <m.div
               key={
                 hour >= 6 && hour < 12
                   ? 'morning'
@@ -119,7 +119,7 @@ export function TimeZone({ language }: { language: Language }) {
               transition={{ duration: 0.5, ease: 'backOut' }}
             >
               <Icon className={`w-4 h-4 ${color}`} />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
         <div
@@ -137,6 +137,6 @@ export function TimeZone({ language }: { language: Language }) {
           {myDay} • CL (UTC-4)
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

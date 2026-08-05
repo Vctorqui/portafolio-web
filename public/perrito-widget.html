@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perrito 3D</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.136.0/build/three.module.js';
+
+        let scene, camera, renderer, dogGroup;
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.set(2.6, 1.8, 3.2);
+            camera.lookAt(0.1, 0.55, 0);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.body.appendChild(renderer.domElement);
+
+            addLights();
+            addPlatform();
+            createDog();
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function addLights() {
+            scene.add(new THREE.AmbientLight(0xffffff, 0.72));
+
+            const keyLight = new THREE.DirectionalLight(0xffffff, 0.95);
+            keyLight.position.set(3, 5, 4);
+            keyLight.castShadow = true;
+            keyLight.shadow.mapSize.set(512, 512);
+            scene.add(keyLight);
+
+            const rimLight = new THREE.PointLight(0x74f7ff, 0.9, 5);
+            rimLight.position.set(-2.2, 1.4, -1.6);
+            scene.add(rimLight);
+        }
+
+        function addPlatform() {
+            const platform = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.95, 1.05, 0.12, 48),
+                new THREE.MeshStandardMaterial({ color: 0x40c7d4, roughness: 0.78 })
+            );
+            platform.position.y = -0.02;
+            platform.receiveShadow = true;
+            scene.add(platform);
+        }
+
+        function createDog() {
+            dogGroup = new THREE.Group();
+
+            const blackMat = new THREE.MeshStandardMaterial({ color: 0x1e1a2a, roughness: 0.72 });
+            const snoutMat = new THREE.MeshStandardMaterial({ color: 0x2a2438, roughness: 0.74 });
+            const collarMat = new THREE.MeshStandardMaterial({ color: 0xff4e6a, roughness: 0.55 });
+            const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.3 });
+            const noseMat = new THREE.MeshStandardMaterial({ color: 0x0d0b12, roughness: 0.4 });
+
+            const body = roundedBox(1.1, 0.56, 0.56, blackMat);
+            body.position.set(-0.16, 0.44, 0);
+            dogGroup.add(body);
+
+            const head = roundedBox(0.64, 0.66, 0.66, blackMat);
+            head.name = 'head';
+            head.position.set(0.58, 0.86, 0);
+            dogGroup.add(head);
+
+            const muzzle = roundedBox(0.32, 0.25, 0.4, snoutMat);
+            muzzle.position.set(0.92, 0.76, 0);
+            dogGroup.add(muzzle);
+
+            const nose = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 12), noseMat);
+            nose.scale.set(0.7, 0.55, 1);
+            nose.position.set(1.08, 0.81, 0);
+            dogGroup.add(nose);
+
+            addEyes(eyeMat, noseMat);
+            addEars(blackMat);
+            addLegs(blackMat);
+            addCollar(collarMat);
+            addTail(blackMat);
+
+            dogGroup.position.set(-0.15, 0.04, 0);
+            dogGroup.rotation.y = -0.25;
+            scene.add(dogGroup);
+        }
+
+        function roundedBox(width, height, depth, material) {
+            const mesh = new THREE.Mesh(new THREE.BoxGeometry(width, height, depth, 4, 4, 4), material);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            return mesh;
+        }
+
+        function addEyes(eyeMat, pupilMat) {
+            [-0.17, 0.17].forEach((z) => {
+                const eye = new THREE.Mesh(new THREE.SphereGeometry(0.043, 12, 10), eyeMat);
+                eye.position.set(0.89, 0.93, z);
+                eye.scale.set(0.72, 1, 1);
+                dogGroup.add(eye);
+
+                const pupil = new THREE.Mesh(new THREE.SphereGeometry(0.02, 10, 8), pupilMat);
+                pupil.position.set(0.925, 0.928, z);
+                dogGroup.add(pupil);
+            });
+        }
+
+        function addEars(material) {
+            const earGeo = new THREE.ConeGeometry(0.16, 0.46, 4);
+
+            const leftEar = new THREE.Mesh(earGeo, material);
+            leftEar.position.set(0.5, 1.32, -0.2);
+            leftEar.rotation.set(-0.2, 0.1, -0.35);
+            leftEar.castShadow = true;
+            dogGroup.add(leftEar);
+
+            const rightEar = leftEar.clone();
+            rightEar.position.z = 0.2;
+            rightEar.rotation.set(0.2, -0.1, -0.35);
+            dogGroup.add(rightEar);
+        }
+
+        function addLegs(material) {
+            const legGeo = new THREE.CylinderGeometry(0.095, 0.11, 0.38, 14);
+
+            [
+                [-0.5, 0.22, -0.2],
+                [-0.5, 0.22, 0.2],
+                [0.22, 0.22, -0.2],
+                [0.22, 0.22, 0.2]
+            ].forEach(([x, y, z]) => {
+                const leg = new THREE.Mesh(legGeo, material);
+                leg.position.set(x, y, z);
+                leg.castShadow = true;
+                dogGroup.add(leg);
+
+                const paw = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), material);
+                paw.scale.set(1.2, 0.42, 0.9);
+                paw.position.set(x + 0.03, 0.05, z);
+                paw.castShadow = true;
+                dogGroup.add(paw);
+            });
+        }
+
+        function addCollar(material) {
+            const collar = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.034, 10, 28), material);
+            collar.position.set(0.3, 0.74, 0);
+            collar.rotation.y = Math.PI / 2;
+            collar.castShadow = true;
+            dogGroup.add(collar);
+        }
+
+        function addTail(material) {
+            const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.065, 0.3, 12), material);
+            tail.position.set(-0.74, 0.61, 0);
+            tail.rotation.z = Math.PI / 2.8;
+            tail.castShadow = true;
+            dogGroup.add(tail);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (dogGroup) {
+                const now = Date.now() * 0.001;
+                dogGroup.rotation.y = -0.25 + Math.sin(now * 0.8) * 0.08;
+
+                const head = dogGroup.getObjectByName('head');
+                if (head) {
+                    head.rotation.y = Math.sin(now * 1.15) * 0.08;
+                    head.rotation.x = Math.cos(now) * 0.04;
+                }
+            }
+
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>

@@ -13,26 +13,27 @@ declare module '@mui/material/styles' {
 
 const colors = {
   primary: {
-    main: '#0B192C',
-    light: '#1E3E62',
+    main: '#1a1f2e',
+    light: '#3a4258',
     dark: '',
   },
   secondary: {
-    main: '#d6e6e7',
-    light: '#EEEEEE',
+    main: '#f5f6f8',
+    light: '#ffffff',
   },
   text: {
-    primary: '#EEEEEE',
-    secondary: '#EF5A6F',
+    primary: '#1a1f2e',
+    secondary: '#1e3a8a',
   },
   backgroundRose: {
-    rose: '#EF5A6F',
+    rose: '#1e3a8a',
   },
 }
 
 const theme = responsiveFontSizes(
   createTheme({
     palette: {
+      mode: 'light',
       primary: {
         main: colors.primary.main,
         light: colors.primary.light,
@@ -45,81 +46,19 @@ const theme = responsiveFontSizes(
         primary: colors.text.primary,
         secondary: colors.text.secondary,
       },
+      background: {
+        default: '#ffffff',
+        paper: '#fafbfc',
+      },
       backgroundRose: {
         rose: colors.backgroundRose.rose,
       },
     },
     typography: {
-      fontFamily: ['system-ui', 'Helvetica', 'Arial'].join(','),
+      fontFamily: 'var(--font-body)',
       button: {
         fontSize: 12,
-      },
-    },
-
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            textTransform: 'none',
-            ':disabled': {
-              background: 'rgba(0, 0, 0, 0.12)',
-            },
-          },
-          outlinedPrimary: {
-            fontWeight: '700',
-            border: `solid 1px ${colors.backgroundRose.rose}`,
-            borderRadius: 10,
-            position: 'relative',
-            color: colors.text.primary,
-            background: 'transparent',
-            transition: 'background .2s ease-out,color .2s ease-out',
-            '&:hover': {
-              background: colors.backgroundRose.rose,
-              border: `solid 1px ${colors.backgroundRose.rose}`,
-            },
-          },
-        },
-      },
-      MuiContainer: {
-        styleOverrides: {
-          root: {
-            width: '100%',
-          },
-        },
-      },
-      MuiCssBaseline: {
-        styleOverrides: `
-          @font-face {
-            font-family: 'NeueMachina';
-            font-weight: 300;
-            src: local('NeuMachina'), url(/fonts/neueMachina/NeueMachina-Light.ttf) format('truetype');
-          }
-          @font-face {
-            font-family: 'NeueMachina';
-            font-weight: 400;
-            src: local('NeuMachina'), url(/fonts/neueMachina/NeueMachina-Regular.ttf) format('truetype');
-          }
-          @font-face {
-            font-family: 'NeueMachina';
-            font-weight: 800;
-            src: local('NeuMachina'), url(/fonts/neueMachina/NeueMachina-Ultrabold.ttf) format('truetype');
-          },
-          @font-face {
-            font-family: 'PilatExtended';
-            font-weight: 300;
-            src: local('PilatExtended'), url(/fonts/pilat/PilatExtended-Light.ttf) format('truetype');
-          },
-          @font-face {
-            font-family: 'PilatExtended';
-            font-weight: 400;
-            src: local('PilatExtended'), url(/fonts/pilat/PilatExtended-Regular.ttf) format('truetype');
-          },
-          @font-face {
-            font-family: 'PilatExtended';
-            font-weight: 800;
-            src: local('PilatExtended'), url(/fonts/pilat/PilatExtended-Bold.ttf) format('truetype');
-          },
-        `,
+        textTransform: 'none',
       },
     },
   })

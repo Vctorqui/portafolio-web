@@ -1,84 +1,93 @@
 import { Layout } from '@/src/layouts/Public'
-import { TabContext, TabList, TabPanel } from '@mui/lab'
-import React, { useState } from 'react'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
-import { db } from '@/src/firebase/config'
-import Banner from '@/src/components/Banner'
-import { Projects } from '@/src/components/Projects'
+import React, { useEffect, useState } from 'react'
+import {
+  featuredProjects,
+  realEstateProjects,
+  ProjectRecord,
+} from '@/src/constants/projects'
+import { SideRail } from '@/src/components/site/SideRail'
+import {
+  IndexSection,
+  NowSection,
+  YearsSection,
+  WorkSection,
+  ReachSection,
+} from '@/src/components/site/IndexSections'
+import { Language } from '@/src/types'
+import { useGsapSectionReveal } from '@/src/hooks/useGsapSectionReveal'
+import { FloatingCommandDock } from '@/src/components/site/FloatingCommandDock'
 import dynamic from 'next/dynamic'
 
-import { Language } from '@/src/types'
-
-const Experience = dynamic(
+const LazyCommandPalette = dynamic(
   () =>
-    import('@/src/components/Experience').then((mod) => ({
-      default: mod.Experience,
-    })),
-  {
-    loading: () => (
-      <div className='flex justify-center items-center py-20'>
-        <div className='text-white/40'>Loading...</div>
-      </div>
+    import('@/src/components/site/CommandPalette').then(
+      (module) => module.CommandPalette
     ),
-  },
-)
-
-const AboutMe = dynamic(
-  () =>
-    import('@/src/components/AboutMe').then((mod) => ({
-      default: mod.AboutMe,
-    })),
-  {
-    loading: () => (
-      <div className='flex justify-center items-center py-20'>
-        <div className='text-white/40'>Loading...</div>
-      </div>
-    ),
-  },
+  { ssr: false }
 )
 
 export async function getStaticProps() {
-  const projectsCollection = collection(db, 'projects')
-  const q = query(projectsCollection, orderBy('order', 'asc'))
-  const projectSnapshot = await getDocs(q)
-  const projects = projectSnapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }))
-
   return {
     props: {
-      projects,
+      featured: featuredProjects,
+      realEstate: realEstateProjects,
     },
-    revalidate: 300,
+    revalidate: 60,
   }
 }
 
-const Index = ({ projects }: any) => {
+const Index = ({
+  featured,
+  realEstate,
+}: {
+  featured: ProjectRecord[]
+  realEstate: ProjectRecord[]
+}) => {
   const [language, setLanguage] = useState<Language>('es')
-  const [value, setValue] = useState('Projects')
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false)
+  useGsapSectionReveal()
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
+        setCommandPaletteOpen((open) => !open)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
 
   return (
-    <Layout language={language} onLanguageChange={setLanguage}>
-      <Banner language={language} activeTab={value} onTabChange={setValue} />
-      <main className='max-w-3xl mx-auto'>
-        <TabContext value={value}>
-          <TabPanel sx={{ padding: 0 }} value='Projects'>
-            <section className='project-section space-y-4 py-4'>
-              {projects.map((project: any, i: any) => {
-                return (
-                  <Projects key={i} project={project} language={language} />
-                )
-              })}
-            </section>
-          </TabPanel>
-          <TabPanel sx={{ padding: 0 }} value='Experience'>
-            <Experience language={language} />
-          </TabPanel>
-          <TabPanel sx={{ padding: 0 }} value='Me'>
-            <AboutMe language={language} />
-          </TabPanel>
-        </TabContext>
+    <Layout>
+      {commandPaletteOpen && (
+        <LazyCommandPalette
+          open={commandPaletteOpen}
+          onOpenChange={setCommandPaletteOpen}
+        />
+      )}
+      <FloatingCommandDock
+        language={language}
+        onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+      />
+      <main className='mx-auto flex max-w-[var(--measure-wide)] flex-col gap-xl px-md py-md lg:px-lg lg:pb-3xl'>
+        <SideRail
+          language={language}
+          onLanguageChange={setLanguage}
+        />
+
+        <article className='min-w-0'>
+          <IndexSection language={language} />
+          <NowSection language={language} />
+          <YearsSection language={language} />
+          <WorkSection
+            language={language}
+            featured={featured}
+            realEstate={realEstate}
+          />
+          <ReachSection language={language} />
+        </article>
       </main>
     </Layout>
   )

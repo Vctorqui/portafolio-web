@@ -1,109 +1,79 @@
-import {
-  db,
-  doc,
-  getDoc,
-  updateDoc,
-  arrayUnion,
-  arrayRemove,
-} from '@/src/firebase/config'
-import { useEffect, useState, useCallback } from 'react'
-import { Tweet } from './shared/Tweet'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { Language } from '../types'
+import { ProjectRecord } from '../constants/projects'
+import { withBrandAccent } from './site/IndexSections'
 
-type Language = 'es' | 'en'
+const ShareBtn = dynamic(
+  () => import('./shared/ShareBtn').then((module) => module.ShareBtn),
+  { ssr: false }
+)
 
 export const Projects = ({
   project,
   language,
+  index,
+  compact = false,
 }: {
-  project: any
+  project: ProjectRecord
   language: Language
+  index: number
+  compact?: boolean
 }) => {
-  const [likes, setLikes] = useState(project.likes || 0)
-  const [hasLiked, setHasLiked] = useState(false)
-  const [userId, setUserId] = useState<string>('')
-
-  const labels = {
-    shareMsg:
-      language === 'es' ? '¡Mira este proyecto!' : 'Check out this project!',
-    status: language === 'es' ? 'ESTADO: ACTIVO' : 'SYSTEM STATUS: ACTIVE',
-  }
-
-  const getUserId = useCallback(() => {
-    if (typeof window === 'undefined') return ''
-    const storedId = localStorage.getItem('userId')
-    if (storedId) return storedId
-    const newId = 'user_' + Math.random().toString(36).slice(2, 9)
-    localStorage.setItem('userId', newId)
-    return newId
-  }, [])
-
-  useEffect(() => {
-    const id = getUserId()
-    setUserId(id)
-
-    const fetchProjectData = async () => {
-      try {
-        const docRef = doc(db, 'projects', project.id)
-        const docSnap = await getDoc(docRef)
-        if (docSnap.exists()) {
-          const data = docSnap.data()
-          setLikes(data.likes || 0)
-          const likers = data.likers || []
-          setHasLiked(likers.includes(id))
-        }
-      } catch (error) {
-        console.error('Error fetching project data:', error)
-      }
-    }
-    fetchProjectData()
-  }, [project.id, getUserId])
-
-  const handleLike = async () => {
-    if (!userId || !project.id) return
-
-    const newHasLiked = !hasLiked
-    const increment = newHasLiked ? 1 : -1
-
-    // Optimistic update
-    setHasLiked(newHasLiked)
-    setLikes((prev: any) => Math.max(prev + increment, 0))
-
-    try {
-      const docRef = doc(db, 'projects', project.id)
-      await updateDoc(docRef, {
-        likes: likes + increment < 0 ? 0 : likes + increment,
-        likers: newHasLiked ? arrayUnion(userId) : arrayRemove(userId),
-      })
-    } catch (error) {
-      console.error('Error updating likes:', error)
-      // Rollback on error
-      setHasLiked(!newHasLiked)
-      setLikes(likes)
-    }
-  }
+  const shareMsg =
+    language === 'es' ? '¡Mira este proyecto!' : 'Check out this project!'
 
   const description =
     language === 'es'
       ? project.spanish_description || project.english_description
       : project.english_description || project.spanish_description
 
+  const plate = String(index + 1).padStart(2, '0')
+  const stackLabel = project.stack.join(' · ')
+
   return (
-    <Tweet
-      content={project.title}
-      description={description}
-      name='Victor Q'
-      userName='@victorqui'
-      image={project.image}
-      likes={likes}
-      hasLiked={hasLiked}
-      onLike={handleLike}
-      redirect={project.preview_link}
-      contentMg={labels.shareMsg}
-      isPinned={project.isPinned}
-      status={labels.status}
-      stack={project.stack}
-      showRocket={true}
-      isSplit={true}
-    />
+    <li
+      className={`group grid grid-cols-[4ch_1fr] gap-md border border-rule bg-paper-2 p-md align-baseline transition-[background-color,border-color,transform] duration-mid ease-out hover:-translate-y-3xs hover:border-brand sm:grid-cols-[5ch_1fr] ${
+        compact ? 'p-sm' : ''
+      }`}
+    >
+      <span className='font-mono text-[0.8125rem] tabular-nums text-ink-2'>
+        {plate}
+      </span>
+      <div className='min-w-0'>
+        {project.preview_link ? (
+          <Link
+            href={project.preview_link}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='border-b border-rule pb-px text-ink no-underline transition-colors duration-short ease-out group-hover:border-brand hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-focus)]'
+          >
+            {project.title}
+          </Link>
+        ) : (
+          <span className='text-ink'>{project.title}</span>
+        )}
+        {description && (
+          <p
+            className={`${compact ? 'mt-2xs line-clamp-4' : 'mt-3xs'} text-sm text-ink-2`}
+            dangerouslySetInnerHTML={{
+              __html: withBrandAccent(String(description)),
+            }}
+          />
+        )}
+        {stackLabel && (
+          <p className='mt-2xs font-mono text-xs text-ink-3'>{stackLabel}</p>
+        )}
+        {project.preview_link && (
+          <div className='mt-sm flex items-center gap-sm'>
+            <ShareBtn
+              insert={project.preview_link}
+              content={shareMsg}
+              classTailwind='text-ink-3 hover:text-brand'
+            />
+          </div>
+        )}
+      </div>
+    </li>
   )
 }

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perrito con Three.js</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #ddd9ff;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        #info {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(45, 31, 79, 0.12);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.74);
+            color: #241d36;
+            font-size: 14px;
+            line-height: 1.2;
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(42, 35, 84, 0.12);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body>
+    <div id="info">Arrastra para rotar | Rueda para zoom</div>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.136.0/build/three.module.js';
+        import { OrbitControls } from 'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js';
+
+        let scene, camera, renderer, controls, dogGroup;
+
+        init();
+        animate();
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xddd9ff);
+
+            camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(3.2, 2.1, 4.2);
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            document.body.appendChild(renderer.domElement);
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.target.set(0.2, 0.55, 0);
+            controls.minDistance = 2.4;
+            controls.maxDistance = 7;
+
+            addLights();
+            addFloor();
+            createDog();
+
+            window.addEventListener('resize', onWindowResize);
+        }
+
+        function addLights() {
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.68);
+            scene.add(ambientLight);
+
+            const keyLight = new THREE.DirectionalLight(0xffffff, 0.9);
+            keyLight.position.set(4, 7, 5);
+            keyLight.castShadow = true;
+            keyLight.shadow.mapSize.set(1024, 1024);
+            keyLight.shadow.camera.near = 0.5;
+            keyLight.shadow.camera.far = 20;
+            scene.add(keyLight);
+
+            const fillLight = new THREE.PointLight(0xff9fd2, 0.65, 8);
+            fillLight.position.set(-3, 2.2, -2);
+            scene.add(fillLight);
+        }
+
+        function addFloor() {
+            const floorGeo = new THREE.CircleGeometry(2.25, 64);
+            const floorMat = new THREE.MeshStandardMaterial({
+                color: 0x4dd0e1,
+                roughness: 0.82
+            });
+            const floor = new THREE.Mesh(floorGeo, floorMat);
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+            scene.add(floor);
+        }
+
+        function createDog() {
+            dogGroup = new THREE.Group();
+            dogGroup.name = 'Perrito';
+
+            const blackMat = new THREE.MeshStandardMaterial({
+                color: 0x1f1b2d,
+                roughness: 0.72
+            });
+            const snoutMat = new THREE.MeshStandardMaterial({
+                color: 0x2b253b,
+                roughness: 0.75
+            });
+            const collarMat = new THREE.MeshStandardMaterial({
+                color: 0xff4e6a,
+                roughness: 0.55
+            });
+            const eyeMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff,
+                roughness: 0.3
+            });
+            const noseMat = new THREE.MeshStandardMaterial({
+                color: 0x0f0d16,
+                roughness: 0.4
+            });
+
+            const body = roundedBox(1.15, 0.58, 0.58, blackMat);
+            body.position.set(-0.18, 0.46, 0);
+            dogGroup.add(body);
+
+            const chest = new THREE.Mesh(new THREE.SphereGeometry(0.18, 18, 18), snoutMat);
+            chest.scale.set(0.75, 1.1, 1.25);
+            chest.position.set(0.3, 0.48, 0);
+            chest.castShadow = true;
+            dogGroup.add(chest);
+
+            const head = roundedBox(0.66, 0.68, 0.68, blackMat);
+            head.name = 'head';
+            head.position.set(0.62, 0.88, 0);
+            dogGroup.add(head);
+
+            const muzzle = roundedBox(0.32, 0.26, 0.42, snoutMat);
+            muzzle.position.set(0.97, 0.78, 0);
+            dogGroup.add(muzzle);
+
+            const nose = new THREE.Mesh(new THREE.SphereGeometry(0.075, 16, 12), noseMat);
+            nose.scale.set(0.7, 0.55, 1);
+            nose.position.set(1.14, 0.84, 0);
+            dogGroup.add(nose);
+
+            addEyes(eyeMat, noseMat);
+            addEars(blackMat);
+            addLegs(blackMat);
+            addCollar(collarMat);
+            addTail(blackMat);
+
+            dogGroup.position.set(-0.35, 0, 0);
+            scene.add(dogGroup);
+        }
+
+        function roundedBox(width, height, depth, material) {
+            const geometry = new THREE.BoxGeometry(width, height, depth, 4, 4, 4);
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            return mesh;
+        }
+
+        function addEyes(eyeMat, pupilMat) {
+            const eyeGeo = new THREE.SphereGeometry(0.045, 12, 10);
+            const pupilGeo = new THREE.SphereGeometry(0.022, 10, 8);
+
+            [-0.18, 0.18].forEach((z) => {
+                const eye = new THREE.Mesh(eyeGeo, eyeMat);
+                eye.position.set(0.94, 0.96, z);
+                eye.scale.set(0.72, 1, 1);
+                dogGroup.add(eye);
+
+                const pupil = new THREE.Mesh(pupilGeo, pupilMat);
+                pupil.position.set(0.975, 0.955, z);
+                dogGroup.add(pupil);
+            });
+        }
+
+        function addEars(material) {
+            const earGeo = new THREE.ConeGeometry(0.16, 0.48, 4);
+
+            const leftEar = new THREE.Mesh(earGeo, material);
+            leftEar.position.set(0.52, 1.35, -0.22);
+            leftEar.rotation.set(-0.2, 0.1, -0.35);
+            leftEar.castShadow = true;
+            dogGroup.add(leftEar);
+
+            const rightEar = leftEar.clone();
+            rightEar.position.z = 0.22;
+            rightEar.rotation.set(0.2, -0.1, -0.35);
+            dogGroup.add(rightEar);
+        }
+
+        function addLegs(material) {
+            const legGeo = new THREE.CylinderGeometry(0.105, 0.12, 0.42, 14);
+
+            [
+                [-0.55, 0.23, -0.22],
+                [-0.55, 0.23, 0.22],
+                [0.25, 0.23, -0.22],
+                [0.25, 0.23, 0.22]
+            ].forEach(([x, y, z]) => {
+                const leg = new THREE.Mesh(legGeo, material);
+                leg.position.set(x, y, z);
+                leg.castShadow = true;
+                dogGroup.add(leg);
+
+                const paw = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), material);
+                paw.scale.set(1.2, 0.45, 0.9);
+                paw.position.set(x + 0.03, 0.04, z);
+                paw.castShadow = true;
+                dogGroup.add(paw);
+            });
+        }
+
+        function addCollar(material) {
+            const collar = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.035, 10, 28), material);
+            collar.position.set(0.34, 0.77, 0);
+            collar.rotation.y = Math.PI / 2;
+            collar.castShadow = true;
+            dogGroup.add(collar);
+
+            const tag = new THREE.Mesh(new THREE.SphereGeometry(0.055, 14, 10), material);
+            tag.position.set(0.48, 0.6, 0);
+            tag.scale.set(0.75, 1, 1);
+            dogGroup.add(tag);
+        }
+
+        function addTail(material) {
+            const tail = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.07, 0.32, 12), material);
+            tail.position.set(-0.78, 0.64, 0);
+            tail.rotation.z = Math.PI / 2.8;
+            tail.castShadow = true;
+            dogGroup.add(tail);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+
+            const head = dogGroup.getObjectByName('head');
+            if (head) {
+                const now = Date.now() * 0.001;
+                head.rotation.y = Math.sin(now) * 0.08;
+                head.rotation.x = Math.cos(now * 0.8) * 0.045;
+            }
+
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>
