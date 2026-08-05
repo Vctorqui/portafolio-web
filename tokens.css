@@ -1,0 +1,117 @@
+
+:root {
+  --color-paper: oklch(97% 0.012 72);
+  --color-paper-2: oklch(94% 0.014 72);
+  --color-paper-3: oklch(90% 0.016 72);
+  --color-ink: oklch(18% 0.014 66);
+  --color-ink-2: oklch(45% 0.012 68);
+  --color-ink-3: oklch(65% 0.011 70);
+  --color-rule: oklch(84% 0.011 72);
+  --color-accent: oklch(52% 0.15 48);
+  --color-accent-ink: oklch(98% 0.012 72);
+  --color-focus: oklch(58% 0.15 48);
+
+  --font-display: 'Pilat Extended', var(--font-inter-tight), 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: var(--font-inter-tight), 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(1.75rem, 3vw, 2.5rem);
+  --text-display: clamp(2.25rem, 4.3vw, 3.65rem);
+
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: 6.5rem;
+
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-card: 0;
+  --radius-pill: 9999px;
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-short: 120ms;
+  --dur-mid: 180ms;
+  --dur-long: 280ms;
+  --shadow-modal: 0 24px 80px color-mix(in oklch, var(--color-ink) 18%, transparent);
+  --shadow-panel: 0 18px 60px color-mix(in oklch, var(--color-ink) 8%, transparent);
+
+  --measure: 56rem;
+  --measure-prose: 60ch;
+  --measure-hero: 84rem;
+  --measure-hero-copy: 96ch;
+  --measure-wide: 88rem;
+  --measure-proof: 28rem;
+  --measure-table: 42rem;
+  --measure-weather: 9rem;
+  --rail-width: 14rem;
+  --section-min: 72svh;
+  --section-scroll-offset: 11rem;
+  --proof-min: 26rem;
+  --sticky-offset: 9.5rem;
+  --text-proof-display: clamp(2.4rem, 8vw, 6.5rem);
+
+  --background: 42 32% 95%;
+  --foreground: 32 18% 12%;
+  --card: 42 28% 92%;
+  --card-foreground: 32 18% 12%;
+  --popover: 42 32% 95%;
+  --popover-foreground: 32 18% 12%;
+  --primary: 28 70% 39%;
+  --primary-foreground: 42 32% 96%;
+  --secondary: 42 20% 90%;
+  --secondary-foreground: 32 18% 12%;
+  --muted: 42 20% 90%;
+  --muted-foreground: 34 10% 42%;
+  --accent: 28 70% 39%;
+  --accent-foreground: 42 32% 96%;
+  --destructive: 0 70% 45%;
+  --destructive-foreground: 42 32% 96%;
+  --border: 42 14% 82%;
+  --input: 42 14% 82%;
+  --ring: 28 70% 44%;
+  --radius: 0;
+}
+
+.dark {
+  --color-paper: oklch(15% 0.012 70);
+  --color-paper-2: oklch(19% 0.014 70);
+  --color-paper-3: oklch(24% 0.016 70);
+  --color-ink: oklch(94% 0.007 72);
+  --color-ink-2: oklch(76% 0.009 72);
+  --color-ink-3: oklch(58% 0.011 72);
+  --color-rule: oklch(31% 0.014 70);
+  --color-accent: oklch(74% 0.13 62);
+  --color-accent-ink: oklch(15% 0.012 70);
+  --color-focus: oklch(74% 0.13 62);
+
+  --background: 36 19% 9%;
+  --foreground: 42 22% 92%;
+  --card: 38 18% 13%;
+  --card-foreground: 42 22% 92%;
+  --popover: 38 18% 13%;
+  --popover-foreground: 42 22% 92%;
+  --primary: 36 78% 66%;
+  --primary-foreground: 36 19% 9%;
+  --secondary: 38 16% 17%;
+  --secondary-foreground: 42 22% 92%;
+  --muted: 38 16% 17%;
+  --muted-foreground: 38 12% 67%;
+  --accent: 36 78% 66%;
+  --accent-foreground: 36 19% 9%;
+  --border: 38 14% 26%;
+  --input: 38 14% 26%;
+  --ring: 36 78% 66%;
+}
