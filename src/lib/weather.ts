@@ -30,6 +30,8 @@ export const DEFAULT_WEATHER_LOCATION: WeatherLocation = {
   label: 'Santiago, CL',
 }
 
+export const DEFAULT_WEATHER_TIMEZONE = 'America/Santiago'
+
 export const WEATHER_REFRESH_MS = 30 * 60 * 1000
 
 export const WEATHER_API_CONFIG = {
@@ -49,7 +51,7 @@ export function buildOpenMeteoUrl(
     'temperature_2m,is_day,precipitation,weather_code'
   )
   url.searchParams.set('temperature_unit', 'celsius')
-  url.searchParams.set('timezone', 'auto')
+  url.searchParams.set('timezone', DEFAULT_WEATHER_TIMEZONE)
 
   return url.toString()
 }

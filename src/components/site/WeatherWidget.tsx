@@ -13,7 +13,6 @@ import {
 import {
   DEFAULT_WEATHER_LOCATION,
   WEATHER_REFRESH_MS,
-  WeatherLocation,
   WeatherSnapshot,
   fetchWeatherSnapshot,
 } from '../../lib/weather'
@@ -29,31 +28,6 @@ const iconByWeather = {
   fog: CloudFog,
 }
 
-function getBrowserLocation(): Promise<WeatherLocation> {
-  return new Promise((resolve) => {
-    if (!navigator.geolocation) {
-      resolve(DEFAULT_WEATHER_LOCATION)
-      return
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        resolve({
-          latitude: Number(position.coords.latitude.toFixed(4)),
-          longitude: Number(position.coords.longitude.toFixed(4)),
-          label: 'Tu ubicación',
-        })
-      },
-      () => resolve(DEFAULT_WEATHER_LOCATION),
-      {
-        enableHighAccuracy: false,
-        maximumAge: WEATHER_REFRESH_MS,
-        timeout: 5000,
-      }
-    )
-  })
-}
-
 export function WeatherWidget() {
   const [status, setStatus] = useState<WeatherStatus>('idle')
   const [weather, setWeather] = useState<WeatherSnapshot | null>(null)
@@ -63,13 +37,9 @@ export function WeatherWidget() {
     let location = DEFAULT_WEATHER_LOCATION
     const controller = new AbortController()
 
-    const loadWeather = async (resolveLocation: boolean) => {
+    const loadWeather = async () => {
       try {
         setStatus((current) => (current === 'ready' ? current : 'loading'))
-
-        if (resolveLocation) {
-          location = await getBrowserLocation()
-        }
 
         const nextWeather = await fetchWeatherSnapshot(
           location,
@@ -88,8 +58,8 @@ export function WeatherWidget() {
       }
     }
 
-    loadWeather(true)
-    const id = window.setInterval(() => loadWeather(false), WEATHER_REFRESH_MS)
+    loadWeather()
+    const id = window.setInterval(loadWeather, WEATHER_REFRESH_MS)
 
     return () => {
       mounted = false

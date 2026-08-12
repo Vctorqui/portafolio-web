@@ -85,6 +85,22 @@ export function getNextCommandIndex(
   return (currentIndex + delta + total) % total
 }
 
+export function shouldRunCommandFromKeyboard({
+  key,
+  query,
+  inputMode,
+}: {
+  key: string
+  query: string
+  inputMode?: string
+}) {
+  if (key !== 'Enter') {
+    return false
+  }
+
+  return inputMode !== 'search' || query.trim().length > 0
+}
+
 export function getCommandPaletteTriggerLabel(mode: 'mobile' | 'desktop') {
   return mode === 'mobile' ? 'Comandos' : 'Press ⌘K'
 }

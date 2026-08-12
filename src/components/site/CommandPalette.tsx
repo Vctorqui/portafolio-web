@@ -20,6 +20,7 @@ import {
   defaultCommandActions,
   filterCommandActions,
   getNextCommandIndex,
+  shouldRunCommandFromKeyboard,
 } from '../../lib/commandPalette'
 
 type ThemeMode = 'light' | 'dark'
@@ -125,11 +126,9 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     }
 
     if (action.id === 'toggle-theme') {
-      setThemeMode((current) => {
-        const next = current === 'dark' ? 'light' : 'dark'
-        applyTheme(next)
-        return next
-      })
+      const nextTheme = themeMode === 'dark' ? 'light' : 'dark'
+      applyTheme(nextTheme)
+      setThemeMode(nextTheme)
     }
 
     onOpenChange(false)
@@ -152,7 +151,16 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
       )
     }
 
-    if (event.key === 'Enter') {
+    if (
+      shouldRunCommandFromKeyboard({
+        key: event.key,
+        query,
+        inputMode:
+          event.target instanceof HTMLInputElement
+            ? event.target.type
+            : undefined,
+      })
+    ) {
       event.preventDefault()
       const action = filteredActions[activeIndex]
 
@@ -168,24 +176,30 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
 
   return (
     <div
-      className='fixed inset-0 z-50 flex items-start justify-center bg-ink/10 px-md pt-[14vh] backdrop-blur-[2px]'
-      onMouseDown={() => onOpenChange(false)}
+      className='fixed inset-0 z-50 flex items-start justify-center px-md pt-[14vh]'
     >
+      <button
+        type='button'
+        className='absolute inset-0 cursor-default bg-ink/10 backdrop-blur-[2px]'
+        aria-label='Cerrar paleta de comandos'
+        onMouseDown={() => onOpenChange(false)}
+      />
       <div
         role='dialog'
         aria-modal='true'
         aria-label='Command palette'
-        className='w-full max-w-[34rem] border border-rule bg-paper shadow-[var(--shadow-modal)]'
+        className='relative w-full max-w-[34rem] border border-rule bg-paper shadow-[var(--shadow-modal)]'
         onKeyDown={onPaletteKeyDown}
-        onMouseDown={(event) => event.stopPropagation()}
       >
         <div className='flex items-center gap-xs border-b border-rule px-md py-sm'>
           <Search className='h-4 w-4 text-ink-3' strokeWidth={1.5} />
           <input
             ref={inputRef}
+            type='search'
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder='Buscar acciones...'
+            aria-label='Buscar comandos'
             aria-activedescendant={
               filteredActions[activeIndex]
                 ? `command-${filteredActions[activeIndex].id}`
