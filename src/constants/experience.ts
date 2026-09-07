@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
   {
     id: 4,
     company: 'Freelance',
-    position: 'Frontend Web Developer',
+    position: 'Software Developer',
     english_date: 'February 2023 - Present',
     spanish_date: 'Febrero 2023 - Actualmente',
     spanish_description:

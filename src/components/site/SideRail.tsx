@@ -133,8 +133,8 @@ export function SideRail({
   const [activeSection, setActiveSection] = useState(nav[0].href.slice(1))
   const role =
     language === 'es'
-      ? 'Frontend developer · CL'
-      : 'Frontend developer · CL'
+      ? 'Software developer · CL'
+      : 'Software developer · CL'
 
   const social = [
     {

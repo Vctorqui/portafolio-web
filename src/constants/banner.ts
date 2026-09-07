@@ -16,19 +16,19 @@ export const bannerLabels: Record<string, BannerLabels> = {
     techStackLabel: 'TECH STACK',
     statusCards: [
       {
-        label: 'CURRENT_PROJECT',
-        value: 'Share IT',
-        sub: 'Community platform',
+        label: 'CURRENT_JOB',
+        value: 'Frontend Software Developer',
+        sub: 'Acid Labs / Cencosud · Santiago, Chile',
       },
       {
-        label: 'CURRENT_JOB',
-        value: 'Frontend Developer',
-        sub: 'Acid Labs / Cencosud · Santiago, Chile',
+        label: 'CURRENT_PROJECT',
+        value: 'Share IT',
+        sub: 'Current Project: Community platform',
       },
       {
         label: 'CURRENT_VIDEO_GAME',
         value: 'Marvel Spider-Man 2',
-        sub: 'PS5',
+        sub: 'Video game I am playing · PS5',
       },
     ],
     tabs: {
@@ -54,19 +54,19 @@ export const bannerLabels: Record<string, BannerLabels> = {
     techStackLabel: 'TECH STACK',
     statusCards: [
       {
-        label: 'PROYECTO_ACTUAL',
-        value: 'Share IT',
-        sub: 'Plataforma comunitaria',
+        label: 'TRABAJO_ACTUAL',
+        value: 'Frontend Software Developer',
+        sub: 'Acid Labs / Cencosud · Santiago, Chile',
       },
       {
-        label: 'TRABAJO_ACTUAL',
-        value: 'Frontend Developer',
-        sub: 'Acid Labs / Cencosud · Santiago, Chile',
+        label: 'PROYECTO_ACTUAL',
+        value: 'Share IT',
+        sub: 'Proyecto actual: Plataforma comunitaria',
       },
       {
         label: 'JUEGO_ACTUAL',
         value: 'Marvel Spider-Man 2',
-        sub: 'PS5',
+        sub: 'Videojuego que estoy jugando · PS5',
       },
     ],
     tabs: {
