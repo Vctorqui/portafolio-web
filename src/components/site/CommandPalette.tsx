@@ -22,8 +22,13 @@ import {
   getNextCommandIndex,
   shouldRunCommandFromKeyboard,
 } from '../../lib/commandPalette'
-
-type ThemeMode = 'light' | 'dark'
+import {
+  applyThemeMode,
+  DEFAULT_THEME_MODE,
+  getNextThemeMode,
+  readAppliedThemeMode,
+  ThemeMode,
+} from '../../lib/theme'
 
 type CommandPaletteProps = {
   open: boolean
@@ -38,25 +43,6 @@ const iconByAction: Record<CommandActionId, typeof Home> = {
   contact: ArrowDown,
   'download-cv': Download,
   'toggle-theme': ToggleLeft,
-}
-
-function applyTheme(mode: ThemeMode) {
-  const root = document.documentElement
-  root.classList.toggle('dark', mode === 'dark')
-  root.dataset.theme = mode
-  window.localStorage.setItem('theme-mode', mode)
-}
-
-function getStoredTheme(): ThemeMode {
-  const stored = window.localStorage.getItem('theme-mode')
-
-  if (stored === 'dark' || stored === 'light') {
-    return stored
-  }
-
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
 }
 
 function scrollToSection(hash: string) {
@@ -80,7 +66,7 @@ function downloadResume() {
 export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   const [query, setQuery] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
-  const [themeMode, setThemeMode] = useState<ThemeMode>('light')
+  const [themeMode, setThemeMode] = useState<ThemeMode>(DEFAULT_THEME_MODE)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const filteredActions = useMemo(
@@ -89,9 +75,7 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
   )
 
   useEffect(() => {
-    const initialTheme = getStoredTheme()
-    setThemeMode(initialTheme)
-    applyTheme(initialTheme)
+    setThemeMode(readAppliedThemeMode())
   }, [])
 
   useEffect(() => {
@@ -126,8 +110,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
     }
 
     if (action.id === 'toggle-theme') {
-      const nextTheme = themeMode === 'dark' ? 'light' : 'dark'
-      applyTheme(nextTheme)
+      const nextTheme = getNextThemeMode(themeMode)
+      applyThemeMode(nextTheme)
       setThemeMode(nextTheme)
     }
 
