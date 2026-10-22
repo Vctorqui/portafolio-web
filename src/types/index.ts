@@ -15,6 +15,7 @@ export interface StatusCard {
   label: string
   value: string
   sub: string
+  link?: string
 }
 
 export interface BannerLabels {

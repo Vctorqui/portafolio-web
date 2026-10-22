@@ -4,7 +4,7 @@ export const experiences: Experience[] = [
   {
     id: 1,
     company: 'Acid Labs / Cencosud',
-    position: 'Frontend Developer',
+    position: 'Frontend Software Engineer',
     english_date: 'March 2026 - Present',
     spanish_date: 'Marzo 2026 - Actualmente',
     spanish_description:

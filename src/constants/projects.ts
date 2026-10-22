@@ -24,14 +24,15 @@ export type ProjectRecord = {
 
 export const featuredProjects: ProjectRecord[] = [
   {
-    id: 'english-al-toque',
-    title: 'English al Toque',
+    id: 'ac-maquetas',
+    title: 'AC Maquetas',
     spanish_description:
-      'Landing para clases de inglés online a medida: diagnóstico por WhatsApp, tipos de clase y planes claros para jóvenes y adultos.',
+      'Sitio de servicio para maquetas y trabajos escolares en Antofagasta: portfolio, flujo de pedido y contacto directo.',
     english_description:
-      'Landing for tailored online English classes: WhatsApp intake, class types, and clear plans for teens and adults.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind'],
-    preview_link: 'https://englishaltoque.lat/',
+      'Service site for school models and academic projects in Antofagasta: portfolio, order flow, and direct contact.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind', 'Supabase', 'Shadcn'],
+    preview_link: 'https://acmaquetas.lat/',
+    image: '/images/Macbook-Air-acmaquetas.lat.webp',
     kind: 'featured',
     status: 'work',
     sort_order: 1,
@@ -39,19 +40,20 @@ export const featuredProjects: ProjectRecord[] = [
     likes: 0,
   },
   {
-    id: 'ac-maquetas',
-    title: 'AC Maquetas',
+    id: 'blue-way',
+    title: 'Blue Way Transportation',
     spanish_description:
-      'Sitio de servicio para maquetas y trabajos escolares en Antofagasta: portfolio, flujo de pedido y contacto directo.',
+      'App web de transporte no urgente: pasajeros, centros de rehabilitación y familiares agendan viajes según condición y disponibilidad.',
     english_description:
-      'Service site for school models and academic projects in Antofagasta: portfolio, order flow, and direct contact.',
-    stack: ['Next.js', 'TypeScript', 'Tailwind'],
-    preview_link: 'https://acmaquetas.lat/',
+      'Non-emergency transportation web app: passengers, rehab centers, and family members schedule trips by condition and availability.',
+    stack: ['React', 'Next.js', 'TypeScript', 'MUI', 'Node.js', 'Express', 'MongoDB'],
+    preview_link: 'https://bluewayisbetter.com',
+    image: '/images/Macbook-Air-bwtne.com.webp',
     kind: 'featured',
     status: 'work',
     sort_order: 2,
     is_pinned: true,
-    likes: 0,
+    likes: 34,
   },
   {
     id: 'share-it',
@@ -62,7 +64,7 @@ export const featuredProjects: ProjectRecord[] = [
       'Astro site for the Argentine ShareIT community: values, articles, and resources shared by members.',
     stack: ['Astro', 'TypeScript', 'Tailwind', 'React', 'FastAPI'],
     preview_link: 'https://share-it.tech/',
-    image: '/images/21.webp',
+    image: '/images/Macbook-Air-share-it.tech.webp',
     kind: 'featured',
     status: 'work',
     sort_order: 3,
@@ -70,20 +72,20 @@ export const featuredProjects: ProjectRecord[] = [
     likes: 12,
   },
   {
-    id: 'cursoflow',
-    title: 'CursoFlow',
+    id: 'english-al-toque',
+    title: 'English al Toque',
     spanish_description:
-      'Plataforma de concentración para el estudio: seguimiento académico y foco en sesiones de aprendizaje sin ruido.',
+      'Landing para clases de inglés online a medida: diagnóstico por WhatsApp, tipos de clase y planes claros para jóvenes y adultos.',
     english_description:
-      'Study-focus platform: academic tracking and calm sessions built for concentration, not clutter.',
-    stack: ['Next.js', 'TypeScript', 'Radix'],
-    preview_link: 'https://cursoflow.netlify.app/',
-    image: '/images/20.webp',
+      'Landing for tailored online English classes: WhatsApp intake, class types, and clear plans for teens and adults.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind'],
+    preview_link: 'https://englishaltoque.lat/',
+    image: '/images/Macbook-Air-englishaltoque.lat.webp',
     kind: 'featured',
-    status: 'personal',
+    status: 'work',
     sort_order: 4,
     is_pinned: true,
-    likes: 6,
+    likes: 0,
   },
   {
     id: 'talks-infocasas',
@@ -94,28 +96,12 @@ export const featuredProjects: ProjectRecord[] = [
       'Event site covering AI, leadership, and marketing — clear agenda and conversion-minded layout.',
     stack: ['HTML5', 'CSS3', 'JavaScript'],
     preview_link: 'https://talks.infocasas.com.uy/',
-    image: '/images/9.webp',
+    image: '/images/Macbook-Air-talks.infocasas.com.uy.webp',
     kind: 'featured',
     status: 'work',
     sort_order: 5,
     is_pinned: false,
     likes: 55,
-  },
-  {
-    id: 'blue-way',
-    title: 'Blue Way Transportation',
-    spanish_description:
-      'App web de transporte no urgente: pasajeros, centros de rehabilitación y familiares agendan viajes según condición y disponibilidad.',
-    english_description:
-      'Non-emergency transportation web app: passengers, rehab centers, and family members schedule trips by condition and availability.',
-    stack: ['React', 'Next.js', 'TypeScript', 'MUI'],
-    preview_link: 'https://bluewayisbetter.com',
-    image: '/images/6.webp',
-    kind: 'featured',
-    status: 'work',
-    sort_order: 6,
-    is_pinned: true,
-    likes: 34,
   },
   {
     id: 'subasta-propiedades',
@@ -124,14 +110,62 @@ export const featuredProjects: ProjectRecord[] = [
       'Marketplace de subastas inmobiliarias con registro, puja, dashboard del proceso y favoritos.',
     english_description:
       'Property auction marketplace with registration, bidding, process dashboard, and favorites.',
-    stack: ['React', 'Next.js', 'TypeScript', 'MUI'],
+    stack: ['React', 'Next.js', 'TypeScript', 'MUI', 'Node.js', 'Express', 'MongoDB'],
     preview_link: 'https://subastadepropiedades.com/',
-    image: '/images/5.webp',
+    image: '/images/Macbook-Air-subastadepropiedades.com.webp',
     kind: 'featured',
     status: 'work',
-    sort_order: 7,
+    sort_order: 6,
     is_pinned: true,
     likes: 42,
+  },
+  {
+    id: 'cursoflow',
+    title: 'CursoFlow',
+    spanish_description:
+      'Plataforma de concentración para el estudio: seguimiento académico y foco en sesiones de aprendizaje sin ruido.',
+    english_description:
+      'Study-focus platform: academic tracking and calm sessions built for concentration, not clutter.',
+    stack: ['Next.js', 'TypeScript', 'Radix'],
+    preview_link: 'https://cursoflow.netlify.app/',
+    image: '/images/Macbook-Air-cursoflow.netlify.app.webp',
+    kind: 'featured',
+    status: 'personal',
+    sort_order: 7,
+    is_pinned: true,
+    likes: 6,
+  },
+  {
+   id: 'floraria',
+   title: 'Floraria',
+   spanish_description:
+     'Landing del proyecto residencial Floraria (Uruguay): foco en amenities y recorrido comercial del desarrollo.',
+   english_description:
+     'Landing for the Floraria residential project (Uruguay): amenities-first tour of the development.',
+   stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
+   preview_link: 'https://floralia.com.uy/',
+   image: '/images/Macbook-Air-floralia.com.uy.webp',
+   kind: 'real_estate',
+   status: 'work',
+   sort_order: 9,
+   is_pinned: false,
+   likes: 30,
+ },
+     {
+    id: 'lyon',
+    title: 'Lyon',
+    spanish_description:
+      'Landing del proyecto residencial Lyon (Uruguay): beneficios, tipologías y llamado a la acción para compradores.',
+    english_description:
+      'Landing for the Lyon residential project (Uruguay): benefits, typologies, and a clear CTA for buyers.',
+    stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
+    preview_link: 'https://lyon.com.uy/',
+    image: '/images/Macbook-Air-lyon.com.uy.webp',
+    kind: 'real_estate',
+    status: 'work',
+    sort_order: 8,
+    is_pinned: false,
+    likes: 18,
   },
   {
     id: 'dragon-ball-manager',
@@ -149,10 +183,10 @@ export const featuredProjects: ProjectRecord[] = [
       'React Hook Form',
     ],
     preview_link: 'https://github.com/Vctorqui/apolo_web_prueba_tecnica',
-    image: '/images/11.webp',
+    image: '/images/Macbook-Air-localhost.webp',
     kind: 'featured',
     status: 'personal',
-    sort_order: 8,
+    sort_order: 10,
     is_pinned: true,
     likes: 13,
   },
@@ -176,81 +210,50 @@ export const featuredProjects: ProjectRecord[] = [
     image: '/images/12.webp',
     kind: 'featured',
     status: 'personal',
-    sort_order: 9,
+    sort_order: 11,
     is_pinned: false,
     likes: 7,
   },
+
 ]
 
-export const realEstateProjects: ProjectRecord[] = [
-  {
-    id: 'lyon',
-    title: 'Lyon',
-    spanish_description:
-      'Landing del proyecto residencial Lyon (Uruguay): beneficios, tipologías y llamado a la acción para compradores.',
-    english_description:
-      'Landing for the Lyon residential project (Uruguay): benefits, typologies, and a clear CTA for buyers.',
-    stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
-    preview_link: 'https://lyon.com.uy/',
-    image: '/images/2.webp',
-    kind: 'real_estate',
-    status: 'work',
-    sort_order: 10,
-    is_pinned: false,
-    likes: 18,
-  },
-  {
-    id: 'lisboa',
-    title: 'Lisboa',
-    spanish_description:
-      'Landing del proyecto residencial Lisboa (Paraguay): presentación clara de espacios y propuesta de valor.',
-    english_description:
-      'Landing for the Lisboa residential project (Paraguay): clear presentation of spaces and value proposition.',
-    stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
-    preview_link: 'https://lisboa.com.py/',
-    image: '/images/1.webp',
-    kind: 'real_estate',
-    status: 'work',
-    sort_order: 11,
-    is_pinned: false,
-    likes: 12,
-  },
-  {
-    id: 'floraria',
-    title: 'Floraria',
-    spanish_description:
-      'Landing del proyecto residencial Floraria (Uruguay): foco en amenities y recorrido comercial del desarrollo.',
-    english_description:
-      'Landing for the Floraria residential project (Uruguay): amenities-first tour of the development.',
-    stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
-    preview_link: 'https://floralia.com.uy/',
-    image: '/images/8.webp',
-    kind: 'real_estate',
-    status: 'work',
-    sort_order: 12,
-    is_pinned: false,
-    likes: 30,
-  },
-  {
-    id: 'la-pituca',
-    title: 'La Pituca',
-    spanish_description:
-      'Landing del proyecto residencial La Pituca (Paraguay): ventajas, comodidades y opciones para quien busca invertir.',
-    english_description:
-      'Landing for La Pituca residential project (Paraguay): benefits, amenities, and options for buyers.',
-    stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
-    preview_link: 'https://lapituca.com.py/',
-    image: '/images/3.webp',
-    kind: 'real_estate',
-    status: 'work',
-    sort_order: 13,
-    is_pinned: false,
-    likes: 26,
-  },
-]
+//export const realEstateProjects: ProjectRecord[] = [
 
-/** Featured first, then real estate — same order as seed. */
+  // {
+  //   id: 'lisboa',
+  //   title: 'Lisboa',
+  //   spanish_description:
+  //     'Landing del proyecto residencial Lisboa (Paraguay): presentación clara de espacios y propuesta de valor.',
+  //   english_description:
+  //     'Landing for the Lisboa residential project (Paraguay): clear presentation of spaces and value proposition.',
+  //   stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
+  //   preview_link: 'https://lisboa.com.py/',
+  //   image: '/images/1.webp',
+  //   kind: 'real_estate',
+  //   status: 'work',
+  //   sort_order: 11,
+  //   is_pinned: false,
+  //   likes: 12,
+  // },
+ 
+  // {
+  //   id: 'la-pituca',
+  //   title: 'La Pituca',
+  //   spanish_description:
+  //     'Landing del proyecto residencial La Pituca (Paraguay): ventajas, comodidades y opciones para quien busca invertir.',
+  //   english_description:
+  //     'Landing for La Pituca residential project (Paraguay): benefits, amenities, and options for buyers.',
+  //   stack: ['HTML5', 'CSS3', 'Sass', 'Bootstrap', 'JavaScript'],
+  //   preview_link: 'https://lapituca.com.py/',
+  //   image: '/images/3.webp',
+  //   kind: 'real_estate',
+  //   status: 'work',
+  //   sort_order: 13,
+  //   is_pinned: false,
+  //   likes: 26,
+  // },
+// ] 
+
 export const projects: ProjectRecord[] = [
   ...featuredProjects,
-  ...realEstateProjects,
 ]

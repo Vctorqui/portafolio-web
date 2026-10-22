@@ -8,6 +8,7 @@ module.exports = {
         display: ['var(--font-display)'],
         body: ['var(--font-body)'],
         mono: ['var(--font-mono)'],
+        pixel: ['var(--font-pixel)'],
       },
       fontSize: {
         xs: ['var(--text-xs)', { lineHeight: '1.4' }],
@@ -15,8 +16,8 @@ module.exports = {
         md: ['var(--text-md)', { lineHeight: '1.6' }],
         lg: ['var(--text-lg)', { lineHeight: '1.4' }],
         xl: ['var(--text-xl)', { lineHeight: '1.25' }],
-        '2xl': ['var(--text-2xl)', { lineHeight: '1.05' }],
-        display: ['var(--text-display)', { lineHeight: '1.05' }],
+        '2xl': ['var(--text-2xl)', { lineHeight: '1.35' }],
+        display: ['var(--text-display)', { lineHeight: '1.3' }],
       },
       colors: {
         paper: {
@@ -30,6 +31,12 @@ module.exports = {
           3: 'var(--color-ink-3)',
         },
         rule: 'var(--color-rule)',
+        arcade: {
+          amber: 'var(--color-amber)',
+          magenta: 'var(--color-magenta)',
+          cyan: 'var(--color-cyan)',
+          danger: 'var(--color-danger)',
+        },
         brand: {
           DEFAULT: 'var(--color-accent)',
           ink: 'var(--color-accent-ink)',

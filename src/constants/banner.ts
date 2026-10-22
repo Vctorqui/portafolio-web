@@ -2,7 +2,7 @@ import { BannerLabels } from '../types'
 
 export const bannerLabels: Record<string, BannerLabels> = {
   en: {
-    role: 'Frontend Developer',
+    role: 'Software Developer',
     bio_start: `Specialized in creating efficient, intuitive, and scalable web interfaces. Throughout my journey, `,
     bio_highlight: `I've discovered how fundamental technology is in our daily lives and its incredible power to transform them.`,
     social: {
@@ -24,10 +24,11 @@ export const bannerLabels: Record<string, BannerLabels> = {
         label: 'CURRENT_PROJECT',
         value: 'Share IT',
         sub: 'Current Project: Community platform',
+        link: 'https://share-it.tech/',
       },
       {
         label: 'CURRENT_VIDEO_GAME',
-        value: 'Marvel Spider-Man 2',
+        value: 'Mafia Old Country',
         sub: 'Video game I am playing · PS5',
       },
     ],
@@ -62,10 +63,11 @@ export const bannerLabels: Record<string, BannerLabels> = {
         label: 'PROYECTO_ACTUAL',
         value: 'Share IT',
         sub: 'Proyecto actual: Plataforma comunitaria',
+        link: 'https://share-it.tech/',
       },
       {
         label: 'JUEGO_ACTUAL',
-        value: 'Marvel Spider-Man 2',
+        value: 'Mafia Old Country',
         sub: 'Videojuego que estoy jugando · PS5',
       },
     ],
@@ -84,10 +86,37 @@ export const techStack = [
   'TypeScript',
   'Tailwind CSS',
   'Next.js',
+  'Supabase',
+  'Vite',
+  'MUI',
+  'Shadcn UI',
+  'JavaScript',
+  'HTML5',
+  'CSS3',
+  'Sass',
+  'GitHub',
+  'Docker',
+  'Figma',
+  'Jira',
+  'Confluence',
+  'UI/UX Design',
+  'Microfrontends',
+  'RESTful APIs',
+  'GraphQL',
   'Framer Motion',
   'Node.js',
   'Express',
   'Shadcn',
   'PHP',
   'MongoDB',
+  'Coralogix',
+  'Datalayer',
 ]
+
+/** Game log under "What's up". `playing` mirrors statusCards[2].value. */
+export const gameLog = {
+  done: { title: 'Marvel Spider-Man 2', platform: 'PS5' },
+  /** `progress`: % completed, shown as a save-file bar under the game. */
+  playing: { title: 'Mafia Old Country', platform: 'PS5', progress: 5 },
+  next: { title: 'GTA VI', platform: 'PS5' },
+}
