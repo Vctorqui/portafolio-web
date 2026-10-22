@@ -17,17 +17,17 @@ export function FindItem({ id, done, language }: { id: AchievementId; done: bool
 
   return (
     <li className='group relative'>
-      <span
-        tabIndex={0}
+      <button
+        type='button'
         aria-describedby={tipId}
-        className={`inline-flex cursor-help items-baseline gap-2xs underline decoration-dotted decoration-rule underline-offset-4 outline-none hover:text-ink focus-visible:text-ink ${
+        className={`inline-flex cursor-help items-baseline gap-2xs bg-transparent p-0 text-left font-mono text-xs underline decoration-dotted decoration-rule underline-offset-4 outline-none hover:text-ink focus-visible:text-ink ${
           done ? 'text-ink' : 'text-ink-3'
         } ${focusRing}`}
       >
         <span aria-hidden>{done ? '■' : '□'}</span>
         {masked ? '???' : copy.title}
         <span className='sr-only'>{done ? s.yes : s.no}</span>
-      </span>
+      </button>
 
       <span
         id={tipId}
