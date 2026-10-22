@@ -64,7 +64,7 @@ function scrollToSection(hash: string) {
 function downloadResume() {
   const link = document.createElement('a')
   link.href = resumeHref
-  link.download = 'Victor_Quinones_Frontend_Resume.pdf'
+  link.download = 'Victor_Quinones_Frontend_Developer_CV.pdf'
   document.body.appendChild(link)
   link.click()
   link.remove()
