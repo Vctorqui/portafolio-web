@@ -8,7 +8,7 @@ import { setSoundMode, useSoundMode } from '../../../sound'
 import { useThemeMode } from '../../../theme'
 import { pillClass } from '../../styles'
 
-const RESUME_HREF = '/Victor_Quinones_Frontend_Resume.pdf'
+const RESUME_HREF = '/Victor_Quinones_Frontend_Developer_CV.pdf'
 
 /** Contact links plus the sound, theme and language toggles, as pills. */
 export function HeaderNav({

@@ -38,7 +38,7 @@ type CommandPaletteProps = {
   onOpenAchievements?: () => void
 }
 
-const resumeHref = '/Victor_Quinones_Frontend_Resume.pdf'
+const resumeHref = '/Victor_Quinones_Frontend_Developer_CV.pdf'
 
 const iconByAction: Record<CommandActionId, typeof Home> = {
   home: Home,
