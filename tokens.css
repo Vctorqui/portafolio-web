@@ -1,17 +1,58 @@
 
 :root {
-  --color-paper: oklch(97% 0.012 72);
-  --color-paper-2: oklch(94% 0.014 72);
-  --color-paper-3: oklch(90% 0.016 72);
-  --color-ink: oklch(18% 0.014 66);
-  --color-ink-2: oklch(45% 0.012 68);
-  --color-ink-3: oklch(65% 0.011 70);
-  --color-rule: oklch(84% 0.011 72);
-  --color-accent: oklch(52% 0.15 48);
-  --color-accent-ink: oklch(98% 0.012 72);
-  --color-focus: oklch(58% 0.15 48);
+  /* Light = warm paper, near-black ink. Monochrome on purpose. */
+  --color-paper: oklch(97% 0.006 85);
+  --color-paper-2: oklch(94% 0.007 85);
+  --color-paper-3: oklch(90% 0.008 85);
+  --color-ink: oklch(20% 0.012 265);
+  --color-ink-2: oklch(38% 0.012 265);
+  --color-ink-3: oklch(52% 0.01 265);
+  --color-rule: oklch(84% 0.01 85);
+  --color-accent: oklch(22% 0.012 265);
+  --color-accent-ink: oklch(97% 0.006 85);
+  --color-focus: oklch(22% 0.012 265);
 
-  --font-display: 'Pilat Extended', var(--font-inter-tight), 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Arcade secondary palette (HUD, status, achievements) */
+  --color-amber: oklch(48% 0.13 70);
+  --color-magenta: oklch(46% 0.2 340);
+  --color-cyan: oklch(44% 0.11 215);
+  --color-danger: oklch(46% 0.19 25);
+  --color-scanline: oklch(20% 0.012 265 / 0.03);
+
+  /* Canvas scenes (PixelScene). Light gets a soft dusk; dark stays mono. */
+  --scene-sky-top: oklch(84% 0.07 240);
+  --scene-sky-mid: oklch(91% 0.045 55);
+  /* Sun: near-white core → cream → pale yellow rim, pale yellow halo. */
+  --scene-sun: oklch(99% 0.012 95);
+  --scene-sun-mid: oklch(96.5% 0.045 95);
+  --scene-sun-edge: oklch(92% 0.085 95);
+  --scene-sun-glow: oklch(84% 0.13 85);
+  --scene-cloud: oklch(99.5% 0.003 85);
+  --scene-cloud-shade: oklch(80% 0.045 250);
+  --scene-hill: oklch(84% 0.05 295);
+  --scene-hill-dark: oklch(74% 0.07 285);
+  --scene-ground: oklch(89% 0.04 75);
+  --scene-ground-ink: oklch(42% 0.05 60);
+  --scene-grass: oklch(70% 0.09 65);
+  --scene-tree: oklch(44% 0.07 255);
+  --scene-tree-shade: oklch(35% 0.07 260);
+  --scene-trunk: oklch(45% 0.07 45);
+  --scene-grass-light: oklch(82% 0.09 80);
+  --scene-ground-dark: oklch(84% 0.05 68);
+  --scene-bush: oklch(56% 0.07 250);
+  --scene-bush-dark: oklch(42% 0.07 258);
+  --scene-flower-1: oklch(74% 0.13 355);
+  --scene-flower-2: oklch(86% 0.14 92);
+  --scene-flower-3: oklch(97% 0.01 85);
+  --scene-rock: oklch(72% 0.02 60);
+  --scene-moon-1: oklch(96% 0.004 265);
+  --scene-moon-2: oklch(85% 0.006 265);
+  --scene-moon-3: oklch(70% 0.008 265);
+  --scene-moon-4: oklch(55% 0.01 265);
+
+  /* `pixel` kept as an alias so existing labels fall back to the mono face. */
+  --font-pixel: var(--font-mono);
+  --font-display: var(--font-body);
   --font-body: var(--font-inter-tight), 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: var(--font-jetbrains-mono), 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 
@@ -20,8 +61,8 @@
   --text-md: 1.0625rem;
   --text-lg: 1.25rem;
   --text-xl: 1.5rem;
-  --text-2xl: clamp(1.75rem, 3vw, 2.5rem);
-  --text-display: clamp(2.25rem, 4.3vw, 3.65rem);
+  --text-2xl: clamp(1.125rem, 2.2vw, 1.625rem);
+  --text-display: clamp(1.5rem, 3.4vw, 2.625rem);
 
   --space-3xs: 0.25rem;
   --space-2xs: 0.5rem;
@@ -45,8 +86,8 @@
   --dur-short: 120ms;
   --dur-mid: 180ms;
   --dur-long: 280ms;
-  --shadow-modal: 0 24px 80px color-mix(in oklch, var(--color-ink) 18%, transparent);
-  --shadow-panel: 0 18px 60px color-mix(in oklch, var(--color-ink) 8%, transparent);
+  --shadow-modal: 8px 8px 0 0 color-mix(in oklch, var(--color-ink) 35%, transparent);
+  --shadow-panel: 4px 4px 0 0 color-mix(in oklch, var(--color-ink) 22%, transparent);
 
   --measure: 56rem;
   --measure-prose: 60ch;
@@ -54,64 +95,114 @@
   --measure-hero-copy: 96ch;
   --measure-wide: 88rem;
   --measure-proof: 28rem;
-  --measure-table: 42rem;
+  --measure-table: 50rem;
   --measure-weather: 9rem;
   --rail-width: 14rem;
   --section-min: 72svh;
   --section-scroll-offset: 11rem;
   --proof-min: 26rem;
   --sticky-offset: 9.5rem;
-  --text-proof-display: clamp(2.4rem, 8vw, 6.5rem);
+  --text-proof-display: clamp(1.75rem, 5vw, 4rem);
 
-  --background: 42 32% 95%;
-  --foreground: 32 18% 12%;
-  --card: 42 28% 92%;
-  --card-foreground: 32 18% 12%;
-  --popover: 42 32% 95%;
-  --popover-foreground: 32 18% 12%;
-  --primary: 28 70% 39%;
-  --primary-foreground: 42 32% 96%;
-  --secondary: 42 20% 90%;
-  --secondary-foreground: 32 18% 12%;
-  --muted: 42 20% 90%;
-  --muted-foreground: 34 10% 42%;
-  --accent: 28 70% 39%;
-  --accent-foreground: 42 32% 96%;
-  --destructive: 0 70% 45%;
-  --destructive-foreground: 42 32% 96%;
-  --border: 42 14% 82%;
-  --input: 42 14% 82%;
-  --ring: 28 70% 44%;
+  --background: 40 30% 97%;
+  --foreground: 230 12% 12%;
+  --card: 40 20% 94%;
+  --card-foreground: 230 12% 12%;
+  --popover: 40 30% 97%;
+  --popover-foreground: 230 12% 12%;
+  --primary: 230 12% 14%;
+  --primary-foreground: 40 30% 97%;
+  --secondary: 40 15% 91%;
+  --secondary-foreground: 230 12% 12%;
+  --muted: 40 15% 91%;
+  --muted-foreground: 230 6% 40%;
+  --accent: 230 12% 14%;
+  --accent-foreground: 40 30% 97%;
+  --destructive: 0 65% 38%;
+  --destructive-foreground: 40 30% 97%;
+  --border: 40 10% 84%;
+  --input: 40 10% 84%;
+  --ring: 230 12% 14%;
   --radius: 0;
 }
 
 .dark {
-  --color-paper: oklch(15% 0.012 70);
-  --color-paper-2: oklch(19% 0.014 70);
-  --color-paper-3: oklch(24% 0.016 70);
-  --color-ink: oklch(94% 0.007 72);
-  --color-ink-2: oklch(76% 0.009 72);
-  --color-ink-3: oklch(58% 0.011 72);
-  --color-rule: oklch(31% 0.014 70);
-  --color-accent: oklch(74% 0.13 62);
-  --color-accent-ink: oklch(15% 0.012 70);
-  --color-focus: oklch(74% 0.13 62);
+  /* Dark = deep indigo night, soft moonlight accent */
+  --color-paper: oklch(14% 0.035 275);
+  --color-paper-2: oklch(18% 0.04 275);
+  --color-paper-3: oklch(23% 0.05 275);
+  --color-ink: oklch(94% 0.012 250);
+  --color-ink-2: oklch(77% 0.025 260);
+  --color-ink-3: oklch(64% 0.04 265);
+  --color-rule: oklch(36% 0.08 275);
+  --color-accent: oklch(92% 0.015 265);
+  --color-accent-ink: oklch(14% 0.035 275);
+  --color-focus: oklch(92% 0.015 265);
 
-  --background: 36 19% 9%;
-  --foreground: 42 22% 92%;
-  --card: 38 18% 13%;
-  --card-foreground: 42 22% 92%;
-  --popover: 38 18% 13%;
-  --popover-foreground: 42 22% 92%;
-  --primary: 36 78% 66%;
-  --primary-foreground: 36 19% 9%;
-  --secondary: 38 16% 17%;
-  --secondary-foreground: 42 22% 92%;
-  --muted: 38 16% 17%;
-  --muted-foreground: 38 12% 67%;
-  --accent: 36 78% 66%;
-  --accent-foreground: 36 19% 9%;
-  --border: 38 14% 26%;
-  --input: 38 14% 26%;
-  --ring: 36 78% 66%;
+  --color-amber: oklch(83% 0.15 80);
+  --color-magenta: oklch(72% 0.25 340);
+  --color-cyan: oklch(84% 0.12 205);
+  --color-danger: oklch(70% 0.2 25);
+  --color-scanline: oklch(0% 0 0 / 0.22);
+
+  /* Canvas scenes: monochrome night, same colours as before the tokens. */
+  --scene-sky-top: var(--color-paper);
+  --scene-sky-mid: var(--color-paper);
+  --scene-sun: var(--color-ink);
+  --scene-sun-mid: var(--color-ink);
+  --scene-sun-edge: var(--color-ink);
+  --scene-sun-glow: var(--color-ink);
+  --scene-cloud: var(--color-ink-3);
+  --scene-cloud-shade: var(--color-ink-3);
+  --scene-hill: var(--color-paper-3);
+  --scene-hill-dark: var(--color-rule);
+  --scene-ground: var(--color-rule);
+  --scene-ground-ink: var(--color-ink-2);
+  --scene-grass: oklch(46% 0.045 270);
+  --scene-tree: var(--color-ink-2);
+  --scene-tree-shade: var(--color-ink-3);
+  --scene-trunk: var(--color-ink-3);
+  --scene-grass-light: oklch(58% 0.04 268);
+  --scene-ground-dark: oklch(31% 0.07 275);
+  --scene-bush: oklch(56% 0.03 265);
+  --scene-bush-dark: oklch(43% 0.045 270);
+  --scene-flower-1: oklch(70% 0.07 350);
+  --scene-flower-2: oklch(80% 0.08 92);
+  --scene-flower-3: oklch(88% 0.01 265);
+  --scene-rock: oklch(46% 0.03 270);
+  --scene-moon-1: oklch(96% 0.004 265);
+  --scene-moon-2: oklch(85% 0.006 265);
+  --scene-moon-3: oklch(70% 0.008 265);
+  --scene-moon-4: oklch(55% 0.01 265);
+
+  --background: 250 35% 7%;
+  --foreground: 220 20% 92%;
+  --card: 252 32% 11%;
+  --card-foreground: 220 20% 92%;
+  --popover: 252 32% 11%;
+  --popover-foreground: 220 20% 92%;
+  --primary: 230 20% 92%;
+  --primary-foreground: 250 35% 7%;
+  --secondary: 252 28% 16%;
+  --secondary-foreground: 220 20% 92%;
+  --muted: 252 28% 16%;
+  --muted-foreground: 235 15% 68%;
+  --accent: 230 20% 92%;
+  --accent-foreground: 250 35% 7%;
+  --border: 255 30% 28%;
+  --input: 255 30% 28%;
+  --ring: 230 20% 92%;
+}
+
+/* Konami easter egg: swap the accent for magenta. */
+html[data-secret='on']:not(.dark) {
+  --color-accent: oklch(46% 0.2 340);
+  --color-accent-ink: oklch(97% 0.006 85);
+  --color-focus: oklch(46% 0.2 340);
+}
+
+html[data-secret='on'].dark {
+  --color-accent: oklch(74% 0.25 340);
+  --color-accent-ink: oklch(14% 0.035 275);
+  --color-focus: oklch(74% 0.25 340);
 }
