@@ -1,3 +1,4 @@
+import { features } from 'process'
 import { Experience } from '../types'
 
 export const experiences: Experience[] = [
@@ -8,9 +9,9 @@ export const experiences: Experience[] = [
     english_date: 'March 2026 - Present',
     spanish_date: 'Marzo 2026 - Actualmente',
     spanish_description:
-      'Desarrollé e integré <span class="font-medium text-brand">microfrontends</span> dinámicos conectados a CMS, con experiencia modular y escalable. Implementé marcaje y analíticas vía <span class="font-medium text-brand">DataLayer</span>, y participé en pruebas de carga y despliegues a producción en alto tráfico.',
+      'Desarrollé nuevas funcionalidades y mejoras sobre una arquitectura de <span class="font-medium text-brand">microfrontends</span> dinámicos conectados a CMS, con experiencia modular y escalable. Implementé marcaje y analíticas vía <span class="font-medium text-brand">DataLayer</span>, y participé en pruebas de carga y despliegues a producción en alto tráfico.',
     english_description:
-      'Built and integrated dynamic <span class="font-medium text-brand">microfrontends</span> wired to CMS systems for a modular, scalable UX. Shipped advanced tagging and analytics via <span class="font-medium text-brand">DataLayer</span>, and contributed to load testing, performance audits, and production deploys under high traffic.',
+      'I developed new features and enhancements based on a  <span class="font-medium text-brand">microfrontend</span> architecture wired to CMS systems for a modular, scalable UX. Shipped advanced tagging and analytics via <span class="font-medium text-brand">DataLayer</span>, and contributed to load testing, performance audits, and production deploys under high traffic.',
     stacks: [
       'Next.js',
       'React',
@@ -23,14 +24,20 @@ export const experiences: Experience[] = [
       'CloudFront',
       'GitHub',
       'Jira',
+      'Confluence',
+      'DataLayer',
+      'REST APIs',
+      'GraphQL',
+      'SEO',
+      'Coralogix',
     ],
   },
   {
     id: 2,
     company: 'WeAreContent',
     position: 'Frontend Developer',
-    english_date: 'February 2025 - February 2026',
-    spanish_date: 'Febrero 2025 - Febrero 2026',
+    english_date: 'February 2025 - March 2026',
+    spanish_date: 'Febrero 2025 - Marzo 2026',
     spanish_description:
       'Impulsé la transición tecnológica de <span class="font-medium text-brand">Yii + JS</span> hacia una arquitectura moderna en <span class="font-medium text-brand">React</span>. Lideré el diseño de una estructura modular escalable que incrementó la mantenibilidad en un <span class="font-medium text-brand">80%</span>. Estandaricé contratos de API y automaticé entornos de desarrollo con <span class="font-medium text-brand">Gitflow</span>, optimizando la colaboración técnica y reduciendo drásticamente los tiempos de onboarding y entrega.',
     english_description:
@@ -45,6 +52,10 @@ export const experiences: Experience[] = [
       'UI/UX',
       'Yii',
       'PHP',
+      'HTML4',
+      'CSS2',
+      'Sass',
+      'mySQL',
       'Docker',
       'Gitflow',
     ],
@@ -53,8 +64,8 @@ export const experiences: Experience[] = [
     id: 3,
     company: 'Coastal Insight Consulting',
     position: 'Frontend Developer',
-    english_date: 'March 2023 - January 2025',
-    spanish_date: 'Marzo 2023 - Enero 2025',
+    english_date: 'March 2023 - February 2025',
+    spanish_date: 'Marzo 2023 - Febrero 2025',
     spanish_description:
       'Optimicé la eficiencia operativa mediante el desarrollo de librerías de componentes en <span class="font-medium text-brand">React</span> reutilizables, acelerando el time-to-market en un <span class="font-medium text-brand">20%</span>. Gestioné la complejidad técnica y el rendimiento en aplicaciones de gran escala con <span class="font-medium text-brand">Next.js</span> y Context API. Mantuve y automaticé procesos para <span class="font-medium text-brand">más de 8 proyectos</span>, asegurando una sincronización de datos impecable mediante APIs RESTful.',
     english_description:
@@ -67,6 +78,7 @@ export const experiences: Experience[] = [
       'Material UI',
       'Sass',
       'REST APIs',
+      'PHP'
     ],
   },
   {
@@ -83,6 +95,7 @@ export const experiences: Experience[] = [
       'Next.js',
       'React',
       'Express',
+      'PHP',
       'Node.js',
       'Astro',
       'Supabase',
@@ -90,6 +103,15 @@ export const experiences: Experience[] = [
       'Tailwind CSS',
       'Firebase',
       'MongoDB',
+      'MUI',
+      'Shadcn UI',
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'Sass',
+      'GitHub',
+      'Docker',
+      'Figma',
     ],
   },
 ]
