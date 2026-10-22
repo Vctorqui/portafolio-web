@@ -27,12 +27,13 @@ function noiseBuffer(ctx: AudioContext) {
   return noise
 }
 
-function noiseSource(ctx: AudioContext) {
+/** Looping white noise starting at `when` (audio-clock seconds; 0 = now). */
+function noiseSource(ctx: AudioContext, when = 0) {
   const src = ctx.createBufferSource()
   src.buffer = noiseBuffer(ctx)
   src.loop = true
   // Start at a random point so stacked beds don't phase together.
-  src.start(0, Math.random() * 2)
+  src.start(when, Math.random() * 2)
   return src
 }
 
@@ -240,11 +241,14 @@ export function playThunder() {
   if (!ctx || !master) return
 
   const at = ctx.currentTime + 0.3 + Math.random() * 0.7
-  const src = noiseSource(ctx)
+  // Start the noise at the onset, and hold the gain silent until then: a new
+  // GainNode defaults to 1, which would leak a full-volume burst during the delay.
+  const src = noiseSource(ctx, at)
   const low = filter(ctx, 'lowpass', 420)
   low.frequency.setValueAtTime(420, at)
   low.frequency.exponentialRampToValueAtTime(55, at + 2.6)
   const gain = ctx.createGain()
+  gain.gain.setValueAtTime(0, ctx.currentTime)
   gain.gain.setValueAtTime(0.0001, at)
   gain.gain.exponentialRampToValueAtTime(0.22, at + 0.08)
   gain.gain.exponentialRampToValueAtTime(0.0001, at + 3)
