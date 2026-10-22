@@ -28,6 +28,7 @@ export function WorkLife({ language }: { language: Language }) {
                   <p className='font-mono text-xs text-ink-3 tabular-nums'>{date}</p>
                 </div>
                 <p className='mt-2xs text-sm text-ink-2' dangerouslySetInnerHTML={{ __html: withBrandAccent(description) }} />
+                <p className='mt-2xs font-mono text-xs text-ink-3'>{exp.stacks.join(' · ')}</p>
               </div>
             </li>
           )
