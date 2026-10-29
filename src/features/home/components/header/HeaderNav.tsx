@@ -1,28 +1,14 @@
 'use client'
 
-import { Moon, Sun, Volume2, VolumeX } from 'lucide-react'
 import { bannerLabels } from '../../../../constants/banner'
 import { Language } from '../../../../types'
 import { unlockAchievement } from '../../../achievements'
-import { setSoundMode, useSoundMode } from '../../../sound'
-import { useThemeMode } from '../../../theme'
-import { pillClass } from '../../styles'
+import { contactPillClass, primaryPillClass } from '../../styles'
 
 const RESUME_HREF = '/Victor_Quinones_Frontend_Developer_CV.pdf'
 
-/** Contact links plus the sound, theme and language toggles, as pills. */
-export function HeaderNav({
-  language,
-  onLanguageChange,
-}: {
-  language: Language
-  onLanguageChange: (lang: Language) => void
-}) {
-  const { mode, toggle } = useThemeMode()
-  const sound = useSoundMode()
-  const ThemeIcon = mode === 'dark' ? Sun : Moon
-  const SoundIcon = sound === 'on' ? Volume2 : VolumeX
-
+/** Contact links, Email first as the primary action. Site toggles live in `SiteControls`. */
+export function HeaderNav({ language }: { language: Language }) {
   const links = [
     { label: 'Email', href: 'mailto:victor.quinones.ch@gmail.com' },
     { label: 'GitHub', href: 'https://github.com/Vctorqui' },
@@ -31,9 +17,9 @@ export function HeaderNav({
   ]
 
   return (
-    <nav aria-label={language === 'es' ? 'Contacto y ajustes' : 'Contact and settings'}>
+    <nav aria-label={language === 'es' ? 'Contacto' : 'Contact'}>
       <ul className='m-0 flex list-none flex-wrap items-center gap-2xs p-0'>
-        {links.map((link) => {
+        {links.map((link, index) => {
           const external = !link.href.startsWith('mailto:')
           return (
             <li key={link.label}>
@@ -42,44 +28,13 @@ export function HeaderNav({
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
                 onClick={() => unlockAchievement('open-line')}
-                className={pillClass}
+                className={index === 0 ? primaryPillClass : contactPillClass}
               >
                 {link.label}
               </a>
             </li>
           )
         })}
-        <li>
-          <button
-            type='button'
-            onClick={() => setSoundMode(sound === 'on' ? 'off' : 'on')}
-            className={pillClass}
-            aria-label={language === 'es' ? 'Sonido' : 'Sound'}
-            aria-pressed={sound === 'on'}
-          >
-            <SoundIcon className='h-3.5 w-3.5' strokeWidth={1.75} />
-          </button>
-        </li>
-        <li>
-          <button
-            type='button'
-            onClick={toggle}
-            className={pillClass}
-            aria-label={language === 'es' ? 'Cambiar tema' : 'Toggle theme'}
-          >
-            <ThemeIcon className='h-3.5 w-3.5' strokeWidth={1.75} />
-          </button>
-        </li>
-        <li>
-          <button
-            type='button'
-            onClick={() => onLanguageChange(language === 'es' ? 'en' : 'es')}
-            className={pillClass}
-            aria-label={language === 'es' ? 'Switch to English' : 'Cambiar a español'}
-          >
-            {language === 'es' ? 'EN' : 'ES'}
-          </button>
-        </li>
       </ul>
     </nav>
   )

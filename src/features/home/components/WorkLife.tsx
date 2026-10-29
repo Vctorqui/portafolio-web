@@ -17,18 +17,18 @@ export function WorkLife({ language }: { language: Language }) {
               key={exp.id}
               className='grid grid-cols-[2.25rem_minmax(0,1fr)] gap-x-sm border-t-2 border-rule py-md first:border-t-0 first:pt-0'
             >
-              <span className='font-mono text-xs leading-[2] text-ink-3 tabular-nums'>
+              <span className='font-mono text-xs leading-[2] text-ink-2 tabular-nums'>
                 {String(index + 1).padStart(2, '0')}
               </span>
               <div className='min-w-0'>
                 <div className='flex flex-wrap items-baseline justify-between gap-x-sm'>
                   <h3 className='font-body text-md font-medium text-ink'>
-                    {exp.position} <span className='text-ink-3'>·</span> <span className='text-ink-2'>{exp.company}</span>
+                    {exp.position} · {exp.company}
                   </h3>
-                  <p className='font-mono text-xs text-ink-3 tabular-nums'>{date}</p>
+                  <p className='font-mono text-xs text-ink-2 tabular-nums'>{date}</p>
                 </div>
                 <p className='mt-2xs text-sm text-ink-2' dangerouslySetInnerHTML={{ __html: withBrandAccent(description) }} />
-                <p className='mt-2xs font-mono text-xs text-ink-3'>{exp.stacks.join(' · ')}</p>
+                <p className='mt-2xs font-mono text-xs text-ink-2'>{exp.stacks.join(' · ')}</p>
               </div>
             </li>
           )

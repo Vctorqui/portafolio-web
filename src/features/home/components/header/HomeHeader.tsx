@@ -3,13 +3,7 @@ import { Language } from '../../../../types'
 import { HeaderNav } from './HeaderNav'
 import { LocalStatus } from './LocalStatus'
 
-export function HomeHeader({
-  language,
-  onLanguageChange,
-}: {
-  language: Language
-  onLanguageChange: (lang: Language) => void
-}) {
+export function HomeHeader({ language }: { language: Language }) {
   return (
     <header id='index' className='section-reveal scroll-mt-lg pb-xl pt-md'>
       <div className='flex flex-wrap items-center justify-between gap-md'>
@@ -18,7 +12,7 @@ export function HomeHeader({
           <p className='font-mono text-xs text-ink-3'>{bannerLabels[language].role} · Santiago, CL</p>
           <LocalStatus language={language} />
         </div>
-        <HeaderNav language={language} onLanguageChange={onLanguageChange} />
+        <HeaderNav language={language} />
       </div>
     </header>
   )

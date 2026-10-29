@@ -10,6 +10,7 @@ import { useCommandPaletteShortcut } from '../command-palette/useCommandPaletteS
 import { useAmbience } from '../weather'
 import { Colophon } from './components/colophon/Colophon'
 import { HomeHeader } from './components/header/HomeHeader'
+import { SiteControls } from './components/header/SiteControls'
 import { SelectedWork } from './components/selected-work/SelectedWork'
 import { Setup } from './components/Setup'
 import { SiteFooter } from './components/SiteFooter'
@@ -52,10 +53,11 @@ export function HomePage({ featured }: { featured: ProjectRecord[] }) {
         <LazyCommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} onOpenAchievements={scrollToColophon} />
       )}
       <AchievementToast language={language} />
+      <SiteControls language={language} onLanguageChange={changeLanguage} />
       <SkyBand />
       <main className='relative mx-auto -mt-24 w-full max-w-[var(--measure-table)] px-md sm:-mt-36'>
         <SoundPrompt language={language} />
-        <HomeHeader language={language} onLanguageChange={changeLanguage} />
+        <HomeHeader language={language} />
         <Summary language={language} />
         <WhatsUp language={language} />
         <SelectedWork language={language} featured={featured} />

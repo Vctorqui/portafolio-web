@@ -62,7 +62,7 @@ export function ProjectPanel({ project, language }: { project: ProjectRecord; la
           className='max-w-[36rem] text-ink-2'
           dangerouslySetInnerHTML={{ __html: withBrandAccent(projectDescription(project, language)) }}
         />
-        <p className='font-mono text-xs text-ink-3'>{project.stack.slice(0, 6).join(' · ')}</p>
+        <p className='font-mono text-xs text-ink-2'>{project.stack.slice(0, 6).join(' · ')}</p>
       </div>
     </li>
   )
