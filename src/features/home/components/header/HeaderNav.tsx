@@ -1,11 +1,10 @@
 'use client'
 
 import { bannerLabels } from '../../../../constants/banner'
+import { getResumeHref } from '../../../../constants/resume'
 import { Language } from '../../../../types'
 import { unlockAchievement } from '../../../achievements'
 import { contactPillClass, primaryPillClass } from '../../styles'
-
-const RESUME_HREF = '/Victor_Quinones_Frontend_Developer_CV.pdf'
 
 /** Contact links, Email first as the primary action. Site toggles live in `SiteControls`. */
 export function HeaderNav({ language }: { language: Language }) {
@@ -13,7 +12,7 @@ export function HeaderNav({ language }: { language: Language }) {
     { label: 'Email', href: 'mailto:victor.quinones.ch@gmail.com' },
     { label: 'GitHub', href: 'https://github.com/Vctorqui' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/victorqui' },
-    { label: bannerLabels[language].social.resume, href: RESUME_HREF },
+    { label: bannerLabels[language].social.resume, href: getResumeHref(language) },
   ]
 
   return (

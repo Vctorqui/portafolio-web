@@ -31,14 +31,15 @@ import {
 } from '../theme/theme'
 import { FxMode, applyFxMode, readAppliedFxMode } from '../theme/fx'
 import { changeThemeMode } from '../theme/themeTransition'
+import { getResumeHref, resumeFileByLanguage } from '../../constants/resume'
+import { Language } from '../../types'
 
 type CommandPaletteProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
   onOpenAchievements?: () => void
+  language: Language
 }
-
-const resumeHref = '/Victor_Quinones_Frontend_Developer_CV.pdf'
 
 const iconByAction: Record<CommandActionId, typeof Home> = {
   home: Home,
@@ -61,10 +62,10 @@ function scrollToSection(hash: string) {
   }
 }
 
-function downloadResume() {
+function downloadResume(language: Language) {
   const link = document.createElement('a')
-  link.href = resumeHref
-  link.download = 'Victor_Quinones_Frontend_Developer_CV.pdf'
+  link.href = getResumeHref(language)
+  link.download = resumeFileByLanguage[language]
   document.body.appendChild(link)
   link.click()
   link.remove()
@@ -74,6 +75,7 @@ export function CommandPalette({
   open,
   onOpenChange,
   onOpenAchievements,
+  language,
 }: CommandPaletteProps) {
   const [query, setQuery] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
@@ -127,7 +129,7 @@ export function CommandPalette({
     }
 
     if (action.id === 'download-cv') {
-      downloadResume()
+      downloadResume(language)
     }
 
     if (action.id === 'toggle-theme') {

@@ -50,7 +50,7 @@ export function HomePage({ featured }: { featured: ProjectRecord[] }) {
   return (
     <>
       {paletteOpen && (
-        <LazyCommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} onOpenAchievements={scrollToColophon} />
+        <LazyCommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} onOpenAchievements={scrollToColophon} language={language} />
       )}
       <AchievementToast language={language} />
       <SiteControls language={language} onLanguageChange={changeLanguage} />
