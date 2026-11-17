@@ -34,6 +34,11 @@ export const SEO = ({
       <meta property='og:description' content={siteDescription} />
       <meta property='og:url' content={siteUrl} />
       <meta property='og:image' content={siteOgImage} />
+      <meta property='og:image:secure_url' content={siteOgImage} />
+      <meta property='og:image:type' content='image/png' />
+      <meta property='og:image:width' content='1200' />
+      <meta property='og:image:height' content='630' />
+      <meta property='og:image:alt' content='Víctor Quiñones, Frontend Developer' />
       <meta property='og:type' content={ogType} />
       <meta property='og:site_name' content='Victor Quiñones Portfolio' />
 
@@ -43,6 +48,7 @@ export const SEO = ({
       <meta name='twitter:title' content={siteTitle} />
       <meta name='twitter:description' content={siteDescription} />
       <meta name='twitter:image' content={siteOgImage} />
+      <meta name='twitter:image:alt' content='Víctor Quiñones, Frontend Developer' />
     </Head>
   )
 }
